@@ -1,7 +1,7 @@
 from ib.opt import ibConnection, message, Connection
 from time import sleep, strftime
-from interactive import makeStkContract
-from database import Historical, Scraped
+from brokers.interactive_brokers.interactive import makeStkContract
+from brokers.interactive_brokers.database import Historical, Scraped
 from datetime import datetime
 
 # Source https://interactivebrokers.github.io/tws-api/historical_bars.html
@@ -30,7 +30,7 @@ def watcher(msg):
 
 def historical_request(tickerId: int, tickerSymbol: str) -> None:
     contract = (tickerSymbol, 'STK', 'SMART', 'USD', '', 0.0, '')
-    con = ibConnection("134.209.160.105",port=7496, clientId=100)
+    con = ibConnection("127.0.0.1",port=7496, clientId=100)
     con.registerAll(watcher)
     con.register(historical_handler, message.historicalData)
     con.connect()
@@ -45,11 +45,17 @@ def historical_request(tickerId: int, tickerSymbol: str) -> None:
     con.disconnect()
     sleep(2)
 
+def collect(symbols: list) -> None:
+    for symbol in load_scraped_symbols():
+        historical_request(symbol[0],symbol[1])
+
+def recurrent_action():
+    scraped_symbols = load_scraped_symbols()
+    collect(scraped_symbols)
 
 if __name__ == '__main__':
     # Note: Option quotes will give an error if they aren't shown in TWS
     # FORMAT ('GOOG', 'STK/FUT/FOP/CASH', 'SMART/GLOBEX/IDEALPRO', 'USD', '', 0.0, '')
     '''contractTuple = ('GOOG', 'STK', 'SMART', 'USD', '', 0.0, '')
     historical_request(21,contractTuple)'''
-    for symbol in load_scraped_symbols():
-        historical_request(symbol[0],symbol[1])
+    recurrent_action()

@@ -6,6 +6,7 @@ def makeContract(ticker):
     contract.m_secType = 'STK'
     contract.m_exchange = 'SMART'
     contract.m_currency = 'USD'
+    print(contract)
     return contract
 
 

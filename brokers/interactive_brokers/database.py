@@ -1,10 +1,10 @@
 import peewee
 
 collector = peewee.MySQLDatabase('collector',
-                          host='34.226.57.196',
+                          host='127.0.0.1',
                           port=3306,
-                          user='master',
-                          password='4fPCFRuis7gJBr')
+                          user='root',
+                          password='deidei')
 
 
 '''collector = peewee.MySQLDatabase('collector',

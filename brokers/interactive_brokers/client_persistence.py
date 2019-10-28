@@ -5,7 +5,7 @@ import schedule
 
 
 IB_PROCESS = 'java'
-ENTRY_POINT="/home/ring1/Jts/ibgateway/972/ibgateway"
+ENTRY_POINT="/home/casa/Jts/ibgateway/972/ibgateway"
 
 for proc in psutil.process_iter():
     if proc.name() == IB_PROCESS:
@@ -23,8 +23,10 @@ def check_running():
 	if IB_PROCESS not in list(map(lambda x: x.name(), psutil.process_iter())):
 		start_gateway()
 
-schedule.every(10).seconds.do(check_running)
+def persist():
+    schedule.every(10).seconds.do(check_running)
+    while True:
+	    schedule.run_pending()
 
 if __name__ == '__main__':
-	while True:		
-		schedule.run_pending()
+    persist()

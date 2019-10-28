@@ -2,8 +2,8 @@ from datetime import datetime, timedelta, date
 from ib.ext.Contract import Contract
 from ib.opt import ibConnection
 from time import sleep, strftime
-from database import Scraped, Fundamentals
-from interactive import makeContract
+from brokers.interactive_brokers.database import Scraped, Fundamentals
+from brokers.interactive_brokers.interactive import makeContract
 import schedule
 
 tickersId = {}
@@ -37,7 +37,7 @@ def load_scraped_symbols():
 
 def collect(symbols: list) -> None:
     # TWS VPS
-    tws = ibConnection("134.209.160.105",port=7496, clientId=100)
+    tws = ibConnection("127.0.0.1",port=7496, clientId=100)
     # TWS Local
     #tws = ibConnection(port=7496, clientId=100)
     tws.registerAll(watcher)

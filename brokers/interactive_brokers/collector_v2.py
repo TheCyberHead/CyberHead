@@ -168,7 +168,6 @@ def load_scraped_symbols():
 def collect():
     #for index, symbol in enumerate(scraped_symbols[:3]):  # for small tests
     for index, symbol in enumerate(scraped_symbols):
-        print(11111111111111, index, symbol)
         ticker = symbol[0]
         exchange = symbol[1]
         funDict = {}
@@ -177,9 +176,7 @@ def collect():
             tws.connect()
             contractTuple = makeContract(ticker)
             sleep(5)
-            print(222)
             tws.reqMktData(1, contractTuple, "233, 236, 258", False)
-            print(222)
             sleep(5)
             tws.disconnect()
             print('Conecting: ', symbol)
