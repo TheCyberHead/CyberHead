@@ -2,7 +2,7 @@ import pandas as pd
 from database import Fundamentals, collector
 from decimal import Decimal
 import matplotlib.pyplot as plt
-from test import getRGB
+from colormap_generator import getRGB
 
 def plotFundamental(fundamental,graphType):
 	df = pd.read_csv('CSV/data.csv')
