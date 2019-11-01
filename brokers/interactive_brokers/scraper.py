@@ -29,7 +29,7 @@ def scrape_ib():
                                 market='SMART',
                                 symbol_type='STK'
                                 )
-                    print("{} {}, STK, SMART, {}".format(exchange.upper(), td[0].text, td[3].text))
+                    print("Inserting {}".format(td[0].text))
                 else:
                     print("{} already exists".format(td[0].text))
 
