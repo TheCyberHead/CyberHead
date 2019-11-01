@@ -4,6 +4,7 @@ from ib.opt import ibConnection
 from time import sleep, strftime
 from brokers.interactive_brokers.database import Scraped, Fundamentals
 from brokers.interactive_brokers.interactive import makeContract
+from brokers.interactive_brokers.config import ib_host, ib_port, ib_client_id
 import schedule
 
 tickersId = {}
@@ -36,10 +37,7 @@ def load_scraped_symbols():
 
 
 def collect(symbols: list) -> None:
-    # TWS VPS
-    tws = ibConnection("127.0.0.1",port=7496, clientId=100)
-    # TWS Local
-    #tws = ibConnection(port=7496, clientId=100)
+    tws = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
     tws.registerAll(watcher)
     tws.register(tickPriceHandler, 'TickString')
     for symbol in symbols:
