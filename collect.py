@@ -87,13 +87,13 @@ def collect(symbols: list) -> None:
 def recurrent_action():
     print('Symbols Scraping Initialized')
     #scrape_ib()
+    scraped_symbols = load_scraped_symbols()
     print('-------- Symbols Scraping Completed --------')
     print('-------- Historical Pull  Initialized --------')
     for symbol in scraped_symbols:
         historical_request(symbol[2], symbol[0])
     print('-------- Historical Pull Completed --------')
     print('-------- Fundamentals Pull Initialized --------')
-    scraped_symbols = load_scraped_symbols()
     collect(scraped_symbols)
     print('-------- Fundamentals Pull Completed --------')
 
