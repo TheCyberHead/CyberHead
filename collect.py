@@ -44,7 +44,7 @@ def tickPriceHandler(msg):
         handler_dict['TICKER'] = tickersId[msg.tickerId][0]
         handler_dict['EXCHANGE'] = tickersId[msg.tickerId][1]
         handler_dict['DATE'] = datetime.now()
-        Fundamentals.create(**handler_dict)
+        #Fundamentals.create(**handler_dict)
         print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
 
 def load_scraped_symbols():
