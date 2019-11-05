@@ -1,11 +1,18 @@
 from ib_insync import *
 from brokers.interactive_brokers.database import Scraped, Fundamentals, Historical
 from brokers.interactive_brokers.scraper import scrape_ib
+from brokers.interactive_brokers.interactive import makeContract, makeStkContract
 from brokers.interactive_brokers.config import db_host, db_user, db_password, db_name, db_port
 import schedule
+from ib.ext.Contract import Contract
+from ib.opt import ibConnection, message
 from sqlalchemy import create_engine 
 import pandas as pd
-import time 
+from brokers.interactive_brokers.config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
+import time
+
+tickersId = {}
+tickerStore = {}
 
 def historical(symbols: list) -> None:
 	ib = IB()
@@ -27,30 +34,41 @@ def historical(symbols: list) -> None:
 		except Exception as e:
 			print(f'Error while fetching {symbol}')
 
-def fundamentals(symbols: list) -> None:
-	print(f'Fetching fundamental information for {len(symbols)} symbols.')
-	ib = IB()
-	ib.connect("134.209.160.105", 7496, clientId=100)
-	for index, symbol in enumerate(symbols):
-		print(f"{symbol} {index+1}/{len(symbols)}")
-		contract = Stock(symbol, 'SMART', 'USD')
-		ticker = ib.reqMktData(contract, '258')
-		ib.sleep(2)
-		print(symbol, ticker.fundamentalRatios)
+def load_scraped_symbols():
+    query = Scraped.select()
+    return [(record.symbol, record.exchange, record.id) for record in query]
 
+def tickPriceHandler(msg):
+    fundamentals = str(msg).split('value=')[1].split(';')
+    handler_dict = {}
+    if msg.tickType == 47 and len(fundamentals) > 10:
+        for val in fundamentals:
+            try:
+                data = val.split('=')
+                if data != ['']:
+                    handler_dict[data[0]] = data[1].replace('>','')
+            except Exception as e:
+                print(e)
+                continue
+        handler_dict['TICKER'] = tickersId[msg.tickerId][0]
+        handler_dict['EXCHANGE'] = tickersId[msg.tickerId][1]
+        handler_dict['DATE'] = datetime.now()
+        Fundamentals.create(**handler_dict)
+        print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
 
-def fundamentals_individual(symbol):
-	try:
-		print(f'Fetching fundamental information for {symbol} symbols.')
-		ib = IB()
-		ib.connect("134.209.160.105", 7496, clientId=100)
-		contract = Stock(symbol, 'SMART', 'USD')
-		ticker = ib.reqMktData(contract, '258')
-		ib.sleep(2)
-		print(symbol, ticker.fundamentalRatios)
-		ib.sleep(2)
-	except Exception as e:
-		print(f'error {symbol}')
+def collect(symbols: list) -> None:
+    tws = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
+    tws.registerAll(watcher)
+    tws.register(tickPriceHandler, 'TickString')
+    for symbol in symbols:
+        tws.connect()
+        ticker = symbol[0]
+        print(ticker)
+        stock_fundamental = {}
+        tws.reqMktData(symbol[2], makeContract(ticker), "233, 236, 258", False)
+        tickersId[symbol[2]] = [symbol[0],symbol[1]]
+        sleep(5)
+        tws.disconnect()
 
 def import_csv(file_name):
 	df = pd.read_csv(file_name,sep=',')
@@ -63,6 +81,13 @@ def recurrent_action():
     scrape_ib()
     scraped_symbols = [record.symbol for record in Scraped.select()]
     historical(scraped_symbols)
+    import_csv('historical.csv')
+    sc_symbols = load_scraped_symbols()
+    collect(sc_symbols)
 
 if __name__ == '__main__':
-	recurrent_action()
+    recurrent_action()
+    schedule.every().monday.do(recurrent_action)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
