@@ -28,7 +28,6 @@ def historical_handler(msg):
                 date_history=date_f,
                 hasGaps=msg.hasGaps
             )
-        print('Inserting {} at {}'.format(tickerStore[msg.reqId],date_f))
 
 def tickPriceHandler(msg):
     fundamentals = str(msg).split('value=')[1].split(';')
@@ -53,7 +52,8 @@ def load_scraped_symbols():
     return [(record.symbol, record.exchange, record.id) for record in query]
 
 
-def historical_request(tickerId: int, tickerSymbol: str) -> None:
+def historical_request(tickerId: int, tickerSymbol: str, totalSymbols) -> None:
+    print(f"{tickerSymbol} : {tickerId}/{totalSymbols}")
     contract = (tickerSymbol, 'STK', 'SMART', 'USD', '', 0.0, '')
     con = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
     con.registerAll(watcher)
@@ -85,17 +85,11 @@ def collect(symbols: list) -> None:
         tws.disconnect()
 
 def recurrent_action():
-    print('Symbols Scraping Initialized')
-    #scrape_ib()
+    scrape_ib()
     scraped_symbols = load_scraped_symbols()
-    print('-------- Symbols Scraping Completed --------')
-    print('-------- Historical Pull  Initialized --------')
     for symbol in scraped_symbols:
-        historical_request(symbol[2], symbol[0])
-    print('-------- Historical Pull Completed --------')
-    print('-------- Fundamentals Pull Initialized --------')
+        historical_request(symbol[2], symbol[0], len(scraped_symbols))
     collect(scraped_symbols)
-    print('-------- Fundamentals Pull Completed --------')
 
 
 if __name__ == '__main__':

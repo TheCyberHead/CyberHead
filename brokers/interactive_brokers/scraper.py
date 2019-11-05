@@ -29,7 +29,6 @@ def scrape_ib():
                                 market='SMART',
                                 symbol_type='STK'
                                 )
-                    print("Inserting {}".format(td[0].text))
                 else:
                     print("{} already exists".format(td[0].text))
 
