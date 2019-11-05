@@ -16,7 +16,7 @@ tickerStore = {}
 
 def historical(symbols: list) -> None:
 	ib = IB()
-	ib.connect("134.209.160.105", 7496, clientId=100)
+	ib.connect(ib_host, ib_port, clientId=ib_client_id)
 	print(f'Fetching historical information for {len(symbols)} symbols.')
 	for index, symbol in enumerate(symbols):
 		try:
