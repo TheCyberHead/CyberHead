@@ -5,6 +5,7 @@ from brokers.interactive_brokers.config import db_host, db_user, db_password, db
 import schedule
 from sqlalchemy import create_engine 
 import pandas as pd
+import time 
 
 def historical(symbols: list) -> None:
 	ib = IB()
@@ -27,15 +28,29 @@ def historical(symbols: list) -> None:
 			print(f'Error while fetching {symbol}')
 
 def fundamentals(symbols: list) -> None:
+	print(f'Fetching fundamental information for {len(symbols)} symbols.')
 	ib = IB()
 	ib.connect("134.209.160.105", 7496, clientId=100)
-	print(f'Fetching fundamental information for {len(symbols)} symbols.')
 	for index, symbol in enumerate(symbols):
 		print(f"{symbol} {index+1}/{len(symbols)}")
 		contract = Stock(symbol, 'SMART', 'USD')
 		ticker = ib.reqMktData(contract, '258')
 		ib.sleep(2)
+		print(symbol, ticker.fundamentalRatios)
 
+
+def fundamentals_individual(symbol):
+	try:
+		print(f'Fetching fundamental information for {symbol} symbols.')
+		ib = IB()
+		ib.connect("134.209.160.105", 7496, clientId=100)
+		contract = Stock(symbol, 'SMART', 'USD')
+		ticker = ib.reqMktData(contract, '258')
+		ib.sleep(2)
+		print(symbol, ticker.fundamentalRatios)
+		ib.sleep(2)
+	except Exception as e:
+		print(f'error {symbol}')
 
 def import_csv(file_name):
 	df = pd.read_csv(file_name,sep=',')
