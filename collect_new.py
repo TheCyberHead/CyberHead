@@ -86,7 +86,6 @@ def recurrent_action():
     collect(sc_symbols)
 
 if __name__ == '__main__':
-    recurrent_action()
     schedule.every().monday.do(recurrent_action)
     while True:
         schedule.run_pending()
