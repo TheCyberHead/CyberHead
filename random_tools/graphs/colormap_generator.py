@@ -22,11 +22,19 @@ def getRGB(lenght):
 	yellow = inferno[192:256]
 	if lenght > 256:
 		gen = round((lenght-256)/4)
+		print(gen)
 		if gen < 5:
 			black.append(black[-1])
 			purple.append(purple[-1])
 			red.append(red[-1])
 			yellow.append(yellow[-1])
+			colors = black + purple + red + yellow
+		elif lenght > 512:
+			for i in range(gen):
+				black.append(black[-1])
+				purple.append(purple[-1])
+				red.append(red[-1])
+				yellow.append(yellow[-1])
 			colors = black + purple + red + yellow
 		else:
 			black += black[-gen:]
@@ -39,3 +47,4 @@ def getRGB(lenght):
 		colors = black[:dist] + purple[:dist] + red[:dist] + yellow[:dist]
 
 	return colors
+

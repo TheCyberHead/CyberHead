@@ -49,7 +49,7 @@ def recover(drop_data: list, target: float, graphType: int):
 		return recoverRes
 
 	except Exception as e:
-		print('Error ', e)
+		print('Did not recover in the given time frame. ', e)
 
 def generateCSV(symbol: str, dropTarget: float, recoverTarget: float, periods: int):
 	try:
