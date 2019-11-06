@@ -5,7 +5,7 @@ import schedule
 
 
 IB_PROCESS = 'java'
-ENTRY_POINT="/home/casa/Jts/ibgateway/972/ibgateway"
+ENTRY_POINT="/home/ubuntu/Jts/ibgateway/972/ibgateway"
 
 for proc in psutil.process_iter():
     if proc.name() == IB_PROCESS:

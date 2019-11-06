@@ -63,7 +63,6 @@ def generateCSV(symbol: str, dropTarget: float, recoverTarget: float, periods: i
 			recoverList = recoverExec
 			recoverList.reverse()
 			recListLen = len(recoverList)
-			#print(recListLen)
 			for index,action in enumerate(recoverList):
 				action[2] = recListLen-index
 			df = pd.DataFrame(recoverList, columns =['symbol','time','period','price_close','recover']) 
@@ -71,6 +70,5 @@ def generateCSV(symbol: str, dropTarget: float, recoverTarget: float, periods: i
 	except Exception as e:
 		print('Error ', e)
 
-#symbols = ['AMD', 'GOOGL','QCOM', 'WDC', 'BAC', 'F', 'IBM']
 for symbol in load_scraped_symbols():
-	generateCSV(symbol, -0.03, 0.01, 300)
+	generateCSV(symbol, -0.12, 0.03, 300)
