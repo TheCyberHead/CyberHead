@@ -58,7 +58,6 @@ def tickPriceHandler(msg):
 
 def collect(symbols: list) -> None:
     tws = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
-    tws.registerAll(watcher)
     tws.register(tickPriceHandler, 'TickString')
     for symbol in symbols:
         tws.connect()
@@ -67,7 +66,7 @@ def collect(symbols: list) -> None:
         stock_fundamental = {}
         tws.reqMktData(symbol[2], makeContract(ticker), "233, 236, 258", False)
         tickersId[symbol[2]] = [symbol[0],symbol[1]]
-        sleep(5)
+        time.sleep(5)
         tws.disconnect()
 
 def import_csv(file_name):
