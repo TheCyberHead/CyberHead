@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, date
 from ib.ext.Contract import Contract
 from ib.opt import ibConnection, message
 from time import sleep, strftime
+import brokers.interactive_brokers.database
 from brokers.interactive_brokers.database import Scraped, Fundamentals, Historical
 from brokers.interactive_brokers.interactive import makeContract, makeStkContract
 from brokers.interactive_brokers.config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
@@ -86,14 +87,14 @@ def collect(symbols: list) -> None:
 
 def recurrent_action():
     print('Symbols Scraping Initialized')
-    #scrape_ib()
+    scrape_ib()
+    scraped_symbols = load_scraped_symbols()
     print('-------- Symbols Scraping Completed --------')
     print('-------- Historical Pull  Initialized --------')
     for symbol in scraped_symbols:
         historical_request(symbol[2], symbol[0])
     print('-------- Historical Pull Completed --------')
     print('-------- Fundamentals Pull Initialized --------')
-    scraped_symbols = load_scraped_symbols()
     collect(scraped_symbols)
     print('-------- Fundamentals Pull Completed --------')
 
