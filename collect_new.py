@@ -16,7 +16,7 @@ tickerStore = {}
 
 def historical(symbols: list) -> None:
 	ib = IB()
-	ib.connect("134.209.160.105", 7496, clientId=100)
+	ib.connect(ib_host, ib_port, clientId=ib_client_id)
 	print(f'Fetching historical information for {len(symbols)} symbols.')
 	for index, symbol in enumerate(symbols):
 		try:
@@ -86,7 +86,6 @@ def recurrent_action():
     collect(sc_symbols)
 
 if __name__ == '__main__':
-    recurrent_action()
     schedule.every().monday.do(recurrent_action)
     while True:
         schedule.run_pending()
