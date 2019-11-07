@@ -43,7 +43,7 @@ def getRGB(lenght):
 			red += red[-gen:]
 			colors = black + purple + red + yellow
 	else:
-		dist = round(lenght/4)
+		dist = round(lenght/4)+1
 		colors = black[:dist] + purple[:dist] + red[:dist] + yellow[:dist]
 
 	return colors
