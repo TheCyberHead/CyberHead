@@ -2,7 +2,7 @@ from ib_insync import *
 from brokers.interactive_brokers.database import Scraped, Fundamentals, Historical
 from brokers.interactive_brokers.scraper import scrape_ib
 from brokers.interactive_brokers.interactive import makeContract, makeStkContract
-from brokers.interactive_brokers.config import db_host, db_user, db_password, db_name, db_port
+from config import db_host, db_user, db_password, db_name, db_port
 import schedule
 from ib.ext.Contract import Contract
 from ib.opt import ibConnection, message

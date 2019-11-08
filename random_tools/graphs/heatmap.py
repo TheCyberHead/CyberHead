@@ -49,10 +49,10 @@ def plotFundamental(fundamental,graphType):
 		ax = fig.add_subplot(111)
 		ax.hist2d(x_axis, y_axis, bins=N_bins, normed=False, cmap='plasma')
 		ax.set_label('Range')
-		ax.set_title(f"{fundamental} Type : {graphType}. Drops : -12%. Recover : 3%")
-		ax.set_xlabel(fundamental)
+		ax.set_title(f"Type : {graphType} / {fundamental}. Drops : -12%. Recover : 3%")
+		ax.set_xlabel(f"{fundamental} / Data points : {len(fundamental_series)}")
 		ax.set_ylabel(plot_label)
-		fig.savefig(f'imgs/{fundamental}.png', bbox_inches='tight')
+		fig.savefig(f'fundamentals_visualization/Type-{graphType}-{fundamental}-Drops-12-Recover-3.png', bbox_inches='tight')
 		pylab.close(fig)
 
 	elif graphType == 1:
@@ -64,7 +64,7 @@ def plotFundamental(fundamental,graphType):
 		plt.title(f"Type : {graphType}. Drops : -12%. Recover : 3%")
 		plt.xlabel('Period')
 		plt.ylabel('Recover')
-		plt.savefig(f'imgs/{fundamental}.png')
+		plt.savefig(f'fundamentals_visualization/type-1-drops-12-recover-3{fundamental}.png')
 
 
 
