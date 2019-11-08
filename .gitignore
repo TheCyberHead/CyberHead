@@ -3,5 +3,8 @@ __pycache__/*
 random_tools/graphs/__pycache__/*
 random_tools/graphs/__pycache__
 random_tools/graphs/CSV/*
+random_tools/graphs/fundamentals_visualization/*
 brokers/__pycache__
+brokers/__pycache__/*
 brokers/interactive_brokers/__pycache__
+brokers/interactive_brokers/__pycache__/*
