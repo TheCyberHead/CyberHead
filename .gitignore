@@ -9,3 +9,4 @@ brokers/__pycache__
 brokers/__pycache__/*
 brokers/interactive_brokers/__pycache__
 brokers/interactive_brokers/__pycache__/*
+*.pyc
