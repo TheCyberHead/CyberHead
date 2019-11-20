@@ -10,6 +10,7 @@ from sqlalchemy import create_engine
 import pandas as pd
 from brokers.interactive_brokers.config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
 import time
+from datetime import datetime
 
 tickersId = {}
 tickerStore = {}
@@ -35,7 +36,7 @@ def historical(symbols: list) -> None:
 			print(f'Error while fetching {symbol}')
 
 def load_scraped_symbols():
-    query = Scraped.select()
+    query = Scraped.select().where(Scraped.id > 3500)
     return [(record.symbol, record.exchange, record.id) for record in query]
 
 def tickPriceHandler(msg):
@@ -54,7 +55,8 @@ def tickPriceHandler(msg):
         handler_dict['EXCHANGE'] = tickersId[msg.tickerId][1]
         handler_dict['DATE'] = datetime.now()
         Fundamentals.create(**handler_dict)
-        print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
+        #print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
+        print(handler_dict)
 
 def collect(symbols: list) -> None:
     tws = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
@@ -77,14 +79,15 @@ def import_csv(file_name):
 
 
 def recurrent_action():
-    scrape_ib()
-    scraped_symbols = [record.symbol for record in Scraped.select()]
-    historical(scraped_symbols)
-    import_csv('historical.csv')
+    #scrape_ib()
+    #scraped_symbols = [record.symbol for record in Scraped.select()]
+    #historical(scraped_symbols)
+    #import_csv('historical.csv')
     sc_symbols = load_scraped_symbols()
     collect(sc_symbols)
 
 if __name__ == '__main__':
+    recurrent_action()
     schedule.every().monday.do(recurrent_action)
     while True:
         schedule.run_pending()

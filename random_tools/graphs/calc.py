@@ -33,20 +33,20 @@ def recover(drop_data: list, target: float, graphType: int):
 		drop_point = drop_data[0][drop_index]
 		recover_dates = drop_data[6][drop_index+1:]
 		recover_prices = drop_data[0][drop_index+1:]
-		print(len(drop_data[0]))
-		if graphType != 1:
-			for price in recover_prices:
-				recover_calc = round(price/drop_point-1,3)
-				recover_index = recover_prices.index(price)
-				recoverRes.append([drop_data[2], recover_dates[recover_index], drop_point, price, recover_calc])
-				if recover_calc >= target:
-					return recoverRes
-		else:
-			for price in recover_prices:
-				recover_calc = round(price/drop_point-1,3)
-				recover_index = recover_prices.index(price)
-				recoverRes.append([drop_data[2], recover_dates[recover_index], drop_point, price, recover_calc])
-		return recoverRes
+		print(len(recover_prices))
+		if len(recover_prices) >= 229:
+			print(f"{len(recover_prices)} H")
+			if graphType != 1:
+				for price in recover_prices:
+					recover_calc = round(price/drop_point-1,3)
+					recover_index = recover_prices.index(price)
+					recoverRes.append([drop_data[2], recover_dates[recover_index], drop_point, price, recover_calc])
+			else:
+				for price in recover_prices:
+					recover_calc = round(price/drop_point-1,3)
+					recover_index = recover_prices.index(price)
+					recoverRes.append([drop_data[2], recover_dates[recover_index], drop_point, price, recover_calc])
+			return recoverRes
 
 	except Exception as e:
 		print('Did not recover in the given time frame. ', e)

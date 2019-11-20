@@ -4,6 +4,8 @@ from decimal import Decimal
 import matplotlib.pyplot as plt
 from matplotlib import pylab
 from colormap_generator import getRGB
+import numpy as np
+from dominant_distribution import getColor
 
 def plotFundamental(fundamental,graphType):
 	df = pd.read_csv('CSV/data.csv')
@@ -11,8 +13,8 @@ def plotFundamental(fundamental,graphType):
 	symbols = df.symbol.unique()
 	periods = []
 	graphOne = []
-	for x in symbols:
-		print(x)
+	for index,x in enumerate(symbols):
+		print(f"{x} {index+1}/{len(symbols)}")
 		findSymbol = df.loc[df['symbol'] == x]
 		periods.append([findSymbol.iloc[0]['period'], x,findSymbol.iloc[0]['recover']])
 		graphOne.append([x, list(findSymbol.recover), list(findSymbol.period)])
@@ -56,21 +58,36 @@ def plotFundamental(fundamental,graphType):
 		pylab.close(fig)
 
 	elif graphType == 1:
-		colors = getRGB(len(graphOne))
-		print(len(graphOne))
-		print(len(colors))
+		colors = getRGB(len(graphOne)+3)
+		stock_symbols = [x[0] for x in graphOne]
+		series_values = {}
+		query = collector.execute_sql("SELECT TICKER,{} from Fundamentals where TICKER in {}".format(fundamental,tuple(stock_symbols)))
+		for i in query:
+			series_values[i[0]] = i[1]
+		for x in graphOne:
+			try:
+				if series_values[x[0]]:
+					x.append(series_values[x[0]])
+			except Exception as e:
+				print(e)
+		fundamental_colors = [x for x in series_values.values()]
+		fundamental_colors.sort()
+
 		for index,el in enumerate(graphOne):
-			plt.plot(el[2], el[1], color=colors[index], linewidth=0.5)
+			try:
+				plt.plot(el[2], np.round(el[1], 2), color=getColor(fundamental_colors,el[3]), linewidth=0.5)
+			except Exception as e:
+				print(e)
+				continue
 		plt.title(f"Type : {graphType}. Drops : -12%. Recover : 3%")
 		plt.xlabel('Period')
 		plt.ylabel('Recover')
-		plt.savefig(f'fundamentals_visualization/type-1-drops-12-recover-3{fundamental}.png')
+		plt.savefig(f'fundamentals_visualization/type-1-drops-12-recover-3{fundamental}.png', dpi=400)
 
 
 
 fundamental_iter = ["AATCA","ACFSHR","ADIV5YAVG","AEBIT","AEBTNORM","AEPSNORM","AEPSXCLXOR","AFEEPSNTM","AFPRD","AFPSS","ALSTD","ALTCL","ANIACNORM","AOTLO","APENORM","APTMGNPCT","AREVPS","AROAPCT","AROIPCT","ASCEX","ASFCF","ASICF","ASINN","ASOPI","BETA","CURRENCY","DIVGRPCT","EPSCHNGYR","EPSTRENDGR","EV_Cur","EV2EBITDA_Cur","Frac52Wk","LATESTADATE","MKTCAP","NetDebt_I","NHIG","NLOW","NPRICE","PEEXCLXOR","PR13WKPCT","PR1WKPCT","PR2TANBK","PR4WKPCT","PR52WKPCT","PRICE2BK","PRYTDPCTR","QATCA","QBVPS","QCASH","QCSHPS","QCURRATIO","QEBIT","QEBITDA","QFPRD","QFPSS","QLSTD","QLTCL","QLTD2EQ","QOTLO","QPR2REV","QPRCFPS","QQUICKRATI","QSCEX","QSFCF","QSICF","QSINN","QSOPI","QTA","QTANBVPS","QTL","QTOTCE","QTOTD2EQ","QTOTLTD","REVCHNGYR","REVTRENDGR","TTMCFSHR","TTMDIVSHR","TTMEBITD","TTMEBT","TTMEPSCHG","TTMEPSXCLX","TTMFCF","TTMFCFSHR","TTMGROSMGN","TTMINTCOV","TTMINVTURN","TTMNIAC","TTMNIPEREM","TTMNPMGN","TTMOPMGN","TTMPAYRAT","TTMPR2REV","TTMPRCFPS","TTMPRFCFPS","TTMPTMGN","TTMREC"]
 
-
-for x in fundamental_iter:
-	plotFundamental(x, 2)
-	plotFundamental(x, 3)
+if __name__ == '__main__':
+	for funda in fundamental_iter:
+		plotFundamental(funda, 1)

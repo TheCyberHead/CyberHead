@@ -15,3 +15,5 @@ db_user = 'root'
 db_password = 'root'
 db_name = 'collector'
 db_port = 3306
+drops = -0.12
+recover = 0.03
