@@ -34,8 +34,7 @@ def recover(drop_data: list, target: float, graphType: int):
 		recover_dates = drop_data[6][drop_index+1:]
 		recover_prices = drop_data[0][drop_index+1:]
 		print(len(recover_prices))
-		if len(recover_prices) >= 229:
-			print(f"{len(recover_prices)} H")
+		if len(recover_prices) >= 20:
 			if graphType != 1:
 				for price in recover_prices:
 					recover_calc = round(price/drop_point-1,3)
@@ -66,9 +65,10 @@ def generateCSV(symbol: str, dropTarget: float, recoverTarget: float, periods: i
 			for index,action in enumerate(recoverList):
 				action[2] = recListLen-index
 			df = pd.DataFrame(recoverList, columns =['symbol','time','period','price_close','recover']) 
-			df.to_csv('CSV/data.csv', index=False, mode='a', header=False)
+			df.to_csv('random_tools/graphs/CSV/data.csv', index=False, mode='a', header=False)
 	except Exception as e:
 		print('Error ', e)
 
-for symbol in load_scraped_symbols():
-	generateCSV(symbol, -0.12, 0.03, 300)
+def generate():
+	for symbol in load_scraped_symbols():
+		generateCSV(symbol, -0.12, 0.03, 300)

@@ -1,4 +1,4 @@
-from colormaps import inferno
+from random_tools.graphs.colormaps import inferno
 
 def getColor(series_set, n):
 	data_set = series_set

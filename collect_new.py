@@ -1,7 +1,9 @@
 from ib_insync import *
-from brokers.interactive_brokers.database import Scraped, Fundamentals, Historical
+from database import Scraped, Fundamentals, Historical
 from brokers.interactive_brokers.scraper import scrape_ib
 from brokers.interactive_brokers.interactive import makeContract, makeStkContract
+from random_tools.graphs.calc import generate
+from random_tools.graphs.heatmap import generateMaps
 from config import db_host, db_user, db_password, db_name, db_port
 import schedule
 from ib.ext.Contract import Contract
@@ -11,6 +13,7 @@ import pandas as pd
 from brokers.interactive_brokers.config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
 import time
 from datetime import datetime
+import shutil
 
 tickersId = {}
 tickerStore = {}
@@ -55,8 +58,7 @@ def tickPriceHandler(msg):
         handler_dict['EXCHANGE'] = tickersId[msg.tickerId][1]
         handler_dict['DATE'] = datetime.now()
         Fundamentals.create(**handler_dict)
-        #print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
-        print(handler_dict)
+        print("Inserting fundamentals for {}".format(handler_dict['TICKER']))
 
 def collect(symbols: list) -> None:
     tws = ibConnection(ib_host,port=ib_port, clientId=ib_client_id)
@@ -72,19 +74,21 @@ def collect(symbols: list) -> None:
         tws.disconnect()
 
 def import_csv(file_name):
-	df = pd.read_csv(file_name,sep=',')
-	engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}").connect()
-	df['hasGaps'] = False
-	df.to_sql(name='historical', con=engine, if_exists='append',index=False)
-
+    df = pd.read_csv(file_name,sep=',')
+    df.columns = ['ticker','date_history','open_price','high','low','closing_price']
+    engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}").connect()
+    df['hasGaps'] = False
+    df.to_sql(name='historical', con=engine, if_exists='append',index=False)
 
 def recurrent_action():
-    #scrape_ib()
-    #scraped_symbols = [record.symbol for record in Scraped.select()]
-    #historical(scraped_symbols)
-    #import_csv('historical.csv')
+    scrape_ib()
+    scraped_symbols = [record.symbol for record in Scraped.select()]
+    historical(scraped_symbols)
+    import_csv('historical.csv')
     sc_symbols = load_scraped_symbols()
     collect(sc_symbols)
+    generate()
+    generateMaps()
 
 if __name__ == '__main__':
     recurrent_action()

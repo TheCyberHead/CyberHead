@@ -4,7 +4,7 @@ historical_from = '1 Y'
 # Historical : 1 X, X : Y - M - D 
 bar_length = '1 day'
 # Length : X minutes / hours / seconds days
-ib_host = "134.209.160.105"
+ib_host = "127.0.0.1"
 # TWS API IP Host
 ib_port = 7496
 # TWS API IP Port
