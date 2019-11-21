@@ -10,7 +10,7 @@ from ib.ext.Contract import Contract
 from ib.opt import ibConnection, message
 from sqlalchemy import create_engine 
 import pandas as pd
-from brokers.interactive_brokers.config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
+from config import historical_from, bar_length, ib_host, ib_port, ib_client_id 
 import time
 from datetime import datetime
 import shutil
