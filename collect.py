@@ -74,7 +74,7 @@ def collect(symbols: list) -> None:
         tws.disconnect()
 
 def import_csv(file_name):
-    df = pd.read_csv(file_name,sep=',')
+    df = pd.read_csv(file_name,sep=',', chunksize=500)
     df.columns = ['ticker','date_history','open_price','high','low','closing_price']
     engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}").connect()
     df['hasGaps'] = False
