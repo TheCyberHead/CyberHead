@@ -10,8 +10,8 @@ ib_port = 7496
 # TWS API IP Port
 ib_client_id = 100
 # TWS API Client ID
-db_host = 'localhost'
-db_user = 'root'
+db_host = '34.226.57.196'
+db_user = 'master'
 db_password = 'root'
 db_name = 'collector'
 db_port = 3306

@@ -74,11 +74,11 @@ def collect(symbols: list) -> None:
         tws.disconnect()
 
 def import_csv(file_name):
-    df = pd.read_csv(file_name,sep=',', chunksize=500)
-    df.columns = ['ticker','date_history','open_price','high','low','closing_price']
     engine = create_engine(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}").connect()
-    df['hasGaps'] = False
-    df.to_sql(name='historical', con=engine, if_exists='append',index=False)
+    for df in pd.read_csv(file_name,sep=',', chunksize=500):
+        df.columns = ['ticker','date_history','open_price','high','low','closing_price']
+        df['hasGaps'] = False
+        df.to_sql(name='historical', con=engine, if_exists='append',index=False)
 
 def recurrent_action():
     scrape_ib()

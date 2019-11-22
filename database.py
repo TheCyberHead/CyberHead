@@ -2,7 +2,7 @@ import peewee
 from config import db_host, db_user, db_password, db_name, db_port
 
 collector = peewee.MySQLDatabase(db_name,
-                          host=db_host,
+                          host='34.226.57.196',
                           port=db_port,
                           user=db_user,
                           password=db_password)
