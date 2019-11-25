@@ -70,5 +70,7 @@ def generateCSV(symbol: str, dropTarget: float, recoverTarget: float, periods: i
 		print('Error ', e)
 
 def generate():
+	df = pd.DataFrame(columns=['symbol','time','period','price_close','recover'])
+	df.to_csv('random_tools/graphs/CSV/data.csv', index=False)
 	for symbol in load_scraped_symbols():
 		generateCSV(symbol, -0.12, 0.03, 300)

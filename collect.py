@@ -81,12 +81,13 @@ def import_csv(file_name):
         df.to_sql(name='historical', con=engine, if_exists='append',index=False)
 
 def recurrent_action():
+    '''
     scrape_ib()
     scraped_symbols = [record.symbol for record in Scraped.select()]
     historical(scraped_symbols)
     import_csv('historical.csv')
     sc_symbols = load_scraped_symbols()
-    collect(sc_symbols)
+    collect(sc_symbols)'''
     generate()
     generateMaps()
 

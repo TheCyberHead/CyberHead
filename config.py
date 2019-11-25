@@ -12,7 +12,7 @@ ib_client_id = 100
 # TWS API Client ID
 db_host = '34.226.57.196'
 db_user = 'master'
-db_password = 'root'
+db_password = '4fPCFRuis7gJBr'
 db_name = 'collector'
 db_port = 3306
 drops = -0.12
