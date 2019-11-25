@@ -137,8 +137,6 @@ class Fundamentals(peewee.Model):
         database = collector
         db_table = 'fundamentals'
 
-
-
 if __name__ == '__main__':
     if not Fundamentals.table_exists():
         Fundamentals.create_table()

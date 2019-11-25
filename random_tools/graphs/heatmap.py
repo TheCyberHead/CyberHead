@@ -21,12 +21,12 @@ def plotFundamental(fundamental,graphType):
 	
 	if graphType in [2,3]:
 
-		query = collector.execute_sql("SELECT TICKER,{} from Fundamentals where TICKER in {}".format(fundamental,tuple(symbols)))
+		query = collector.execute_sql("SELECT TICKER,{} from fundamentals where TICKER in {} LIMIT 1".format(fundamental,tuple(symbols)))
 		if query:
 			for i in query:
 				for b in periods:
 					if i[0] == b[1]:
-						if i[1] != Decimal('-999.99999'):
+						if i[1] != -100000:
 							b.append(i[1])
 						else:
 							periods.remove(b)

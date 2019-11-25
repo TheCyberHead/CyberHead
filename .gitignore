@@ -3,10 +3,9 @@ __pycache__
 __pycache__/*
 random_tools/graphs/__pycache__/*
 random_tools/graphs/__pycache__
-random_tools/graphs/CSV/*
-random_tools/graphs/fundamentals_visualization/*
+random_tools/graphs/CSV/*.csv
+random_tools/graphs/fundamentals_visualization/*.png
 brokers/__pycache__
 brokers/__pycache__/*
 brokers/interactive_brokers/__pycache__
 brokers/interactive_brokers/__pycache__/*
-*.pyc
