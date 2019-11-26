@@ -85,6 +85,7 @@ def recurrent_action():
     scraped_symbols = [record.symbol for record in Scraped.select()]
     historical(scraped_symbols)
     import_csv('historical.csv')
+    time.sleep(35)
     sc_symbols = load_scraped_symbols()
     collect(sc_symbols)
     generate()
