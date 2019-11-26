@@ -60,7 +60,7 @@ def plotFundamental(fundamental,graphType):
 	elif graphType == 1:
 		stock_symbols = [x[0] for x in graphOne]
 		series_values = {}
-		query = collector.execute_sql("SELECT TICKER,{} from Fundamentals where TICKER in {}".format(fundamental,tuple(stock_symbols)))
+		query = collector.execute_sql("SELECT TICKER,{} from fundamentals where TICKER in {}".format(fundamental,tuple(stock_symbols)))
 		for i in query:
 			series_values[i[0]] = i[1]
 		for x in graphOne:
