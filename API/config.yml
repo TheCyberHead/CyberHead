@@ -1,3 +1,11 @@
 database:
-  username: 'root'
-  password: 'root'
+  mysql:
+    username: root
+    password: root
+    host: localhost
+  redis:
+    host: localhost
+    port: 6376
+    password: root
+  mongo:
+    host: localhost
