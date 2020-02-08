@@ -1,13 +1,20 @@
 import React from 'react';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>CH</h1>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			collapsed: false
+			}
+		}
+		render(){
+			return (
+					<React.Fragment>
+						
+					</React.Fragment>
+				)
+		}
 }
 
 export default App;
