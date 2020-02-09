@@ -1,13 +1,34 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 import './App.css';
+import Strategies from './components/Strategies';
+import Overview from './components/Overview';
+import HeatVision from './components/HeatVision';
+import DataSets from './components/DataSets';
+import Configuration from './components/Configuration';
 
 const { Header, Sider, Content } = Layout;
 
 class App extends React.Component {
-  state = {
-    collapsed: false,
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      collapsed: false,
+      selectedKeyMenu: "1"
+    };
+    this.updateMenuKey = this.updateMenuKey.bind(this);
+  }
+
+  updateMenuKey(key){
+    this.setState({selectedKeyMenu: key})
+    console.log('updated')
+  }
 
   toggle = () => {
     this.setState({
@@ -20,7 +41,7 @@ class App extends React.Component {
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]}>
             <Menu.Item key="1">
               <Icon type="user" />
               <span>Overview</span>
@@ -39,6 +60,10 @@ class App extends React.Component {
               <span>Configuration</span>
             </Menu.Item>
 
+            <Menu.Item key="5">
+              <Icon type="file-add" />
+              <span>DataSets</span>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -57,7 +82,29 @@ class App extends React.Component {
               minHeight: '100vh',
             }}
           >
-            Content
+            <Router>
+              <Switch>
+                <Route path="/strategies">
+                  <Strategies updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/heat-vision">
+                  <HeatVision updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/datasets">
+                  <DataSets updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/configuration">
+                  <Configuration updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/">
+                  <Overview updateKey={this.updateMenuKey} />
+                </Route>
+              </Switch>
+            </Router>
           </Content>
         </Layout>
       </Layout>
