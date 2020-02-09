@@ -1,5 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import SideBar from './components/SideBar'
+import './App.css';
 
 class App extends React.Component {
 	constructor(props){
@@ -10,9 +11,7 @@ class App extends React.Component {
 		}
 		render(){
 			return (
-					<React.Fragment>
-						
-					</React.Fragment>
+					<SideBar />
 				)
 		}
 }
