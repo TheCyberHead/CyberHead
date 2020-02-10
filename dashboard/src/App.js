@@ -50,31 +50,42 @@ class App extends React.Component {
 
   render() {
     return (
+      <Router>
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]}>
             <Menu.Item key="1" onClick={this.menuItemClick} >
-              <Icon type="user" />
-              <span>Overview</span>
+                <Link to="/">
+                  <Icon type="user" />
+                  <span>Overview</span>
+                </Link>
             </Menu.Item>
             <Menu.Item key="2" onClick={this.menuItemClick} >
-              <Icon type="stock" />
-              <span>Strategies</span>
+                <Link to="/strategies">
+                  <Icon type="stock" />
+                  <span>Strategies</span>
+                </Link>
             </Menu.Item>
             <Menu.Item key="3" onClick={this.menuItemClick} >
-              <Icon type="dot-chart" />
-              <span>Heat Vision</span>
+              <Link to="/heat-vision">
+                <Icon type="dot-chart" />
+                <span>Heat Vision</span>
+              </Link>
             </Menu.Item>
 
             <Menu.Item key="4" onClick={this.menuItemClick}>
-              <Icon type="experiment" />
-              <span>Configuration</span>
+              <Link to="configuration">
+                <Icon type="experiment" />
+                <span>Configuration</span>
+              </Link>
             </Menu.Item>
 
             <Menu.Item key="5" onClick={this.menuItemClick}>
-              <Icon type="file-add" />
-              <span>DataSets</span>
+              <Link to="/datasets">
+                <Icon type="file-add" />
+                <span>DataSets</span>
+              </Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -94,7 +105,6 @@ class App extends React.Component {
               minHeight: '100vh',
             }}
           >
-            <Router>
               <Switch>
                 <Route path="/strategies">
                   <Strategies updateKey={this.updateMenuKey} />
@@ -116,10 +126,10 @@ class App extends React.Component {
                   <Overview updateKey={this.updateMenuKey} />
                 </Route>
               </Switch>
-            </Router>
           </Content>
         </Layout>
       </Layout>
+      </Router>
     );
   }
 }
