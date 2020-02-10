@@ -23,23 +23,10 @@ class App extends React.Component {
       selectedKeyMenu: "1"
     };
     this.updateMenuKey = this.updateMenuKey.bind(this);
-    this.menuItemClick = this.menuItemClick.bind(this);
   }
 
   updateMenuKey(key){
     this.setState({selectedKeyMenu: key})
-    console.log('updated')
-  }
-
-  menuItemClick(ev){
-    const menu = {
-      1: 'overview',
-      2: 'strategies',
-      3: 'heat-vision',
-      4: 'configuration',
-      5: 'dataSets'
-    }
-    console.log(menu[ev.key])
   }
 
   toggle = () => {
@@ -55,33 +42,33 @@ class App extends React.Component {
         <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]}>
-            <Menu.Item key="1" onClick={this.menuItemClick} >
+            <Menu.Item key="1" >
                 <Link to="/">
                   <Icon type="user" />
                   <span>Overview</span>
                 </Link>
             </Menu.Item>
-            <Menu.Item key="2" onClick={this.menuItemClick} >
+            <Menu.Item key="2">
                 <Link to="/strategies">
                   <Icon type="stock" />
                   <span>Strategies</span>
                 </Link>
             </Menu.Item>
-            <Menu.Item key="3" onClick={this.menuItemClick} >
+            <Menu.Item key="3">
               <Link to="/heat-vision">
                 <Icon type="dot-chart" />
                 <span>Heat Vision</span>
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="4" onClick={this.menuItemClick}>
+            <Menu.Item key="4">
               <Link to="configuration">
                 <Icon type="experiment" />
                 <span>Configuration</span>
               </Link>
             </Menu.Item>
 
-            <Menu.Item key="5" onClick={this.menuItemClick}>
+            <Menu.Item key="5">
               <Link to="/datasets">
                 <Icon type="file-add" />
                 <span>DataSets</span>
