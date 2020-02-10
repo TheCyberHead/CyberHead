@@ -15,7 +15,7 @@ class HeatVision extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<h1>HeatVision</h1>
+				<h1>Heat Vision</h1>
 			</React.Fragment>
 		)
 	}

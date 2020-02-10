@@ -15,7 +15,7 @@ class DataSets extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<h1>DataSets</h1>
+				<h1>Data Sets</h1>
 			</React.Fragment>
 		)
 	}

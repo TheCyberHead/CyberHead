@@ -71,7 +71,7 @@ class App extends React.Component {
             <Menu.Item key="5">
               <Link to="/datasets">
                 <Icon type="file-add" />
-                <span>DataSets</span>
+                <span>Data Sets</span>
               </Link>
             </Menu.Item>
           </Menu>
