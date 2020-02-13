@@ -8,7 +8,10 @@ import {
 import { Layout, Menu, Icon } from 'antd';
 
 import './App.css';
-import Strategies from './components/Strategies';
+import Strategy1 from './components/Strategy1';
+import Strategy2 from './components/Strategy2';
+import Strategy3 from './components/Strategy3';
+
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
@@ -66,19 +69,19 @@ class App extends React.Component {
             }
           >
             <Menu.Item className="item" key="11">
-              <Link to="/Strategy1">
+              <Link to="/strategy1">
                 <Icon type="stock" />
                 <span>Strategy1</span>
               </Link>
             </Menu.Item>
             <Menu.Item className="item" key="12">
-              <Link to="/Strategy2">
+              <Link to="/strategy2">
                 <Icon type="stock" />
-                <span>Strategy3</span>
+                <span>Strategy2</span>
               </Link>
               </Menu.Item>
             <Menu.Item className="item" key="13">
-              <Link to="/Strategy3">
+              <Link to="/strategy3">
                 <Icon type="stock" />
                 <span>Strategy3</span>
               </Link>
@@ -105,6 +108,14 @@ class App extends React.Component {
                 <span>Data Sets</span>
               </Link>
             </Menu.Item>
+
+            <Menu.Item className="item" key="6">
+              <Link to="/interactive">
+                <Icon type="file-add" />
+                <span>Interactive</span>
+              </Link>
+            </Menu.Item>
+
           </Menu>
         </Sider>
 
@@ -125,8 +136,16 @@ class App extends React.Component {
             }}
           >
               <Switch>
-                <Route path="/strategies">
-                  <Strategies updateKey={this.updateMenuKey} />
+                <Route path="/strategy1">
+                  <Strategy1 updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/strategy2">
+                  <Strategy2 updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route path="/strategy3">
+                  <Strategy3 updateKey={this.updateMenuKey} />
                 </Route>
 
                 <Route path="/heat-vision">
@@ -144,6 +163,7 @@ class App extends React.Component {
                 <Route path="/">
                   <Overview updateKey={this.updateMenuKey} />
                 </Route>
+
               </Switch>
           </Content>
         </Layout>
