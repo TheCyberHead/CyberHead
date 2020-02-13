@@ -1,0 +1,25 @@
+.trigger {
+  color: #cccccc;
+  font-size: 18px;
+  line-height: 8px;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.trigger:hover {
+  color: #ffffff;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected.item {
+    background-color: #bb0033;
+  }
+
+.logo {
+  height: 60px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
