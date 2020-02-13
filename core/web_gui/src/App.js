@@ -65,27 +65,26 @@ class App extends React.Component {
               </span>
             }
           >
-            <Menu.Item className="item" key="11">Strategy1</Menu.Item>
-            <Menu.Item className="item" key="12">Strategy2</Menu.Item>
-            <Menu.Item className="item" key="13">Strategy3</Menu.Item>
+            <Menu.Item className="item" key="11">
+              <Link to="/Strategy1">
+                <Icon type="stock" />
+                <span>Strategy1</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item className="item" key="12">
+              <Link to="/Strategy2">
+                <Icon type="stock" />
+                <span>Strategy3</span>
+              </Link>
+              </Menu.Item>
+            <Menu.Item className="item" key="13">
+              <Link to="/Strategy3">
+                <Icon type="stock" />
+                <span>Strategy3</span>
+              </Link>
+              </Menu.Item>
           </SubMenu>
 
-            <Menu.Item className="item" key="2">
-                <Link to="/strategies">
-                  <Icon type="stock" />
-                  <span>Strategies</span>
-                </Link>
-
-
-
-                <Menu.Item className="item" key="21">
-                    <Link to="/strategies">
-                      <Icon type="stock" />
-                      <span>Strategies</span>
-                    </Link>
-                </Menu.Item>
-
-            </Menu.Item>
             <Menu.Item className="item" key="3">
               <Link to="/heat-vision">
                 <Icon type="dot-chart" />
