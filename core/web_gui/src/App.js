@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
+
 import './App.css';
 import Strategies from './components/Strategies';
 import Overview from './components/Overview';
@@ -14,6 +15,7 @@ import DataSets from './components/DataSets';
 import Configuration from './components/Configuration';
 
 const { Header, Sider, Content } = Layout;
+const { SubMenu } = Menu;
 
 class App extends React.Component {
   constructor(props){
@@ -43,18 +45,46 @@ class App extends React.Component {
           <div className="logo">
           <img src="images/logo64.png" class="center"/>
           </div>
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} style={{ background: '#141414'}}>
-            <Menu.Item className="item" key="1" >
-                <Link to="/">
-                  <Icon type="user" />
-                  <span>Portfolio</span>
+          <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
+          <Menu.Item className="item"key="1">
+                <Link to="/Overview">
+            <Icon type="desktop" />
+            <span>Porfolio</span>
+
                 </Link>
-            </Menu.Item>
+          </Menu.Item>
+          <SubMenu
+            style={{ background: '#141414'}}
+            theme="dark"
+            mode="inline"
+            key="sub1"
+            title={
+              <span>
+                <Icon type="stock" />
+                <span>Strats</span>
+              </span>
+            }
+          >
+            <Menu.Item className="item" key="11">Strategy1</Menu.Item>
+            <Menu.Item className="item" key="12">Strategy2</Menu.Item>
+            <Menu.Item className="item" key="13">Strategy3</Menu.Item>
+          </SubMenu>
+
             <Menu.Item className="item" key="2">
                 <Link to="/strategies">
                   <Icon type="stock" />
                   <span>Strategies</span>
                 </Link>
+
+
+
+                <Menu.Item className="item" key="21">
+                    <Link to="/strategies">
+                      <Icon type="stock" />
+                      <span>Strategies</span>
+                    </Link>
+                </Menu.Item>
+
             </Menu.Item>
             <Menu.Item className="item" key="3">
               <Link to="/heat-vision">
@@ -64,7 +94,7 @@ class App extends React.Component {
             </Menu.Item>
 
             <Menu.Item className="item" key="4">
-              <Link to="configuration">
+              <Link  to="configuration">
                 <Icon type="experiment" />
                 <span>Configuration</span>
               </Link>
