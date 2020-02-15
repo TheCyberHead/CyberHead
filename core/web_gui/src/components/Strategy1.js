@@ -1,4 +1,5 @@
 import React from 'react';
+import { Card, Col, Row } from 'antd';
 
 class Strategies extends React.Component {
 	constructor(props){
@@ -9,13 +10,34 @@ class Strategies extends React.Component {
 	}
 
 	componentDidMount(){
-		this.props.updateKey('2')
+		this.props.updateKey('11')
 	}
 
 	render(){
 		return(
 			<React.Fragment>
-				<h1>Strategy1</h1>
+				<h1 style={{ color: '#ffffff'}}>Strategy 1</h1>
+				<hr/>
+				<div style={{ padding: '30px' }}>
+				    <Row gutter={16}>
+				      <Col span={8}>
+				        <Card title="Strategy Indicator 1" bordered={false}>
+				          Value 1
+				        </Card>
+				      </Col>
+				      <Col span={8}>
+				        <Card title="Strategy Indicator 2" bordered={false}>
+				          Value 2
+				        </Card>
+				      </Col>
+				      <Col span={8}>
+				        <Card title="Strategy Indicator 3" bordered={false}>
+				          Value 3
+				        </Card>
+				      </Col>
+				    </Row>
+				  </div>
+				<iframe src="https://cyberhead.s3.amazonaws.com/LimitlessIntraday.html" width="100%" height="800"></iframe>
 			</React.Fragment>
 		)
 	}
