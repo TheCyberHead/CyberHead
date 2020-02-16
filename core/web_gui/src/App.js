@@ -44,11 +44,11 @@ class App extends React.Component {
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ background: '#141414'}}>
           <div className="logo">
-          <img src="images/logo64.png" class="center"/>
+          <img src="images/logo64.png" className="center"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
           <Menu.Item className="item"key="1">
-                <Link to="/Overview">
+                <Link to="/overview">
             <Icon type="desktop" />
             <span>Porfolio</span>
 
@@ -62,7 +62,7 @@ class App extends React.Component {
             title={
               <span>
                 <Icon type="stock" />
-                <span>Strats</span>
+                <span>Strategies</span>
               </span>
             }
           >
@@ -100,14 +100,6 @@ class App extends React.Component {
                 <span>Data Sets</span>
               </Link>
             </Menu.Item>
-
-            <Menu.Item className="item" key="6">
-              <Link to="/interactive">
-                <Icon type="file-add" />
-                <span>Interactive</span>
-              </Link>
-            </Menu.Item>
-
           </Menu>
         </Sider>
 
