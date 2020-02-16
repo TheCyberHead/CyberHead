@@ -1,2 +1,2 @@
 ### CyberHead
-## Open Source Trading Bot Platform
+## Modular Open Source Trading
