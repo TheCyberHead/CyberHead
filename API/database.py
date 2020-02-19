@@ -27,6 +27,7 @@ class History(peewee.Model):
 	    db_table = 'history'
 
 
+
 if __name__ == '__main__':
 	if not DataSet.table_exists():
 		DataSet.create_table()

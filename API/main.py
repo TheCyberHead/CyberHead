@@ -33,6 +33,10 @@ def perform_backtest():
 	perform_async = perform_strategy.delay(data['strategy_name'])
 	return {"execution_id": str(perform_async)}
 
+@app.route('/backtest_status/<str:queue_reference>', methods=["GET"])
+def backtest_status():
+	pass
+
 
 if __name__ == '__main__':
 	app.run(debug=True)
