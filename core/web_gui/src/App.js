@@ -69,13 +69,13 @@ class App extends React.Component {
             <Menu.Item className="item" key="11">
               <Link to="/strategy1">
                 <Icon type="stock" />
-                <span>Strategy 1</span>
+                <span>CrossGOOG</span>
               </Link>
             </Menu.Item>
             <Menu.Item className="item" key="12">
               <Link to="/strategy2">
                 <Icon type="stock" />
-                <span>Strategy 2</span>
+                <span>CrossGOOG2</span>
               </Link>
               </Menu.Item>
           </SubMenu>

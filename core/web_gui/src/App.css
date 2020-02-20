@@ -48,3 +48,7 @@
 .dataset-box button {
   margin-right: 2em !important;
 }
+
+.label-ratios {
+  font-weight: bold;
+}
