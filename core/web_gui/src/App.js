@@ -14,6 +14,7 @@ import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
 import Configuration from './components/Configuration';
+import Strategy from './components/Strategy';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -23,7 +24,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       collapsed: false,
-      selectedKeyMenu: "1"
+      selectedKeyMenu: "1",
+      strategies: []
     };
     this.updateMenuKey = this.updateMenuKey.bind(this);
   }
@@ -44,7 +46,7 @@ class App extends React.Component {
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ background: '#141414'}}>
           <div className="logo">
-          <img src="images/logo64.png" className="center"/>
+          <img src="/images/logo64.png" className="center"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
           <Menu.Item className="item"key="1">
@@ -66,13 +68,13 @@ class App extends React.Component {
               </span>
             }
           >
-            <Menu.Item className="item" key="11">
+            <Menu.Item className="item">
               <Link to="/strategy1">
                 <Icon type="stock" />
                 <span>CrossGOOG</span>
               </Link>
             </Menu.Item>
-            <Menu.Item className="item" key="12">
+            <Menu.Item className="item">
               <Link to="/strategy2">
                 <Icon type="stock" />
                 <span>CrossGOOG2</span>
@@ -120,19 +122,21 @@ class App extends React.Component {
             }}
           >
               <Switch>
-                <Route path="/strategy1">
+                <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
+
+                <Route exact path="/strategy1">
                   <Strategy1 updateKey={this.updateMenuKey} />
                 </Route>
 
-                <Route path="/strategy2">
+                <Route exact path="/strategy2">
                   <Strategy2 updateKey={this.updateMenuKey} />
                 </Route>
 
-                <Route path="/heat-vision">
+                <Route exact path="/heat-vision">
                   <HeatVision updateKey={this.updateMenuKey} />
                 </Route>
 
-                <Route path="/datasets">
+                <Route exact path="/datasets">
                   <DataSets updateKey={this.updateMenuKey} />
                 </Route>
 
