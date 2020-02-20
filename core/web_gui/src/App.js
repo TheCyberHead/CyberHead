@@ -8,8 +8,6 @@ import {
 import { Layout, Menu, Icon } from 'antd';
 
 import './App.css';
-import Strategy1 from './components/Strategy1';
-import Strategy2 from './components/Strategy2';
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
@@ -123,14 +121,6 @@ class App extends React.Component {
           >
               <Switch>
                 <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
-
-                <Route exact path="/strategy1">
-                  <Strategy1 updateKey={this.updateMenuKey} />
-                </Route>
-
-                <Route exact path="/strategy2">
-                  <Strategy2 updateKey={this.updateMenuKey} />
-                </Route>
 
                 <Route exact path="/heat-vision">
                   <HeatVision updateKey={this.updateMenuKey} />
