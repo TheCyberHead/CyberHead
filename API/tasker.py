@@ -15,3 +15,6 @@ def perform_strategy(name: str) -> list:
 @app.task
 def sync_dataset(source: str, symbol: str):
 	pass
+
+
+run_backtest()

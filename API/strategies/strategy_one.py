@@ -18,5 +18,5 @@ class CrossGOOG(Strategy):
 def run_backtest():
 	bt = Backtest(GOOG, CrossGOOG, cash=10000, commission=.002)
 	output = bt.run()
-	bt.plot(open_browser=False, plot_width=700)
+	bt.plot(open_browser=False, plot_width=700, filename="tmp/CrossGOOG")
 	return output
