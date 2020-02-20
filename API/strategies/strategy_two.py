@@ -2,7 +2,7 @@ from backtesting import Backtest, Strategy
 from backtesting.lib import crossover
 from backtesting.test import SMA, GOOG
 
-friendly_title = "Strategy 1"
+friendly_title = "Strategy 2"
 
 class CrossGOOG(Strategy):
     def init(self):
@@ -18,7 +18,7 @@ class CrossGOOG(Strategy):
 
 
 def run_backtest():
-	bt = Backtest(GOOG, CrossGOOG, cash=10000, commission=.002)
-	output = bt.run()
-	bt.plot(open_browser=False, plot_width=700, filename="tmp/CrossGOOG")
-	return output
+    bt = Backtest(GOOG, CrossGOOG, cash=10000, commission=.002)
+    output = bt.run()
+    bt.plot(open_browser=False, plot_width=700, filename="tmp/CrossGOOG2")
+    return output
