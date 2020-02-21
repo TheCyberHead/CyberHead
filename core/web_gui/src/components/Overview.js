@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
-import matrix from '../matrix.png'
+import matrix from '../matrix.png';
+import portfolioStrategies from '../actions/portfolioStrategies';
 
 class Overview extends React.Component {
 	constructor(props){
@@ -57,6 +58,20 @@ class Overview extends React.Component {
 
 	componentDidMount(){
 		this.props.updateKey('1')
+		let portfolio = [];
+		portfolioStrategies()
+			.then(response => {
+				response.strategies.map((strategy_data, index) => {
+					portfolio.push({
+						key: index,
+						strategy: strategy_data.strategy_name,
+						perc_return: strategy_data.strategy_return,
+						sharpe: strategy_data.sharpe_ratio,
+						return: strategy_data.equity_final
+					})
+				})
+			})
+			this.setState({dataSource: portfolio})
 	}
 
 	render(){

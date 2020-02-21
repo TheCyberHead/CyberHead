@@ -42,6 +42,10 @@ def get_strategies():
 	strategies_list = BacktestPerform.select(BacktestPerform.strategy_name).distinct().execute()
 	return jsonify({'strategies':[model_to_dict(strategy) for strategy in strategies_list]})
 
+@app.route('/portfolio_strategies', methods=["GET"])
+def portfolio_strategies():
+	strategies_list = BacktestPerform.select(BacktestPerform.strategy_name, BacktestPerform.strategy_return, BacktestPerform.equity_final, BacktestPerform.sharpe_ratio).distinct().execute()
+	return jsonify({'strategies':[model_to_dict(strategy) for strategy in strategies_list]})
 
 @app.route('/get_strategy/<strategy>')
 def get_strategy(strategy):
