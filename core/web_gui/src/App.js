@@ -13,6 +13,7 @@ import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
 import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
+import getStrategies from './actions/getStrategies'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -23,13 +24,27 @@ class App extends React.Component {
     this.state = {
       collapsed: false,
       selectedKeyMenu: "1",
+      loaded: false,
       strategies: []
     };
     this.updateMenuKey = this.updateMenuKey.bind(this);
+    this.loadStrategies = this.loadStrategies.bind(this);
   }
 
   updateMenuKey(key){
     this.setState({selectedKeyMenu: key})
+  }
+
+  loadStrategies(){
+    getStrategies()
+      .then(response => {
+        response.strategies.map(strategy => this.setState({strategies: [...this.state.strategies, strategy.strategy_name]}))
+      })
+  }
+
+  componentDidMount(){
+    this.loadStrategies()
+    this.setState({loaded: true})
   }
 
   toggle = () => {
@@ -66,18 +81,14 @@ class App extends React.Component {
               </span>
             }
           >
-            <Menu.Item className="item">
-              <Link to="/strategy1">
-                <Icon type="stock" />
-                <span>CrossGOOG</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item className="item">
-              <Link to="/strategy2">
-                <Icon type="stock" />
-                <span>CrossGOOG2</span>
-              </Link>
+            {this.state.loaded && this.state.strategies.map((strategy, index) => (
+              <Menu.Item className="item" key={index+11}>
+                <Link to={`/strategy/${strategy}`}>
+                  <Icon type="stock" />
+                  <span>{strategy}</span>
+                </Link>
               </Menu.Item>
+            ))}
           </SubMenu>
 
             <Menu.Item className="item" key="3">
