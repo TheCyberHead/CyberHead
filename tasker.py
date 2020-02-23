@@ -1,6 +1,6 @@
 from celery import Celery
-from strategies import strategy_one
-from strategies import strategy_two
+from modules.strategies import strategy_one
+from modules.strategies import strategy_two
 from database import BacktestPerform
 
 app = Celery('tasker', broker="amqp://localhost//")
