@@ -1,4 +1,6 @@
-modues/__pycache__/*
+__pycache__/*
+__pycache__
+modules/__pycache__/*
 modules/__pycache__
 modules/strategies/__pycache__
 modules/strategies/__pycache__/*
