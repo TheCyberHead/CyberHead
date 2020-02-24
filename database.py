@@ -8,6 +8,20 @@ db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           password=os.getenv('CH_DB_PASSWORD'))
 
 
+class Broker(peewee.Model):
+	broker = peewee.CharField()
+	# Coinbase / Alpaca
+	api_key = peewee.CharField()
+	api_secret = peewee.CharField()
+	# Coinbase
+	api_passphrase = peewee.CharField()
+	#TDA
+	refresh_token = peewee.CharField()
+	current_token = peewee.CharField()
+	class Meta:
+	    database = db
+	    db_table = 'broker'
+
 class DataSet(peewee.Model):
 	identifier = peewee.CharField()
 	reference_symbol = peewee.CharField()
@@ -68,3 +82,7 @@ if __name__ == '__main__':
 	if not BacktestPerform.table_exists():
 		BacktestPerform.create_table()
 		print('Backtest Perform created.')
+
+	if not Broker.table_exists():
+		Broker.create_table()
+		print('Broker table created.')
