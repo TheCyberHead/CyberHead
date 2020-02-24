@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, Col, Row } from 'antd';
-import { Button } from 'antd';
 import getStrategy from '../actions/getStrategy'
 
 class Strategy extends React.Component {
@@ -21,7 +20,6 @@ class Strategy extends React.Component {
 		return(
 			<React.Fragment>
 				<h1 style={{ color: '#ffffff'}}>Strategy : {this.props.match.params.strategy_name}</h1>
-				<hr/>
 				{this.state.loaded &&
 				<div style={{ padding: '10px' }}>
 				    <Row>

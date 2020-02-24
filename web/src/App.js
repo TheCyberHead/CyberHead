@@ -13,6 +13,7 @@ import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
 import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
+import Brokers from './components/Brokers';
 import getStrategies from './actions/getStrategies'
 
 const { Header, Sider, Content } = Layout;
@@ -111,6 +112,13 @@ class App extends React.Component {
                 <span>Data Sets</span>
               </Link>
             </Menu.Item>
+
+            <Menu.Item className="item" key="6">
+              <Link to="/brokers">
+                <Icon type="sliders" />
+                <span>Broker Accounts</span>
+              </Link>
+            </Menu.Item>
           </Menu>
         </Sider>
 
@@ -141,8 +149,12 @@ class App extends React.Component {
                   <DataSets updateKey={this.updateMenuKey} />
                 </Route>
 
-                <Route path="/configuration">
+                <Route exact path="/configuration">
                   <Configuration updateKey={this.updateMenuKey} />
+                </Route>
+
+                <Route exact path="/brokers">
+                  <Brokers updateKey={this.updateMenuKey} />
                 </Route>
 
                 <Route path="/">

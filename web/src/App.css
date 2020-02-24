@@ -52,3 +52,26 @@
 .label-ratios {
   font-weight: bold;
 }
+
+.submit_broker {
+  background-color: white;
+  padding: 1em;
+  border-radius: 3px;
+}
+
+.broker_images img {
+  width: 150px;
+  display: flex;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 1em;
+  transition: all 0.2s;
+  background-color: rgba(179,229,252 ,0);
+  border: 0.5px dashed rgba(179,229,252 ,0);
+  cursor: pointer;
+}
+
+.broker_images img:hover {
+  background-color: rgba(179,229,252 ,0.08);
+  border: 0.5px dashed rgba(179,229,252 ,1);
+}
