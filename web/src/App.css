@@ -53,25 +53,28 @@
   font-weight: bold;
 }
 
-.submit_broker {
+.brokers_section {
+  display: flex;
+  justify-content: space-around;
   background-color: white;
   padding: 1em;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
-.broker_images img {
-  width: 150px;
+.submit-broker {
+  width: 40%;
+}
+
+.broker_accounts {
+  width: 50%;
+}
+
+.logo-box {
   display: flex;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  padding: 1em;
-  transition: all 0.2s;
-  background-color: rgba(179,229,252 ,0);
-  border: 0.5px dashed rgba(179,229,252 ,0);
-  cursor: pointer;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.broker_images img:hover {
-  background-color: rgba(179,229,252 ,0.08);
-  border: 0.5px dashed rgba(179,229,252 ,1);
+.logo-box img {
+  width: 100px;
 }
