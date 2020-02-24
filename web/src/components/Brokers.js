@@ -11,7 +11,8 @@ class Brokers extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			load: true
+			load: true,
+			brokers: {}
 		}
 	}
 
