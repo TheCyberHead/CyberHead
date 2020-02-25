@@ -8,6 +8,14 @@ db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           password=os.getenv('CH_DB_PASSWORD'))
 
 
+class DataSubscription(peewee.Model):
+	source = peewee.CharField()
+	frecuency = peewee.CharField()
+	symbol = peewee.CharField()
+	class Meta:
+	    database = db
+	    db_table = 'data_subscription'
+
 class Broker(peewee.Model):
 	broker = peewee.CharField()
 	# Coinbase / Alpaca
