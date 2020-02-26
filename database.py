@@ -1,5 +1,9 @@
+from sqlalchemy import create_engine 
 import peewee
 import os
+
+
+engine = create_engine(f"mysql+pymysql://root:root@localhost/cyberhead").connect()
 
 db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           host=os.getenv('CH_DB_HOST'),
@@ -34,8 +38,11 @@ class DataSet(peewee.Model):
 class History(peewee.Model):
 	dataset_id = peewee.ForeignKeyField(DataSet)
 	datetime = peewee.DateTimeField()
-	bid = peewee.FloatField()
-	ask = peewee.FloatField()
+	open_price = peewee.FloatField()
+	high_price = peewee.FloatField()
+	low_price = peewee.FloatField()
+	closing_price = peewee.FloatField()
+	volume = peewee.IntegerField()
 	class Meta:
 	    database = db
 	    db_table = 'history'
