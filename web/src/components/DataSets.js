@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Input, Modal, Card, Col, Row, Button, Select } from 'antd';
 import getDatasets from '../actions/DataSet';
+import createDataSet from '../actions/createDataSet';
 const { Option } = Select;
 
 class DataSets extends React.Component {
@@ -26,9 +27,20 @@ class DataSets extends React.Component {
 	}
 
 	submitForm(ev){
-		ev.preventDefault()
-		const {frecuency, identifier, source, ticker} = this.state
-		console.log(frecuency)
+		ev.preventDefault();
+		const {frecuency, identifier, source, ticker, reference_symbol} = this.state;
+		const dataset = {
+			frecuency,
+			identifier,
+			source,
+			ticker,
+			reference_symbol
+		}
+		createDataSet(dataset)
+			.then(response => {
+				console.log(response)
+				this.triggerOpenModal()
+			})
 	}
 
 	onChangeFields = (e) => {
@@ -57,11 +69,15 @@ class DataSets extends React.Component {
             </Form.Item>
 
             <Form.Item>
+              <Input placeholder="Reference Symbol. i.e : MSFT15 / AMZN1D" name="reference_symbol" onChange={this.onChangeFields} />
+            </Form.Item>
+
+            <Form.Item>
               <Input placeholder="Ticker. i.e : MSFT / AMZN" name="ticker" onChange={this.onChangeFields} />
             </Form.Item>
 
             <Form.Item>
-              <Select defaultValue="15m" onChange={this.setFrecuency}>
+              <Select onChange={this.setFrecuency}>
                     <Option value="1m">1 minute</Option>
                     <Option value="2m">2 minutes</Option>
                     <Option value="5m">5 minutes</Option>
@@ -79,7 +95,7 @@ class DataSets extends React.Component {
             </Form.Item>
 
             <Form.Item>
-              <Select defaultValue="Yahoo" name="source" onChange={this.setSource}>
+              <Select name="source" onChange={this.setSource}>
                     <Option value="Yahoo">Yahoo</Option>
                     <Option value="Alpaca">Alpaca</Option>
               </Select>
@@ -103,8 +119,10 @@ class DataSets extends React.Component {
 				    {this.state.load && this.state.datasets.map((dataset,index) => (
 				    	<Col span={8} key={index}>
 				    	  <Card key={index} title={dataset.identifier} bordered={true} className="dataset-card">
-				    	    <p>{dataset.description}</p>
-				    	    <p><strong>Symbol</strong>: {dataset.reference_symbol}</p>
+				    	    <p><strong>Reference Symbol</strong>: {dataset.reference_symbol}</p>
+				    	    <p><strong>Ticker</strong>: {dataset.symbol}</p>
+				    	    <p><strong>Frecuency</strong>: {dataset.frecuency}</p>
+				    	    <p><strong>Source</strong>: {dataset.source}</p>
 				    	  </Card>
 				    	</Col>
 				    ))}

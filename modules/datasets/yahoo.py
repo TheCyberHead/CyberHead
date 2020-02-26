@@ -1,11 +1,14 @@
 import yfinance as yf
+from sqlalchemy import create_engine 
+from pandas_datareader import data as pdr
 
-def download_historical(tickers, start_date, end_date, interval):
-	joined_tickers = ' '.join(tickers)
-	intervals = ["1m","2m","5m","15m","30m","60m","90m","1h","1d","5d","1wk","1mo","3mo"]
-	data = yf.download(joined_tickers, start=start_date, end=end_date, group_by = 'ticker', interval = interval)
-	print(data)
+yf.pdr_override()
+engine = create_engine(f"mysql+pymysql://root:root@localhost/cyberhead").connect()
+
+def download_historical(ticker: str, start_date: str, end_date: str, interval: str):
+	data = pdr.get_data_yahoo(ticker, start=start_date, end=end_date, interval = interval)
+	data.to_csv('tmp/{}.csv'.format(ticker))
 
 
 if __name__ == '__main__':
-	download_historical(['AMZN'], "2020-01-01", "2020-01-08", "1d")
+	download_historical('AMZN', "2018-03-01", "2020-02-08", "1h")

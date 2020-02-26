@@ -19,11 +19,11 @@ def get_dataset(task_id):
 @app.route('/datasets', methods=['POST'])
 def create_dataset():
 	data = request.json
-	print(data["identifier"])
 	DataSet.create(identifier=data["identifier"], 
-					reference_symbol=data["reference_symbol"], 
-					description=data["description"], 
-					source=data["source"])
+					reference_symbol=data["reference_symbol"],
+					symbol=data["ticker"],
+					source=data["source"],
+					frecuency=data["frecuency"])
 	return request.json
 
 
