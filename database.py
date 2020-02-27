@@ -31,6 +31,7 @@ class DataSet(peewee.Model):
 	symbol = peewee.CharField()
 	source = peewee.CharField()
 	frecuency = peewee.CharField()
+	first_fetch = peewee.BooleanField(default=False)
 	class Meta:
 	    database = db
 	    db_table = 'dataset'
