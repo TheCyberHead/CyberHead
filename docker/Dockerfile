@@ -22,5 +22,3 @@ RUN apt-get update \
 RUN git clone https://github.com/TheCyberHead/CyberHead \
     && cd CyberHead \
     && pip3 install -r requirements.txt
-
-RUN python3 main.py
