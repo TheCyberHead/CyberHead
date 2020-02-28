@@ -59,4 +59,4 @@ def get_plot(strategy):
 
 if __name__ == '__main__':
 	run_loader()
-	app.run(debug=True)
+	app.run(debug=True, port=80, ssl_context = 'adhoc')
