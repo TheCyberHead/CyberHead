@@ -18,7 +18,6 @@ class Coin:
 		return place_market
 
 	def place_limit_order(self, action, ticker, entry_price, size):
-		print('ENTRY ORDER COINBASE')
 		entry_order = self.client.place_limit_order(product_id=ticker, 
 							side=action, 
 							price=entry_price, 
