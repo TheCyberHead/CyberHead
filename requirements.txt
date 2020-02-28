@@ -11,3 +11,4 @@ urllib3==1.25.8
 flask
 flask_cors
 pyopenssl
+sqlalchemy
