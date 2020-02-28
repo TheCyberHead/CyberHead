@@ -65,7 +65,7 @@ class DataSets extends React.Component {
         >
           <Form layout="horizontal" onSubmit={this.submitForm}>
             <Form.Item>
-              <Input placeholder="Identifier. i.e : AMZN 15 min" name="identifier" onChange={this.onChangeFields}/>
+              <Input placeholder="Identifier" name="identifier" onChange={this.onChangeFields}/>
             </Form.Item>
 
             <Form.Item>
