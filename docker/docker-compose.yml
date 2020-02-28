@@ -11,12 +11,15 @@ services:
         image: rabbitmq
         restart: unless-stopped
     cyberhead:
-        volumes:
-            - ./CyberHead:/CyberHead
         build:
             context: .
+        image: cyberhead:cyberhead
+        #volumes:
+        #    - ./CyberHead:/CyberHead
+ 
         ports:
             - "127.0.0.1:80:80"
         depends_on:
             - rabbitmq
+        command: tail -F anything
         restart: unless-stopped
