@@ -5,3 +5,4 @@ modules/__pycache__
 modules/strategies/__pycache__
 modules/strategies/__pycache__/*
 tmp/*
+env/*
