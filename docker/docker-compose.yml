@@ -1,16 +1,25 @@
 version: '3'
 
 services:
+    mysql:
+        image: mysql
+        restart: unless-stopped
+    redis:
+        image: redis
+        restart: unless-stopped
     rabbitmq:
         image: rabbitmq
         restart: unless-stopped
     cyberhead:
         build:
             context: .
+        image: cyberhead:cyberhead
+        #volumes:
+        #    - ./CyberHead:/CyberHead
+ 
         ports:
             - "127.0.0.1:80:80"
         depends_on:
             - rabbitmq
+        command: tail -F anything
         restart: unless-stopped
-        volumes:
-            - ./CyberHead:/CyberHead
