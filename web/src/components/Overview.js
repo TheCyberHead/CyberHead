@@ -7,25 +7,8 @@ class Overview extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			load: true,
-			dataSource: [
-				  {
-				    key: '1',
-				    strategy: 'Strategy 1',
-				    return: 9,
-				    perc_return: 'X%',
-				    str_dev: 'XXX',
-				    sharpe: 'YYY'
-				  },
-				  {
-				    key: '2',
-				    strategy: 'Strategy 2',
-				    return: 18,
-				    perc_return: 'X%',
-				    str_dev: 'XXX',
-				    sharpe: 'YYY'
-				  },
-				],
+			load: false,
+			dataSource: [],
 				columns: [
 				  {
 				    title: 'Strategy',
@@ -70,18 +53,22 @@ class Overview extends React.Component {
 						return: strategy_data.equity_final
 					})
 				})
+				this.setState({dataSource: portfolio})	
 			})
-			this.setState({dataSource: portfolio})
+			this.setState({load: true})
 	}
 
 	render(){
 		return(
 			<React.Fragment>
 				<h1 style={{ color: '#ffffff'}}>Portfolio</h1>
-
 				<div className="overview-container">
-					<Table dataSource={this.state.dataSource} columns={this.state.columns} />;
-					<img src={matrix} />
+					{this.state.load && 
+						<React.Fragment>
+							<Table dataSource={this.state.dataSource} columns={this.state.columns} />
+							<img src={matrix} />
+						</React.Fragment>
+					}
 				</div>
 
 			</React.Fragment>

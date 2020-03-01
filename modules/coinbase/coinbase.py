@@ -1,8 +1,9 @@
 import cbpro
+import pandas as pd
 from base64 import b64encode
 
-class Coin:
-	def __init__(self, API_KEY, API_SECRET, API_PASS, ENV_URL="https://pro.coinbase.com"):
+class Coinbase:
+	def __init__(self, API_KEY, API_SECRET, API_PASS, ENV_URL="https://api-public.sandbox.pro.coinbase.com"):
 		self.API_KEY = API_KEY
 		self.API_SECRET = API_SECRET
 		self.API_PASS = API_PASS
@@ -33,3 +34,8 @@ class Coin:
 
 	def fills(self):
 		return self.client.get_fills()
+
+	def historical_rates(self, ticker: str):
+		rates = self.client.get_product_historic_rates(ticker, granularity=86400)
+		df = pd.DataFrame(rates, columns=["time","low","high","open","close","volume"])
+		return df

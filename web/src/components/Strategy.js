@@ -13,7 +13,8 @@ class Strategy extends React.Component {
 
 	componentDidMount(){
 		getStrategy(this.props.match.params.strategy_name)
-			.then(response => this.setState({strategyData: response.strategy[0], loaded: true}))
+			.then(response => this.setState({strategyData: response.strategy[0]}))
+		this.setState({loaded: true})
 	}
 
 	render(){
