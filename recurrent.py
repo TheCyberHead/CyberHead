@@ -14,6 +14,7 @@ def allTimeFetch(ticker: str, period: str, interval: str, dataset_id: int):
 	read_export.columns = ['datetime', 'open_price', 'high_price', 'low_price', 'closing_price', 'volume']
 	read_export['dataset_id'] = dataset_id
 	read_export.to_sql('history', con=engine, if_exists='append', index = False)
+	return ticker
 
 def historicalCoinbase(ticker: str, dataset_id: int):
 	coin = Coinbase(os.getenv('CB_API_KEY'), os.getenv('CB_API_SECRET'), os.getenv('CB_API_PASSPHRASE'))
