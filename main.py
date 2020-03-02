@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, send_from_directory
 from playhouse.shortcuts import model_to_dict
 from flask_cors import CORS, cross_origin
 from database import DataSet, BacktestPerform
-from tasker import perform_strategy, run_loader
+from tasker import perform_strategy, run_loader, fetch_dataset_yahoo
 
 app = Flask(__name__)
 CORS(app)
@@ -19,11 +19,12 @@ def get_dataset(task_id):
 @app.route('/datasets', methods=['POST'])
 def create_dataset():
 	data = request.json
-	DataSet.create(identifier=data["identifier"], 
+	data_set = DataSet.create(identifier=data["identifier"], 
 					reference_symbol=data["reference_symbol"],
 					symbol=data["ticker"],
 					source=data["source"],
 					frecuency=data["frecuency"])
+	fetch_dataset_yahoo.delay(data["ticker"],"max", "1d",data_set.id)
 	return request.json
 
 

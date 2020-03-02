@@ -2,6 +2,7 @@ from celery import Celery
 from modules.strategies import strategy_one
 from modules.strategies import strategy_two
 from database import BacktestPerform
+from recurrent import allTimeFetch
 
 app = Celery('tasker', broker="amqp://localhost//")
 
@@ -43,6 +44,11 @@ def perform_strategy(name: str) -> list:
 		plot_path=plot_path
 		)
 	return name
+
+@app.task
+def fetch_dataset_yahoo(ticker: str, period: str, interval: str, dataset_id: int):
+	allTimeFetch(ticker, period, interval, dataset_id)
+
 
 @app.task
 def sync_dataset(source: str, symbol: str):
