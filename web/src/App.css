@@ -78,3 +78,15 @@
 .logo-box img {
   width: 100px;
 }
+
+.live-options {
+  background-color: #FFFF;
+  margin-bottom: 1em;
+  padding: 0.8em;
+  border-radius: 2px;
+}
+
+.live-options .live-options-inputs {
+  display: flex;
+  justify-content: space-around;
+}

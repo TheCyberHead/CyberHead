@@ -1,6 +1,5 @@
 from database import DataSet, History
 
-
 def getHistorical(ticker_identifier: str):
 	data_set = DataSet.select().where(DataSet.reference_symbol == ticker_identifier)
 	historical = History.select().where(History.dataset_id == data_set).execute()

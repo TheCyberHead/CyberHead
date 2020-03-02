@@ -1,6 +1,7 @@
 import React from 'react';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row, Switch, Select, Button } from 'antd';
 import getStrategy from '../actions/getStrategy'
+const { Option } = Select;
 
 class Strategy extends React.Component {
 	constructor(props){
@@ -23,6 +24,24 @@ class Strategy extends React.Component {
 				<h1 style={{ color: '#ffffff'}}>Strategy : {this.props.match.params.strategy_name}</h1>
 				{this.state.loaded &&
 				<div style={{ padding: '10px' }}>
+						<div className="live-options">
+							<h3>Live Options</h3>
+							<div className="live-options-inputs">
+								<Switch checkedChildren="Live" unCheckedChildren="Test" style={{ marginRight: '5px', width: 70 }} />
+								<Select defaultValue="D1" style={{ width: 200, marginLeft: '10px' }}>
+								  <Option value="D1">D1</Option>
+								  <Option value="D2">D2</Option>
+								  <Option value="D3">D3</Option>
+								</Select>
+
+								<Select defaultValue="Alpaca" style={{ width: 200, marginLeft: '10px' }}>
+								  <Option value="ALPACA">Alpaca</Option>
+								  <Option value="COINBASE">Coinbase</Option>
+								</Select>
+
+								<Button type="primary" style={{marginLeft: '5px'}}>Save</Button>
+							</div>
+						</div>
 				    <Row>
 				      <Col md={6} style={{marginRight: '1em'}}>
 				        <Card title="Last Perform" bordered={false}>
