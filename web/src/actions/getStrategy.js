@@ -1,5 +1,7 @@
+import API_BASE from './URL'
+
 async function getStrategy(strategy){
-	let response = await fetch(`http://localhost:5000/get_strategy/${strategy}`)
+	let response = await fetch(`${API_BASE}/get_strategy/${strategy}`)
 	let data = await response.json()
 	return data
 }

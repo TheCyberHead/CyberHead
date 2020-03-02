@@ -1,5 +1,7 @@
+import API_BASE from './URL'
+
 async function createDataSet(dataset){
-	let response = await fetch(`http://localhost:5000/datasets`,{
+	let response = await fetch(`${API_BASE}/datasets`,{
 			method: 'POST',
 			body: JSON.stringify(dataset),
 			headers:{
