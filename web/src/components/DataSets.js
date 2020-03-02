@@ -78,14 +78,6 @@ class DataSets extends React.Component {
 
             <Form.Item>
               <Select onChange={this.setFrecuency}>
-                    <Option value="1m">1 minute</Option>
-                    <Option value="2m">2 minutes</Option>
-                    <Option value="5m">5 minutes</Option>
-                    <Option value="15m">15 minutes</Option>
-                    <Option value="30m">30 minutes</Option>
-                    <Option value="60m">60 minutes</Option>
-                    <Option value="90m">90 minutes</Option>
-                    <Option value="1h">1 hour</Option>
                     <Option value="1d">1 day</Option>
                     <Option value="5d">5 days</Option>
                     <Option value="1wk">1 week</Option>
