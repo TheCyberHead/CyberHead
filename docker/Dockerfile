@@ -7,22 +7,26 @@ LABEL maintainer="CyberHead <info@cyberhead.uk>" \
 ENV SERIES 5.0
 ENV LANG C.UTF-8
 
-RUN mkdir /home/CyberHead
-
 RUN apt-get update \
  && apt-get install apt-utils -y --no-install-recommends \
                     python3 \
                     python3-pip \
                     python3-setuptools \
                     git \
-                    vim 
+                    vim
 
-
-RUN git clone https://github.com/TheCyberHead/CyberHead \
+RUN cd /home \
+    && git clone https://github.com/TheCyberHead/CyberHead \
     && cd CyberHead \
     && pip3 install -r requirements.txt
 
+RUN cd /home/CyberHead/web \
+    && cd web \
+    && npm install -y
+
+RUN apt-get install nodejs -y --no-install-recommends \
+                    npm 
+ 
 EXPOSE 80
-#ENTRYPOINT ["/home/CyberHead"]
 
-
+ENTRYPOINT ["/home/CyberHead"]

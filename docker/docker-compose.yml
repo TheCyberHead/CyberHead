@@ -3,6 +3,11 @@ version: '3'
 services:
     mysql:
         image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db
+        ports:
+          - "3306:3306"
         restart: unless-stopped
     redis:
         image: redis
@@ -14,12 +19,21 @@ services:
         build:
             context: .
         image: cyberhead:cyberhead
+        environment:
+            CH_DB_NAME: db
+            CH_DB_HOST: localhost
+            CH_DB_USER: root
+            CH_DB_PASSWORD: root
         #volumes:
         #    - ./CyberHead:/CyberHead
  
         ports:
-            - "127.0.0.1:80:80"
+            - "80:80"
         depends_on:
             - rabbitmq
+            - mysql
+            - redis
+        links:
+            - mysql:mysql
         command: tail -F anything
         restart: unless-stopped

@@ -1,9 +1,9 @@
-from sqlalchemy import create_engine 
+from sqlalchemy import create_engine
 import peewee
 import os
 
 
-engine = create_engine(f"mysql+pymysql://root:root@localhost/cyberhead").connect()
+engine = create_engine(f"mysql+pymysql://root:cyberpass@localhost:3306/cyberdb").connect()
 
 db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           host=os.getenv('CH_DB_HOST'),
