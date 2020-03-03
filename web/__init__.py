@@ -1,12 +1,10 @@
-from os import system, chdir
+from os import system, chdir, environ
 
 
-path = '/home/sebu/CyberHead'
 def yarnInstall():
-    chdir(path + '/web')
+    chdir(environ.get('CH_PATH') + '/web')
     system('yarn install')
     system('yarn start')
-    chdir('/home/CyberHead')
     return
 
 def makeMenu(modules):

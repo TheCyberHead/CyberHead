@@ -1,18 +1,16 @@
-
-
-from celery import Celery
+from os import environ, chdir, listdir, path
 from threading import Timer
-import os
+# from celery import Celery
+
 import web
 
 
-path = '/home/sebu/CyberHead'
-
-
 print('CYBERHEAD CORE STARTING...\n')
+environ['CH_PATH'] = '/home/sebu/CyberHead'
 # process_queue = Celery('core', broker="amqp://localhost//")
 # process_queue = Celery(__name__)
 # process_queue.config_from_object(__name__)
+
 
 # @process_queue.task
 def run(module):
@@ -29,8 +27,8 @@ def run(module):
 
 
 def initializeModules():
-    os.chdir(path + '/modules')
-    modules = [name for name in os.listdir(".") if os.path.isdir(name)]
+    chdir(environ.get('CH_PATH') + '/modules')
+    modules = [name for name in listdir(".") if path.isdir(name)]
     for module in modules:
         run(module)
     return modules
@@ -45,6 +43,7 @@ def initializeWebService(modules):
             run(web_request)
         except:
             print('\033[31mWEB REQUEST FAILED\033[39m')
+
 
 modules = initializeModules()
 initializeWebService(modules)
