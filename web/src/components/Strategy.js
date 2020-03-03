@@ -1,4 +1,5 @@
 import React from 'react';
+import API_BASE from '../actions/URL'
 import { Card, Col, Row, Switch, Select, Button } from 'antd';
 import getStrategy from '../actions/getStrategy'
 const { Option } = Select;
@@ -96,7 +97,7 @@ class Strategy extends React.Component {
 				        </Card>
 				      </Col>
 				      <Col md={8}>
-				      <iframe src={`http://localhost:5000/get_plot/${this.state.strategyData.plot_path}`} width="750px" height="710"></iframe>
+				      <iframe src={`${API_BASE}/get_plot/${this.state.strategyData.plot_path}`} width="750px" height="710" frameBorder="0"></iframe>
 				    	</Col>
 				    </Row>
 				  </div>

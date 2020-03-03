@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
-
-import './App.css';
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import DataSets from './components/DataSets';
@@ -15,6 +8,7 @@ import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
 import Brokers from './components/Brokers';
 import getStrategies from './actions/getStrategies'
+import './App.css';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
