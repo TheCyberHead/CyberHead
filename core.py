@@ -15,7 +15,7 @@ def run(module):
         timing = start()
 
         #to rabbitmq
-        Timer(3, run, [module]).start()
+        Timer(10, run, [module]).start()
 
         print(module, '\033[32mRUNNING\033[39m')
         print(timing, 'seconds to callback')
@@ -31,7 +31,12 @@ def initializeModules():
 
 def initializeWebService():
     print('Starting Web Service')
-
+    while True:
+        web_request = input('>>>')
+        try:
+            run(web_request)
+        except:
+            print('\033[31mWEB REQUEST FAILED\033[39m')
 
 initializeModules()
 initializeWebService()
