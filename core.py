@@ -28,7 +28,7 @@ def run(module):
 
 def initializeModules():
     chdir(environ.get('CH_PATH') + '/modules')
-    modules = [name for name in listdir(".") if path.isdir(name)]
+    modules = [folder for folder in listdir(".") if path.isdir(folder)]
     for module in modules:
         run(module)
     return modules
@@ -45,5 +45,5 @@ def initializeWebService(modules):
             print('\033[31mWEB REQUEST FAILED\033[39m')
 
 
-modules = initializeModules()
-initializeWebService(modules)
+modules_list = initializeModules()
+initializeWebService(modules_list)
