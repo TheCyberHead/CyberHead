@@ -1,7 +1,4 @@
-
-
 import React from 'react';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 import Overview from './components/Overview';
@@ -67,32 +64,9 @@ class App extends React.Component {
 
                 </Link>
           </Menu.Item>
-	    {/* Automated Menu */}
-  <SubMenu
-    style={{ background: '#141414'}}
-    theme="dark"
-    mode="inline"
-    key="sub1"
-    title={
-      <span>
-	<Icon type="stock" />
-	<span>Strategies</span>
-      </span>
-    }
-  >
-    {this.state.loaded && this.state.strategies.map((strategy, index) => (
-      <Menu.Item className="item" key={index+11}>
-	<Link to={`/strategy/${strategy}`}>
-	  <Icon type="stock" />
-	  <span>{strategy}</span>
-	</Link>
-      </Menu.Item>
-    ))}
-  </SubMenu>
+	  //<!-- Automated Menu -->
 
-
-
-{/* Automated Menu */}
+	  //<!-- Automated Menu -->
 	  <SubMenu
             style={{ background: '#141414'}}
             theme="dark"
@@ -216,5 +190,4 @@ class App extends React.Component {
 }
 
 export default App;
-
-
+  
