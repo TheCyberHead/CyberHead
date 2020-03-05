@@ -45,5 +45,5 @@ def initializeWebService(modules):
             print('\033[31mWEB REQUEST FAILED\033[39m')
 
 
-modules = initializeModules()
-initializeWebService(modules)
+modules_list = initializeModules()
+initializeWebService(modules_list)
