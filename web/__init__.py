@@ -6,6 +6,7 @@ def yarnStart():
     system('yarn install')
     system('yarn start')
 
+
 def makeMenu(menu):
     '''create the menu elements based on the modules'''
     chdir(environ.get('CH_PATH') + '/web/src')
@@ -19,10 +20,13 @@ def makeMenu(menu):
         code.write(txt2)
         print(txt2)
 
+
 def collectMenu(modules):
     menu = ''
     for module in modules:
         print(module)
+        installModule(module)
+        print('files moved')
         chdir(environ.get('CH_PATH') + '/modules/' + module)
         try:
             with open('menu.html', 'r') as code:
@@ -32,6 +36,22 @@ def collectMenu(modules):
         except:
             print('Menu not founded in:', module)
     return menu
+
+'''
+import datasets from './modules/datasets';
+
+
+<Route exact path="/datasets">
+  <datasets updateKey={this.updateMenuKey} />
+</Route>
+'''
+
+
+def installModule(module):
+    chdir(environ.get('CH_PATH') + '/modules/' + module)
+    system('cp ' + module + '.js ../../web/src/modules/' + module + '.js')
+    chdir(environ.get('CH_PATH') + '/modules/' + module + '/actions')
+    system('cp * ../../../web/src/modules/actions')
 
 
 def startWeb():
@@ -45,5 +65,6 @@ def start(modules):
     yarnStart()
     return
 
-environ['CH_PATH'] = '/home/sebu/CyberHead'
-start(['strategies'])
+
+#environ['CH_PATH'] = '/home/sebu/CyberHead'
+#start(['datasets'])

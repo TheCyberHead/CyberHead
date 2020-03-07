@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input, Modal, Card, Col, Row, Button, Select } from 'antd';
-import getDatasets from '../actions/DataSet';
-import createDataSet from '../actions/createDataSet';
+import getDatasets from './actions/DataSet';
+import createDataSet from './actions/createDataSet';
 const { Option } = Select;
 
 class DataSets extends React.Component {
