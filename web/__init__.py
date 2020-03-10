@@ -7,22 +7,31 @@ def yarnStart():
     system('yarn start')
 
 
-def makeMenu(menu):
+def makeMenu(menu, imports, route):
     '''create the menu elements based on the modules'''
     chdir(environ.get('CH_PATH') + '/web/src')
+    menu_flag = '{/* Automated Menu */}'
+    imports_flag = '// Automated Import //'
+    route_flag = '{/* Automated Route */}'
+
     with open('App.js', 'r+') as code:
         c = code.read()
-        flag = '{/* Automated Menu */}'
-        txt = c.split(flag)
-        txt2 = txt[0] + flag + str(menu) + flag + txt[2]
+        txt2 = c.split(menu_flag)
+        txt3 = txt2[0] + menu_flag + str(menu) + menu_flag + txt2[2]
+        txt4 = txt3.split(imports_flag)
+        txt5 = txt4[0] + imports_flag + str(imports) + imports_flag + txt4[2]
+        txt6 = txt5.split(route_flag)
+        txt7 = txt6[0] + route_flag + str(route) + route_flag + txt6[2]
         code.seek(0)
         code.truncate()
-        code.write(txt2)
-        print(txt2)
+        code.write(txt7)
+        print(txt7)
 
 
 def collectMenu(modules):
     menu = ''
+    imports = ''
+    route = ''
     for module in modules:
         print(module)
         installModule(module)
@@ -32,19 +41,18 @@ def collectMenu(modules):
             with open('menu.html', 'r') as code:
                 c = code.read()
                 menu += '\n' + c + '\n'
+                imports += "\nimport " + module + " from './modules/" + module + "'\n"
+                route_middle = 'updateKey={this.updateMenuKey}/>\n</Route>\n'
+                route += '\n<Route exact path="/{}">\n  <{} '.format(module, module) + route_middle
             print('Menu added from:', module)
         except:
             print('Menu not founded in:', module)
-    return menu
+    print(menu)
+    print(imports)
+    print(route)
+    return menu, imports, route
 
-'''
-import datasets from './modules/datasets';
 
-
-<Route exact path="/datasets">
-  <datasets updateKey={this.updateMenuKey} />
-</Route>
-'''
 
 
 def installModule(module):
@@ -60,11 +68,11 @@ def startWeb():
 
 
 def start(modules):
-    menu = collectMenu(modules)
-    makeMenu(menu)
-    yarnStart()
+    menu, imports, route = collectMenu(modules)
+    makeMenu(menu, imports, route)
+    #yarnStart()
     return
 
 
-#environ['CH_PATH'] = '/home/sebu/CyberHead'
-#start(['datasets'])
+environ['CH_PATH'] = '/home/sebu/CyberHead'
+start(['datasets'])

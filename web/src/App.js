@@ -1,24 +1,15 @@
-
-
 import React from 'react';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
-
-import './App.css';
-
-
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
 import Brokers from './components/Brokers';
 import getStrategies from './actions/getStrategies'
-
+import './App.css';
 
 // Automated Import //
-
-import datasets from './modules/datasets';
 
 // Automated Import //
 
@@ -70,18 +61,92 @@ class App extends React.Component {
           <img src="/images/logo64.png" className="center"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
+          <Menu.Item className="item"key="1">
+                <Link to="/overview">
+            <Icon type="desktop" />
+            <span>Porfolio</span>
+
+                </Link>
+          </Menu.Item>
 
 
 {/* Automated Menu */}
-    <Menu.Item className="item" key="5">
-      <Link to="/datasets">
-	<Icon type="file-add" />
-	<span>Data Sets</span>
-      </Link>
-    </Menu.Item>
 
 {/* Automated Menu */}
 
+
+	  <SubMenu
+            style={{ background: '#141414'}}
+            theme="dark"
+            mode="inline"
+            key="sub1"
+            title={
+              <span>
+                <Icon type="stock" />
+                <span>Strategies</span>
+              </span>
+            }
+          >
+            {this.state.loaded && this.state.strategies.map((strategy, index) => (
+              <Menu.Item className="item" key={index+11}>
+                <Link to={`/strategy/${strategy}`}>
+                  <Icon type="stock" />
+                  <span>{strategy}</span>
+                </Link>
+              </Menu.Item>
+            ))}
+          </SubMenu>
+
+
+          <SubMenu
+            style={{ background: '#141414'}}
+            theme="dark"
+            mode="inline"
+            key="sub1"
+            title={
+              <span>
+                <Icon type="stock" />
+                <span>Strategies</span>
+              </span>
+            }
+          >
+            {this.state.loaded && this.state.strategies.map((strategy, index) => (
+              <Menu.Item className="item" key={index+11}>
+                <Link to={`/strategy/${strategy}`}>
+                  <Icon type="stock" />
+                  <span>{strategy}</span>
+                </Link>
+              </Menu.Item>
+            ))}
+          </SubMenu>
+
+            <Menu.Item className="item" key="3">
+              <Link to="/heat-vision">
+                <Icon type="dot-chart" />
+                <span>Heat Vision</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item className="item" key="4">
+              <Link  to="configuration">
+                <Icon type="experiment" />
+                <span>Configuration</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item className="item" key="5">
+              <Link to="/datasets">
+                <Icon type="file-add" />
+                <span>Data Sets</span>
+              </Link>
+            </Menu.Item>
+
+            <Menu.Item className="item" key="6">
+              <Link to="/brokers">
+                <Icon type="sliders" />
+                <span>Broker Accounts</span>
+              </Link>
+            </Menu.Item>
           </Menu>
         </Sider>
 
@@ -101,13 +166,18 @@ class App extends React.Component {
               minHeight: '100vh',
             }}
           >
-
               <Switch>
-                <Route exact path="/strategy/:strategy_name"  component={Strategy} />
+                <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
 
                 <Route exact path="/heat-vision">
                   <HeatVision updateKey={this.updateMenuKey} />
                 </Route>
+
+
+{/* Automated Route */}
+
+{/* Automated Route */}
+
 
                 <Route exact path="/configuration">
                   <Configuration updateKey={this.updateMenuKey} />
@@ -120,18 +190,7 @@ class App extends React.Component {
                 <Route path="/">
                   <Overview updateKey={this.updateMenuKey} />
                 </Route>
-
-
-{/* Automated Route */}
-
-                <Route exact path="/datasets">
-                  <datasets updateKey={this.updateMenuKey} />
-                </Route>
-
-{/* Automated Route */}
-
-
-             </Switch>
+              </Switch>
           </Content>
         </Layout>
       </Layout>
@@ -141,3 +200,4 @@ class App extends React.Component {
 }
 
 export default App;
+  
