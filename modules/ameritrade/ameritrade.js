@@ -1,7 +1,5 @@
 import React from 'react';
-import alpaca from '../alpaca.png'
-import ameritrade from '../ameritrade.svg'
-import coinbase from '../coinbase.svg'
+import ameritrade from './ameritrade.svg'
 import {Form,Input,Button,Select} from 'antd';
 
 const { Option } = Select;
@@ -27,10 +25,8 @@ class Brokers extends React.Component {
 					<div className="account_form">
 						<Form layout="horizontal">
 						  <Form.Item>
-						    <Select defaultValue="Alpaca" >
-	                 <Option value="Alpaca">Alpaca</Option>
+						    <Select defaultValue="Ameritrade" >
 	                 <Option value="Ameritrade">TD Ameritrade</Option>
-	                 <Option value="Coinbase">Coinbase</Option>
 	               </Select>
 						  </Form.Item>
 						  <Form.Item>
@@ -53,9 +49,7 @@ class Brokers extends React.Component {
 
 					<h3>Supported Brokers</h3>
 					<div className="logo-box">
-						<img src={alpaca}/>
 						<img src={ameritrade}/>
-						<img src={coinbase}/>
 					</div>
 				</div>
 				<div className="broker_accounts">

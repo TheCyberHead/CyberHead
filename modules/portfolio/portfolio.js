@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'antd';
-import matrix from '../matrix.png';
-import portfolioStrategies from '../actions/portfolioStrategies';
+import matrix from './matrix.png';
+import portfolioStrategies from './actions/portfolioStrategies';
 
 class Overview extends React.Component {
 	constructor(props){

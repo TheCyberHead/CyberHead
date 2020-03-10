@@ -10,7 +10,7 @@ def stuff():
 
 def start():
     stuff()
-    return 10
+    return 100
 
 
 if __name__ == '__main__':

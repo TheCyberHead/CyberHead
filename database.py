@@ -83,6 +83,7 @@ if __name__ == '__main__':
 	if not DataSet.table_exists():
 		DataSet.create_table()
 		print('Data Sets table created.')
+
 	if not History.table_exists():
 		History.create_table()
 		print('History table created.')

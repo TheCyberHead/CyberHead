@@ -25,7 +25,7 @@ def makeMenu(menu, imports, route):
         code.seek(0)
         code.truncate()
         code.write(txt7)
-        print(txt7)
+        #print(txt7)
 
 
 def collectMenu(modules):
@@ -47,9 +47,6 @@ def collectMenu(modules):
             print('Menu added from:', module)
         except:
             print('Menu not founded in:', module)
-    print(menu)
-    print(imports)
-    print(route)
     return menu, imports, route
 
 
@@ -70,9 +67,9 @@ def startWeb():
 def start(modules):
     menu, imports, route = collectMenu(modules)
     makeMenu(menu, imports, route)
-    #yarnStart()
+    yarnStart()
     return
 
 
-environ['CH_PATH'] = '/home/sebu/CyberHead'
-start(['datasets'])
+#environ['CH_PATH'] = '/home/sebu/CyberHead'
+#start(['datasets'])
