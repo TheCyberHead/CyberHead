@@ -85,6 +85,8 @@ class App extends React.Component {
     </Menu.Item>
 
 
+
+
     <Menu.Item className="item" key="303">
       <Link  to="coinbase">
 	<Icon type="experiment" />
@@ -93,12 +95,16 @@ class App extends React.Component {
     </Menu.Item>
 
 
+
+
     <Menu.Item className="item" key="300">
       <Link  to="alpaca">
 	<Icon type="experiment" />
 	<span>Alpaca</span>
       </Link>
     </Menu.Item>
+
+
 
 
     <Menu.Item className="item" key="400">
@@ -115,6 +121,8 @@ class App extends React.Component {
 	<span>MySQL</span>
       </Link>
     </Menu.Item>
+
+
 
 
   <SubMenu
@@ -155,6 +163,8 @@ class App extends React.Component {
 
 
   </SubMenu>
+
+
 
 
   <Menu.Item className="item"key="200">
