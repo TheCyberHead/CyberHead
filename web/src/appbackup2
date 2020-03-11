@@ -3,10 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 import './App.css';
 
-import getStrategies from './modules/actions/getStrategies'
-
-
-
 // Automated Import //
 import ameritrade from './modules/ameritrade'
 
@@ -24,7 +20,6 @@ import portfolio from './modules/portfolio'
 // Automated Import //
 
 
-
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -35,35 +30,20 @@ class App extends React.Component {
       collapsed: false,
       selectedKeyMenu: "1",
       loaded: false,
-      strategies: []
     };
     this.updateMenuKey = this.updateMenuKey.bind(this);
-    this.loadStrategies = this.loadStrategies.bind(this);
   }
 
   updateMenuKey(key){
     this.setState({selectedKeyMenu: key})
   }
 
-  loadStrategies(){
-    getStrategies()
-      .then(response => {
-        response.strategies.map(strategy => this.setState({strategies: [...this.state.strategies, strategy.strategy_name]}))
-      })
-  }
-
-  componentDidMount(){
-    this.loadStrategies()
-    this.setState({loaded: true})
-  }
 
   toggle = () => {
     this.setState({
       collapsed: !this.state.collapsed,
     });
   };
-
-
 
   render() {
     return (
@@ -85,6 +65,8 @@ class App extends React.Component {
     </Menu.Item>
 
 
+
+
     <Menu.Item className="item" key="303">
       <Link  to="coinbase">
 	<Icon type="experiment" />
@@ -93,12 +75,16 @@ class App extends React.Component {
     </Menu.Item>
 
 
+
+
     <Menu.Item className="item" key="300">
       <Link  to="alpaca">
 	<Icon type="experiment" />
 	<span>Alpaca</span>
       </Link>
     </Menu.Item>
+
+
 
 
     <Menu.Item className="item" key="400">
@@ -115,6 +101,8 @@ class App extends React.Component {
 	<span>MySQL</span>
       </Link>
     </Menu.Item>
+
+
 
 
   <SubMenu
@@ -139,14 +127,14 @@ class App extends React.Component {
 
     ))}
 
-      <Menu.Item className="item" key="100">
+      <Menu.Item className="item" key="10">
         <Link  to="strategy1">
 	  <Icon type="experiment" />
 	  <span>Strategy1</span>
         </Link>
       </Menu.Item>
 
-      <Menu.Item className="item" key="101">
+      <Menu.Item className="item" key="11">
         <Link  to="strategy2">
 	  <Icon type="experiment" />
 	  <span>Strategy2</span>
@@ -155,6 +143,8 @@ class App extends React.Component {
 
 
   </SubMenu>
+
+
 
 
   <Menu.Item className="item"key="200">
