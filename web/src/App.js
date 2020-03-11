@@ -6,6 +6,8 @@ import './App.css';
 // Automated Import //
 import ameritrade from './modules/ameritrade'
 
+import coinbase from './modules/coinbase'
+
 import alpaca from './modules/alpaca'
 
 import datasets from './modules/datasets'
@@ -55,20 +57,30 @@ class App extends React.Component {
 
 
 {/* Automated Menu */}
-
-
-    <Menu.Item className="item" key="6">
-      <Link to="/brokers">
-	<Icon type="sliders" />
-	<span>Broker Accounts</span>
+    <Menu.Item className="item" key="5">
+      <Link  to="ameritrade">
+	<Icon type="experiment" />
+	<span>Ameritrade</span>
       </Link>
     </Menu.Item>
 
 
+
+
     <Menu.Item className="item" key="4">
-      <Link  to="configuration">
+      <Link  to="coinbase">
 	<Icon type="experiment" />
-	<span>Configuration</span>
+	<span>Coinbase</span>
+      </Link>
+    </Menu.Item>
+
+
+
+
+    <Menu.Item className="item" key="4">
+      <Link  to="alpaca">
+	<Icon type="experiment" />
+	<span>Alpaca</span>
       </Link>
     </Menu.Item>
 
@@ -112,7 +124,24 @@ class App extends React.Component {
 	  <span>{strategy}</span>
 	</Link>
       </Menu.Item>
+
     ))}
+
+      <Menu.Item className="item" key="10">
+        <Link  to="strategy1">
+	  <Icon type="experiment" />
+	  <span>Strategy1</span>
+        </Link>
+      </Menu.Item>
+
+      <Menu.Item className="item" key="11">
+        <Link  to="strategy2">
+	  <Icon type="experiment" />
+	  <span>Strategy2</span>
+        </Link>
+      </Menu.Item>
+
+
   </SubMenu>
 
 
@@ -129,79 +158,6 @@ class App extends React.Component {
 
 {/* Automated Menu */}
 
-
-	  <SubMenu
-            style={{ background: '#141414'}}
-            theme="dark"
-            mode="inline"
-            key="sub1"
-            title={
-              <span>
-                <Icon type="stock" />
-                <span>Strategies</span>
-              </span>
-            }
-          >
-            {this.state.loaded && this.state.strategies.map((strategy, index) => (
-              <Menu.Item className="item" key={index+11}>
-                <Link to={`/strategy/${strategy}`}>
-                  <Icon type="stock" />
-                  <span>{strategy}</span>
-                </Link>
-              </Menu.Item>
-            ))}
-          </SubMenu>
-
-
-          <SubMenu
-            style={{ background: '#141414'}}
-            theme="dark"
-            mode="inline"
-            key="sub1"
-            title={
-              <span>
-                <Icon type="stock" />
-                <span>Strategies</span>
-              </span>
-            }
-          >
-            {this.state.loaded && this.state.strategies.map((strategy, index) => (
-              <Menu.Item className="item" key={index+11}>
-                <Link to={`/strategy/${strategy}`}>
-                  <Icon type="stock" />
-                  <span>{strategy}</span>
-                </Link>
-              </Menu.Item>
-            ))}
-          </SubMenu>
-
-            <Menu.Item className="item" key="3">
-              <Link to="/heat-vision">
-                <Icon type="dot-chart" />
-                <span>Heat Vision</span>
-              </Link>
-            </Menu.Item>
-
-            <Menu.Item className="item" key="4">
-              <Link  to="configuration">
-                <Icon type="experiment" />
-                <span>Configuration</span>
-              </Link>
-            </Menu.Item>
-
-            <Menu.Item className="item" key="5">
-              <Link to="/datasets">
-                <Icon type="file-add" />
-                <span>Data Sets</span>
-              </Link>
-            </Menu.Item>
-
-            <Menu.Item className="item" key="6">
-              <Link to="/brokers">
-                <Icon type="sliders" />
-                <span>Broker Accounts</span>
-              </Link>
-            </Menu.Item>
           </Menu>
         </Sider>
 
@@ -227,6 +183,10 @@ class App extends React.Component {
 {/* Automated Route */}
 <Route exact path="/ameritrade">
   <ameritrade updateKey={this.updateMenuKey}/>
+</Route>
+
+<Route exact path="/coinbase">
+  <coinbase updateKey={this.updateMenuKey}/>
 </Route>
 
 <Route exact path="/alpaca">
