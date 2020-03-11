@@ -1,11 +1,11 @@
 import React from 'react';
-import ameritrade from './ameritrade.svg'
+import ameritrade_logo from './ameritrade.svg'
 import {Form,Input,Button,Select} from 'antd';
 
 const { Option } = Select;
 
 
-class Brokers extends React.Component {
+class ameritrade extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -49,7 +49,7 @@ class Brokers extends React.Component {
 
 					<h3>Supported Brokers</h3>
 					<div className="logo-box">
-						<img src={ameritrade}/>
+						<img src={ameritrade_logo}/>
 					</div>
 				</div>
 				<div className="broker_accounts">
@@ -61,4 +61,4 @@ class Brokers extends React.Component {
 	}
 }
 
-export default Brokers;
+export default ameritrade;
