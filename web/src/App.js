@@ -1,3 +1,7 @@
+
+
+
+
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
@@ -14,13 +18,15 @@ import coinbase from './modules/coinbase'
 
 import alpaca from './modules/alpaca'
 
-import datasets from './modules/datasets'
+import DataSets from './modules/DataSets'
 
 import mysql from './modules/mysql'
 
 import strategies from './modules/strategies'
 
 import portfolio from './modules/portfolio'
+
+import datasets from './modules/DataSets'
 // Automated Import //
 
 
@@ -230,8 +236,7 @@ class App extends React.Component {
 </Route>
 {/* Automated Route */}
 
-
-              </Switch>
+            </Switch>
           </Content>
         </Layout>
       </Layout>
@@ -241,4 +246,7 @@ class App extends React.Component {
 }
 
 export default App;
-  
+
+
+
+

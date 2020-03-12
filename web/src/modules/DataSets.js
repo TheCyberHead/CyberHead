@@ -4,7 +4,7 @@ import getDatasets from './actions/DataSet';
 import createDataSet from './actions/createDataSet';
 const { Option } = Select;
 
-class datasets extends React.Component {
+class DataSets extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -125,4 +125,4 @@ class datasets extends React.Component {
 	}
 }
 
-export default datasets;
+export default DataSets;
