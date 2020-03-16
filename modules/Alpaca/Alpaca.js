@@ -1,11 +1,11 @@
 import React from 'react';
-import ameritrade_logo from './ameritrade.svg'
+import alpaca_logo from './alpaca.png'
 import {Form,Input,Button,Select} from 'antd';
 
 const { Option } = Select;
 
 
-class ameritrade extends React.Component {
+class Alpaca extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -25,8 +25,8 @@ class ameritrade extends React.Component {
 					<div className="account_form">
 						<Form layout="horizontal">
 						  <Form.Item>
-						    <Select defaultValue="Ameritrade" >
-	                 <Option value="Ameritrade">TD Ameritrade</Option>
+						    <Select defaultValue="Alpaca" >
+	                 <Option value="Alpaca">Alpaca</Option>
 	               </Select>
 						  </Form.Item>
 						  <Form.Item>
@@ -49,7 +49,7 @@ class ameritrade extends React.Component {
 
 					<h3>Supported Brokers</h3>
 					<div className="logo-box">
-						<img src={ameritrade_logo}/>
+						<img src={alpaca_logo}/>
 					</div>
 				</div>
 				<div className="broker_accounts">
@@ -61,4 +61,4 @@ class ameritrade extends React.Component {
 	}
 }
 
-export default ameritrade;
+export default Alpaca;

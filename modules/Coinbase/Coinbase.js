@@ -5,7 +5,7 @@ import {Form,Input,Button,Select} from 'antd';
 const { Option } = Select;
 
 
-class coinbase extends React.Component {
+class Coinbase extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -61,4 +61,4 @@ class coinbase extends React.Component {
 	}
 }
 
-export default coinbase;
+export default Coinbase;

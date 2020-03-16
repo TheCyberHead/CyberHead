@@ -3,7 +3,7 @@ import { Table } from 'antd';
 import matrix from './matrix.png';
 import portfolioStrategies from './actions/portfolioStrategies';
 
-class portfolio extends React.Component {
+class Portfolio extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -76,4 +76,4 @@ class portfolio extends React.Component {
 	}
 }
 
-export default portfolio;
+export default Portfolio;

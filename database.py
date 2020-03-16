@@ -11,6 +11,7 @@ db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           user=os.getenv('CH_DB_USER'),
                           password=os.getenv('CH_DB_PASSWORD'))
 
+
 class Broker(peewee.Model):
 	broker = peewee.CharField()
 	# Coinbase / Alpaca

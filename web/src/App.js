@@ -12,21 +12,19 @@ import getStrategies from './modules/actions/getStrategies'
 
 
 // Automated Import //
-import ameritrade from './modules/ameritrade'
+import Coinbase from './modules/Coinbase'
 
-import coinbase from './modules/coinbase'
+import Ameritrade from './modules/Ameritrade'
 
-import alpaca from './modules/alpaca'
+import Alpaca from './modules/Alpaca'
 
-import DataSets from './modules/DataSets'
+import Strategies from './modules/Strategies'
 
-import mysql from './modules/mysql'
+import Mysql from './modules/Mysql'
 
-import strategies from './modules/strategies'
+import Portfolio from './modules/Portfolio'
 
-import portfolio from './modules/portfolio'
-
-import datasets from './modules/DataSets'
+import Datasets from './modules/Datasets'
 // Automated Import //
 
 
@@ -77,22 +75,12 @@ class App extends React.Component {
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ background: '#141414'}}>
           <div className="logo">
-          <img src="/images/logo64.png" className="center"/>
+          <img src="/logo64.png" className="center"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
 
 
 {/* Automated Menu */}
-    <Menu.Item className="item" key="302">
-      <Link  to="ameritrade">
-	<Icon type="experiment" />
-	<span>Ameritrade</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
     <Menu.Item className="item" key="303">
       <Link  to="coinbase">
 	<Icon type="experiment" />
@@ -103,28 +91,20 @@ class App extends React.Component {
 
 
 
+    <Menu.Item className="item" key="302">
+      <Link  to="ameritrade">
+	<Icon type="experiment" />
+	<span>Ameritrade</span>
+      </Link>
+    </Menu.Item>
+
+
+
+
     <Menu.Item className="item" key="300">
       <Link  to="alpaca">
 	<Icon type="experiment" />
 	<span>Alpaca</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="400">
-      <Link to="/datasets">
-	<Icon type="file-add" />
-	<span>Data Sets</span>
-      </Link>
-    </Menu.Item>
-
-
-    <Menu.Item className="item" key="3">
-      <Link to="/heat-vision">
-	<Icon type="dot-chart" />
-	<span>MySQL</span>
       </Link>
     </Menu.Item>
 
@@ -173,6 +153,16 @@ class App extends React.Component {
 
 
 
+    <Menu.Item className="item" key="3">
+      <Link to="/heat-vision">
+	<Icon type="dot-chart" />
+	<span>MySQL</span>
+      </Link>
+    </Menu.Item>
+
+
+
+
   <Menu.Item className="item"key="200">
 	<Link to="/overview">
     <Icon type="desktop" />
@@ -181,6 +171,14 @@ class App extends React.Component {
 	</Link>
   </Menu.Item>
 
+
+
+    <Menu.Item className="item" key="400">
+      <Link to="/datasets">
+	<Icon type="file-add" />
+	<span>Data Sets</span>
+      </Link>
+    </Menu.Item>
 
 {/* Automated Menu */}
 
@@ -207,32 +205,32 @@ class App extends React.Component {
 
 
 {/* Automated Route */}
-<Route exact path="/ameritrade">
-  <ameritrade updateKey={this.updateMenuKey}/>
+<Route exact path="/Coinbase">
+  <Coinbase updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/coinbase">
-  <coinbase updateKey={this.updateMenuKey}/>
+<Route exact path="/Ameritrade">
+  <Ameritrade updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/alpaca">
-  <alpaca updateKey={this.updateMenuKey}/>
+<Route exact path="/Alpaca">
+  <Alpaca updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/datasets">
-  <datasets updateKey={this.updateMenuKey}/>
+<Route exact path="/Strategies">
+  <Strategies updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/mysql">
-  <mysql updateKey={this.updateMenuKey}/>
+<Route exact path="/Mysql">
+  <Mysql updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/strategies">
-  <strategies updateKey={this.updateMenuKey}/>
+<Route exact path="/Portfolio">
+  <Portfolio updateKey={this.updateMenuKey}/>
 </Route>
 
-<Route exact path="/portfolio">
-  <portfolio updateKey={this.updateMenuKey}/>
+<Route exact path="/Datasets">
+  <Datasets updateKey={this.updateMenuKey}/>
 </Route>
 {/* Automated Route */}
 
