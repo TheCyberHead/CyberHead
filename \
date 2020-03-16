@@ -19,9 +19,9 @@ class Coinbase:
 		return place_market
 
 	def place_limit_order(self, action, ticker, entry_price, size):
-		entry_order = self.client.place_limit_order(product_id=ticker, 
-							side=action, 
-							price=entry_price, 
+		entry_order = self.client.place_limit_order(product_id=ticker,
+							side=action,
+							price=entry_price,
 							size=size)
 		print(entry_order)
 		return entry_order

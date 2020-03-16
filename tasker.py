@@ -1,6 +1,6 @@
 from celery import Celery
-from modules.strategies import strategy_one
-from modules.strategies import strategy_two
+from modules.Strategies import strategy_one
+from modules.Strategies import strategy_two
 from database import BacktestPerform
 from recurrent import allTimeFetch
 

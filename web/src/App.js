@@ -22,6 +22,8 @@ import Strategies from './modules/Strategies'
 
 import Mysql from './modules/Mysql'
 
+import Mongodb from './modules/Mongodb'
+
 import Portfolio from './modules/Portfolio'
 
 import Datasets from './modules/Datasets'
@@ -124,7 +126,7 @@ class App extends React.Component {
     }
   >
     {this.state.loaded && this.state.strategies.map((strategy, index) => (
-      <Menu.Item className="item" key={index+11}>
+      <Menu.Item className="item" key={index+11} >
 	<Link to={`/strategy/${strategy}`}>
 	  <Icon type="stock" />
 	  <span>{strategy}</span>
@@ -133,19 +135,31 @@ class App extends React.Component {
 
     ))}
 
-      <Menu.Item className="item" key="100">
+      <Menu.Item className="item" key="100" style={{ background: '#090909'}}>
         <Link  to="strategy1">
 	  <Icon type="experiment" />
 	  <span>Strategy1</span>
         </Link>
       </Menu.Item>
 
-      <Menu.Item className="item" key="101">
+      <Menu.Item className="item" key="101" style={{ background: '#090909'}}>
         <Link  to="strategy2">
 	  <Icon type="experiment" />
 	  <span>Strategy2</span>
         </Link>
       </Menu.Item>
+
+      <Menu.Item className="item" key="103" style={{ background: '#090909'}}>
+        <Link  to="strategy3">
+	  <Icon type="experiment" />
+	  <span>Strategy2</span>
+        </Link>
+      </Menu.Item>
+
+
+{/* Automated Submenu */}
+
+{/* Automated Submenu */}
 
 
   </SubMenu>
@@ -163,8 +177,18 @@ class App extends React.Component {
 
 
 
+    <Menu.Item className="item" key="60">
+      <Link to="/mongodb">
+	<Icon type="dot-chart" />
+	<span>MongoDB</span>
+      </Link>
+    </Menu.Item>
+
+
+
+
   <Menu.Item className="item"key="200">
-	<Link to="/overview">
+	<Link to="/portfolio">
     <Icon type="desktop" />
     <span>Porfolio</span>
 
@@ -223,6 +247,10 @@ class App extends React.Component {
 
 <Route exact path="/Mysql">
   <Mysql updateKey={this.updateMenuKey}/>
+</Route>
+
+<Route exact path="/Mongodb">
+  <Mongodb updateKey={this.updateMenuKey}/>
 </Route>
 
 <Route exact path="/Portfolio">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class HeatVision extends React.Component {
+class Strategies extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -9,16 +9,16 @@ class HeatVision extends React.Component {
 	}
 
 	componentDidMount(){
-		this.props.updateKey('3')
+		this.props.updateKey('2')
 	}
 
 	render(){
 		return(
 			<React.Fragment>
-				<h1>Heat Vision</h1>
+				<h1>Strategies</h1>
 			</React.Fragment>
 		)
 	}
 }
 
-export default HeatVision;
+export default Strategies;

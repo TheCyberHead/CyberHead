@@ -21,7 +21,7 @@ class Alpaca extends React.Component {
 	render(){
 		return(
 			<div className="brokers_section">
-				<div className="submit-broker">
+				<div className="submit-broker" >
 					<div className="account_form">
 						<Form layout="horizontal">
 						  <Form.Item>

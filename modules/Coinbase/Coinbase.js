@@ -4,6 +4,12 @@ import {Form,Input,Button,Select} from 'antd';
 
 const { Option } = Select;
 
+const mystyle = {
+color: "white",
+backgroundColor: "#1b1b1b"
+};
+
+
 
 class Coinbase extends React.Component {
 	constructor(props){
@@ -20,7 +26,7 @@ class Coinbase extends React.Component {
 
 	render(){
 		return(
-			<div className="brokers_section">
+			<div className="brokers_section" style={mystyle}>
 				<div className="submit-broker">
 					<div className="account_form">
 						<Form layout="horizontal">

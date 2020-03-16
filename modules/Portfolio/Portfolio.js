@@ -3,6 +3,13 @@ import { Table } from 'antd';
 import matrix from './matrix.png';
 import portfolioStrategies from './actions/portfolioStrategies';
 
+
+const mystyle = {
+color: "white",
+backgroundColor: "#1b1b1b"
+};
+
+
 class Portfolio extends React.Component {
 	constructor(props){
 		super(props);
@@ -61,8 +68,8 @@ class Portfolio extends React.Component {
 	render(){
 		return(
 			<React.Fragment>
-				<h1 style={{ color: '#ffffff'}}>Portfolio</h1>
-				<div className="overview-container">
+				<h1 style={mystyle}>Portfolio</h1>
+				<div className="overview-container" style={mystyle}>
 					{this.state.load && 
 						<React.Fragment>
 							<Table dataSource={this.state.dataSource} columns={this.state.columns} />
