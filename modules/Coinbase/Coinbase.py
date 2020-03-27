@@ -10,6 +10,9 @@ class Coinbase:
 		self.ENV_URL = ENV_URL
 		self.client = cbpro.AuthenticatedClient(self.API_KEY, self.API_SECRET, self.API_PASS, api_url=self.ENV_URL)
 
+	def auth(self):
+		print('Authenticating Coinbase')
+
 	def place_market(self, action, ticker, amount):
 		order = self.client.place_market_order(
 				product_id=ticker,
