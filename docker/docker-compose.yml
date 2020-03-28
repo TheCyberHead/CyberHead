@@ -20,14 +20,15 @@ services:
     cyberhead:
         build:
             context: .
-        image: cyberhead:cyberhead
+        image: cyberhead
         environment:
             CH_DB_NAME: db
             CH_DB_HOST: localhost
             CH_DB_USER: root
             CH_DB_PASSWORD: root
-        #volumes:
-        #    - ./CyberHead:/CyberHead
+        volumes:
+            - ..:/home/CyberHead
+        working_dir:  /home/CyberHead
  
         ports:
             - "80:80"

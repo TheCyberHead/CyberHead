@@ -15,18 +15,13 @@ RUN apt-get update \
                     git \
                     vim
 
-RUN cd /home \
-    && git clone https://github.com/TheCyberHead/CyberHead \
-    && cd CyberHead \
-    && pip3 install -r requirements.txt
-
-RUN cd /home/CyberHead/web \
-    && cd web \
-    && npm install -y
-
 RUN apt-get install nodejs -y --no-install-recommends \
                     npm 
- 
+
+#RUN cd /home/CyberHead/web \
+#    && npm install -y
+
+
 EXPOSE 80
 
-ENTRYPOINT ["/home/CyberHead"]
+#ENTRYPOINT ["/home/CyberHead"]
