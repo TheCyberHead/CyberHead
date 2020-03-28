@@ -6,6 +6,7 @@
     <img src="https://cyberhead.uk/assets/strategies.png" />
 </p>
 
+
 ## Run it locally
 1. Install [Docker](https://docs.docker.com/install/)
 2. Clone the project: `git clone https://github.com/TheCyberHead/CyberHead`
@@ -14,6 +15,8 @@
 5. Launch CyberHead: `sudo docker-compose run cyberhead python core.py`
 
 You can go into the container with: `sudo docker-compose exec cyberhead bash`
+
+
 Any change into the cloned repository is sync with the container files in /home/CyberHead
 
 
