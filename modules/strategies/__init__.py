@@ -1,2 +1,5 @@
-from . import strategy_one
-from . import strategy_two
+import stratcore
+
+
+def start():
+    return 0
