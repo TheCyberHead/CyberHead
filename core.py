@@ -1,12 +1,16 @@
 from os import environ, chdir, listdir, path
 from threading import Timer
+from termcolor import colored
 # from celery import Celery
 
 import web
 
 
+RUNNING = colored('RUNNING', 'green')
+FAILED = colored('FAILED', 'red')
+
+
 print('CYBERHEAD CORE STARTING...\n')
-environ['CH_PATH'] = '/home/sebu/CyberHead'
 # process_queue = Celery('core', broker="amqp://localhost//")
 # process_queue = Celery(__name__)
 # process_queue.config_from_object(__name__)
@@ -20,13 +24,13 @@ def run(module):
 
         Timer(timing, run, [module]).start()
 
-        print(module, '\033[32mRUNNING\033[39m')
-        print(timing, 'seconds to callback')
-    except:
-        print(module, '\033[31mFAILED\033[39m')
+        print(f'[{module}]', RUNNING, f'callback: {timing} seconds')
+    except Exception as err:
+        print(f'[{module}]', FAILED)
+        print(err)
 
 
-def initializeModules():
+def initialize_modules():
     chdir(environ.get('CH_PATH') + '/modules')
     modules = [folder for folder in listdir(".") if path.isdir(folder)]
     for module in modules:
@@ -34,16 +38,24 @@ def initializeModules():
     return modules
 
 
-def initializeWebService(modules):
-    print('Starting Web Service')
-    web.start(modules)
+def initialize_web(modules):
+    try:
+        web.start(modules)
+        print('[WEB]', RUNNING)
+    except Exception as err:
+        print('[WEB]', FAILED)
+        print(err)
+
     while True:
         web_request = input('>>>')
         try:
             run(web_request)
-        except:
-            print('\033[31mWEB REQUEST FAILED\033[39m')
+            print('[WEB REQUEST]', RUNNING)
+        except Exception as err:
+            print('[WEB REQUEST]', FAILED)
+            print(err)
 
 
-modules = initializeModules()
-initializeWebService(modules)
+if __name__ == '__main__':
+    modules = initialize_modules()
+    # initialize_web(modules)
