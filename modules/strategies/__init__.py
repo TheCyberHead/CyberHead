@@ -1,5 +1,4 @@
-import stratcore
 
 
 def start():
-    return 0
+    return 'Submodules called', 0
