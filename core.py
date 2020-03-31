@@ -1,4 +1,4 @@
-from os import environ, chdir, listdir, path
+from os import environ, chdir, listdir, path, system
 from threading import Timer
 from termcolor import colored
 # from celery import Celery
@@ -10,31 +10,43 @@ RUNNING = colored('RUNNING', 'green')
 FAILED = colored('FAILED', 'red')
 
 
-print('CYBERHEAD CORE STARTING...\n')
+print(colored('CYBERHEAD CORE STARTING...\n', 'green'))
 # process_queue = Celery('core', broker="amqp://localhost//")
 # process_queue = Celery(__name__)
 # process_queue.config_from_object(__name__)
 
 
 # @process_queue.task
-def run(module):
-    try:
-        exec('from modules.' + module + ' import start', globals())
-        timing = start()
+def run(parent, module):
+    if parent != '':
+        parent = parent + '.' + parent + '.'
 
-        Timer(timing, run, [module]).start()
+    exec('from modules.' + parent + module + ' import start', globals())
+    module_answer, callback_timing = start()
 
-        print(f'[{module}]', RUNNING, f'callback: {timing} seconds')
-    except Exception as err:
-        print(f'[{module}]', FAILED)
-        print(err)
+    if module_answer == 'Submodules called':
+        modules_path = environ.get('CH_PATH') + '/modules/' + module + '/' + module
+        parent = module
+        initialize_modules(parent, modules_path)
+
+    print(f'[{module}]', RUNNING, f'{module_answer}')
+
+    if callback_timing > 0:
+        Timer(callback_timing, run, [module]).start()
+        print(f'[{module}]', RUNNING, f'callback: {callback_timing} seconds')
+    else:
+        print(f'[{module}]', RUNNING, f'no callback')
 
 
-def initialize_modules():
-    chdir(environ.get('CH_PATH') + '/modules')
+def initialize_modules(parent, modules_path):
+    chdir(modules_path)
     modules = [folder for folder in listdir(".") if path.isdir(folder)]
     for module in modules:
-        run(module)
+        try:
+            if module != '__pycache__':
+                run(parent, module)
+        except Exception as err:
+            print(f'[{module}]', FAILED, f'{err}')
     return modules
 
 
@@ -57,5 +69,8 @@ def initialize_web(modules):
 
 
 if __name__ == '__main__':
-    modules = initialize_modules()
+    system('python3 setup.py install')
+
+    modules_path = environ.get('CH_PATH') + '/modules'
+    modules = initialize_modules('', modules_path)
     # initialize_web(modules)
