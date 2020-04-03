@@ -18,6 +18,13 @@ RUN apt-get update \
 RUN apt-get install nodejs -y --no-install-recommends \
                     npm 
 
+RUN echo "root:root" | chpasswd
+
+RUN useradd -ms /bin/bash cyberhead -p root
+USER cyberhead
+WORKDIR /home/cyberhead
+
+
 #RUN cd /home/CyberHead/web \
 #    && npm install -y
 
