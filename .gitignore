@@ -6,3 +6,6 @@ modules/strategies/__pycache__
 modules/strategies/__pycache__/*
 tmp/*
 env/*
+build/*
+cyberhead.egg-info/*
+dist/*
