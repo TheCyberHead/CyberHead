@@ -1,0 +1,92 @@
+.trigger {
+  color: #cccccc;
+  font-size: 18px;
+  line-height: 8px;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.trigger:hover {
+  color: #ffffff;
+}
+
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected.item {
+    background-color: #bb0033;
+  }
+
+.logo {
+  height: 60px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.overview-container {
+  background-color: #fff;
+  padding: 1em;
+}
+
+.overview-container img {
+  width: 30%;
+  margin-left: 30%;
+}
+
+.dataset-card {
+  margin-bottom: 1em;
+}
+
+.dataset-card p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.dataset-box button {
+  margin-right: 2em !important;
+}
+
+.label-ratios {
+  font-weight: bold;
+}
+
+.brokers_section {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.submit-broker {
+  width: 40%;
+}
+
+.broker_accounts {
+  width: 50%;
+}
+
+.logo-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.logo-box img {
+  width: 100px;
+}
+
+.live-options {
+  background-color: #FFFF;
+  margin-bottom: 1em;
+  padding: 0.8em;
+  border-radius: 2px;
+}
+
+.live-options .live-options-inputs {
+  display: flex;
+  justify-content: space-around;
+}
