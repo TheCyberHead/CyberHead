@@ -69,8 +69,6 @@ def initialize_web(modules):
 
 
 if __name__ == '__main__':
-    system('python3 setup.py install')
-
     modules_path = environ.get('CH_PATH') + '/modules'
     modules = initialize_modules('', modules_path)
     # initialize_web(modules)
