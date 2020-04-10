@@ -21,7 +21,7 @@ def run(parent, module):
     if parent != '':
         parent = parent + '.' + parent + '.'
 
-    exec('from modules.' + parent + module + ' import start', globals())
+    exec('from modules.' + parent + module + ' import start', locals())
     module_answer, callback_timing = start()
 
     if module_answer == 'Submodules called':
