@@ -12,7 +12,3 @@ def getLastRecordHistorical(ticker_identifier: str) -> list:
 
 def getIntervalHistorical(ticker_identifier: str, start: str, end: str):
 	pass
-
-
-if __name__ == '__main__':
-	print(getLastRecordHistorical('MSFT1D'))
