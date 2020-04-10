@@ -1,5 +1,4 @@
 from modules.datasets import yahoo
-from modules.coinbase import Coinbase
 from database import DataSet, engine
 import numpy as np
 import pandas

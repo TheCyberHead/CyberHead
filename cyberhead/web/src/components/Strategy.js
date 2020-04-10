@@ -97,7 +97,7 @@ class Strategy extends React.Component {
 				        </Card>
 				      </Col>
 				      <Col md={8}>
-				      <iframe src={`${API_BASE}/get_plot/${this.state.strategyData.plot_path}`} width="750px" height="710" frameBorder="0"></iframe>
+				      <iframe src={`${API_BASE}/get_plot/${this.state.strategyData.plot_path}`} width="750px" height="710" frameBorder="0" title="iframe strategy_return"></iframe>
 				    	</Col>
 				    </Row>
 				  </div>

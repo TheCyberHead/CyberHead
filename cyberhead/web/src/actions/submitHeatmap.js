@@ -1,9 +1,9 @@
 import API_BASE from './URL'
 
-async function createDataSet(dataset){
-	let response = await fetch(`${API_BASE}/datasets`,{
+async function submitHeatmap(heatmap){
+	let response = await fetch(`${API_BASE}/heatmap`,{
 			method: 'POST',
-			body: JSON.stringify(dataset),
+			body: JSON.stringify(heatmap),
 			headers:{
 				'Content-Type': 'application/json'
 			}
@@ -13,4 +13,4 @@ async function createDataSet(dataset){
 }
 
 
-export default createDataSet;
+export default submitHeatmap;

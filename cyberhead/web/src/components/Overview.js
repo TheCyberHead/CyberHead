@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table } from 'antd';
-import matrix from './matrix.png';
-import portfolioStrategies from './actions/portfolioStrategies';
+import matrix from '../matrix.png';
+import portfolioStrategies from '../actions/portfolioStrategies';
 
-class portfolio extends React.Component {
+class Overview extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -66,7 +66,7 @@ class portfolio extends React.Component {
 					{this.state.load && 
 						<React.Fragment>
 							<Table dataSource={this.state.dataSource} columns={this.state.columns} />
-							<img src={matrix} />
+							<img src={matrix} alt="Overview" />
 						</React.Fragment>
 					}
 				</div>
@@ -76,4 +76,4 @@ class portfolio extends React.Component {
 	}
 }
 
-export default portfolio;
+export default Overview;

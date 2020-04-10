@@ -1,35 +1,15 @@
-
-
-
-
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
+import Overview from './components/Overview';
+import HeatVision from './components/HeatVision';
+import DataSets from './components/DataSets';
+import Configuration from './components/Configuration';
+import Strategy from './components/Strategy';
+import Brokers from './components/Brokers';
+import CodeEditor from './components/CodeEditor';
+import getStrategies from './actions/getStrategies'
 import './App.css';
-
-import getStrategies from './modules/actions/getStrategies'
-
-
-
-// Automated Import //
-import Coinbase from './modules/Coinbase'
-
-import Ameritrade from './modules/Ameritrade'
-
-import Alpaca from './modules/Alpaca'
-
-import Strategies from './modules/Strategies'
-
-import Mysql from './modules/Mysql'
-
-import Mongodb from './modules/Mongodb'
-
-import Portfolio from './modules/Portfolio'
-
-import Datasets from './modules/Datasets'
-// Automated Import //
-
-
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -69,142 +49,78 @@ class App extends React.Component {
     });
   };
 
-
-
   render() {
     return (
       <Router>
       <Layout>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ background: '#141414'}}>
           <div className="logo">
-          <img src="/logo64.png" className="center"/>
+          <img src="/images/logo64.png" className="center" alt="logo"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
+          <Menu.Item className="item"key="1">
+                <Link to="/overview">
+            <Icon type="desktop" />
+            <span>Porfolio</span>
 
+                </Link>
+          </Menu.Item>
+          <SubMenu
+            style={{ background: '#141414'}}
+            theme="dark"
+            mode="inline"
+            key="sub1"
+            title={
+              <span>
+                <Icon type="stock" />
+                <span>Strategies</span>
+              </span>
+            }
+          >
+            {this.state.loaded && this.state.strategies.map((strategy, index) => (
+              <Menu.Item className="item" key={index+11}>
+                <Link to={`/strategy/${strategy}`}>
+                  <Icon type="stock" />
+                  <span>{strategy}</span>
+                </Link>
+              </Menu.Item>
+            ))}
+          </SubMenu>
 
-{/* Automated Menu */}
-    <Menu.Item className="item" key="303">
-      <Link  to="coinbase">
-	<Icon type="experiment" />
-	<span>Coinbase</span>
-      </Link>
-    </Menu.Item>
+            <Menu.Item className="item" key="3">
+              <Link to="/heat-vision">
+                <Icon type="dot-chart" />
+                <span>Heat Vision</span>
+              </Link>
+            </Menu.Item>
 
+            <Menu.Item className="item" key="4">
+              <Link  to="configuration">
+                <Icon type="experiment" />
+                <span>Configuration</span>
+              </Link>
+            </Menu.Item>
 
+            <Menu.Item className="item" key="5">
+              <Link to="/datasets">
+                <Icon type="file-add" />
+                <span>Data Sets</span>
+              </Link>
+            </Menu.Item>
 
+            <Menu.Item className="item" key="6">
+              <Link to="/brokers">
+                <Icon type="sliders" />
+                <span>Broker Accounts</span>
+              </Link>
+            </Menu.Item>
 
-    <Menu.Item className="item" key="302">
-      <Link  to="ameritrade">
-	<Icon type="experiment" />
-	<span>Ameritrade</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="300">
-      <Link  to="alpaca">
-	<Icon type="experiment" />
-	<span>Alpaca</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-  <SubMenu
-    style={{ background: '#141414'}}
-    theme="dark"
-    mode="inline"
-    key="sub1"
-    title={
-      <span>
-	<Icon type="stock" />
-	<span>Strategies</span>
-      </span>
-    }
-  >
-    {this.state.loaded && this.state.strategies.map((strategy, index) => (
-      <Menu.Item className="item" key={index+11} >
-	<Link to={`/strategy/${strategy}`}>
-	  <Icon type="stock" />
-	  <span>{strategy}</span>
-	</Link>
-      </Menu.Item>
-
-    ))}
-
-      <Menu.Item className="item" key="100" style={{ background: '#090909'}}>
-        <Link  to="strategy1">
-	  <Icon type="experiment" />
-	  <span>Strategy1</span>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item className="item" key="101" style={{ background: '#090909'}}>
-        <Link  to="strategy2">
-	  <Icon type="experiment" />
-	  <span>Strategy2</span>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item className="item" key="103" style={{ background: '#090909'}}>
-        <Link  to="strategy3">
-	  <Icon type="experiment" />
-	  <span>Strategy2</span>
-        </Link>
-      </Menu.Item>
-
-
-{/* Automated Submenu */}
-
-{/* Automated Submenu */}
-
-
-  </SubMenu>
-
-
-
-
-    <Menu.Item className="item" key="3">
-      <Link to="/heat-vision">
-	<Icon type="dot-chart" />
-	<span>MySQL</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="60">
-      <Link to="/mongodb">
-	<Icon type="dot-chart" />
-	<span>MongoDB</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-  <Menu.Item className="item"key="200">
-	<Link to="/portfolio">
-    <Icon type="desktop" />
-    <span>Porfolio</span>
-
-	</Link>
-  </Menu.Item>
-
-
-
-    <Menu.Item className="item" key="400">
-      <Link to="/datasets">
-	<Icon type="file-add" />
-	<span>Data Sets</span>
-      </Link>
-    </Menu.Item>
-
-{/* Automated Menu */}
+            <Menu.Item className="item" key="7">
+              <Link to="/editor">
+                <Icon type="sliders" />
+                <span>Editor</span>
+              </Link>
+            </Menu.Item>
 
           </Menu>
         </Sider>
@@ -226,43 +142,32 @@ class App extends React.Component {
             }}
           >
               <Switch>
+                <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
 
+                <Route exact path="/heat-vision">
+                  <HeatVision updateKey={this.updateMenuKey} />
+                </Route>
 
-{/* Automated Route */}
-<Route exact path="/Coinbase">
-  <Coinbase updateKey={this.updateMenuKey}/>
-</Route>
+                <Route exact path="/datasets">
+                  <DataSets updateKey={this.updateMenuKey} />
+                </Route>
 
-<Route exact path="/Ameritrade">
-  <Ameritrade updateKey={this.updateMenuKey}/>
-</Route>
+                <Route exact path="/configuration">
+                  <Configuration updateKey={this.updateMenuKey} />
+                </Route>
 
-<Route exact path="/Alpaca">
-  <Alpaca updateKey={this.updateMenuKey}/>
-</Route>
+                <Route exact path="/brokers">
+                  <Brokers updateKey={this.updateMenuKey} />
+                </Route>
 
-<Route exact path="/Strategies">
-  <Strategies updateKey={this.updateMenuKey}/>
-</Route>
+                <Route exact path="/editor">
+                  <CodeEditor updateKey={this.updateMenuKey} />
+                </Route>
 
-<Route exact path="/Mysql">
-  <Mysql updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Mongodb">
-  <Mongodb updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Portfolio">
-  <Portfolio updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Datasets">
-  <Datasets updateKey={this.updateMenuKey}/>
-</Route>
-{/* Automated Route */}
-
-            </Switch>
+                <Route path="/">
+                  <Overview updateKey={this.updateMenuKey} />
+                </Route>
+              </Switch>
           </Content>
         </Layout>
       </Layout>
@@ -272,7 +177,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-
-
