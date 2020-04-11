@@ -17,15 +17,15 @@ class Poloniex:
 
 	def auth(self):
 		print('Authenticating Poloniex')
-		
+
 	def check_auth(self):
 		pass
 
 	def buy_market(self, price, size, symbol):
 		payload = {
-			'command': 'buy'
-			'currencyPair': symbol,
-			'rate': price,
+            'command': 'buy',
+            'currencyPair': symbol,
+            'rate': price,
 			'amound': size
 		}
 		req = requests.post(self.private_url, json=payload, headers=self.headers)

@@ -1,13 +1,22 @@
 from os import system, chdir, environ
+from dirsync import sync
 
 
-def yarnStart():
+def module_to_web(module_path)
+    '''sync the web folder from a module
+    to their respective folder on web/src'''
+
+    source_path = environ.get('CH_PATH') + module_path + '/web/
+    target_path = environ.get('CH_PATH') + '/web/src/modules' + module_path
+    sync(source_path, target_path, 'sync')
+
+def yarn_start():
     chdir(environ.get('CH_PATH') + '/web')
     system('yarn install')
     system('yarn start')
 
 
-def makeMenu(menu, imports, route):
+def make_menu(menu, imports, route):
     '''create the menu elements based on the modules'''
     chdir(environ.get('CH_PATH') + '/web/src')
     menu_flag = '{/* Automated Menu */}'
@@ -28,7 +37,7 @@ def makeMenu(menu, imports, route):
         #print(txt7)
 
 
-def collectMenu(modules):
+def collect_menu(modules):
     menu = ''
     imports = ''
     route = ''
@@ -52,14 +61,14 @@ def collectMenu(modules):
 
 
 
-def installModule(module):
+def install_module(module):
     chdir(environ.get('CH_PATH') + '/modules/' + module)
     system('cp ' + module + '.js ../../web/src/modules/' + module + '.js')
     chdir(environ.get('CH_PATH') + '/modules/' + module + '/actions')
     system('cp * ../../../web/src/modules/actions')
 
 
-def startWeb():
+def start_web():
     '''launch the web service'''
     return
 

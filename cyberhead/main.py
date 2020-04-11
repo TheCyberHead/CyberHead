@@ -3,6 +3,10 @@ from playhouse.shortcuts import model_to_dict
 from flask_cors import CORS, cross_origin
 from database import DataSet, BacktestPerform
 from tasker import perform_strategy, run_loader, fetch_dataset_yahoo
+import os
+import json
+import base64
+
 
 app = Flask(__name__)
 CORS(app)
@@ -19,7 +23,7 @@ def get_dataset(task_id):
 @app.route('/datasets', methods=['POST'])
 def create_dataset():
 	data = request.json
-	data_set = DataSet.create(identifier=data["identifier"],
+	data_set = DataSet.create(identifier=data["identifier"], 
 					reference_symbol=data["reference_symbol"],
 					symbol=data["ticker"],
 					source=data["source"],
@@ -56,6 +60,24 @@ def get_strategy(strategy):
 @app.route('/get_plot/<strategy>')
 def get_plot(strategy):
 	return send_from_directory('tmp', strategy)
+
+
+@app.route('/get_strategies_edit', methods=["GET"])
+def strategies_dir():
+	strategies_edit = os.listdir("/Users/luispereira/Documents/CyberHead/cyberhead/modules/strategies")
+	strategies_edit.remove('__pycache__')
+	return {'strategies':strategies_edit}
+
+@app.route('/get_strategy_edit/<strategy_name>')
+def strategy_get_edit(strategy_name):
+	find_strategy = open(f'/Users/luispereira/Documents/CyberHead/cyberhead/modules/strategies/{strategy_name}', 'r')
+	return {'strategy_code': find_strategy.read()}
+
+@app.route('/heatmap', methods=['POST'])
+def save_heatmap():
+	data = request.json
+	print(data)
+	return data
 
 
 if __name__ == '__main__':
