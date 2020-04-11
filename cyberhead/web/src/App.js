@@ -11,21 +11,13 @@ import CodeEditor from './components/CodeEditor';
 import {getStrategies} from './actions/strategies'
 import './App.css';
 
-<<<<<<< HEAD
-import getStrategies from './modules/strategies/getStrategies'
-
-
-
-// Automated Import //
-
-import Datasets from './modules/datasets/Datasets'
 
 // Automated Import //
 
 
+// Automated Import //
 
-=======
->>>>>>> 07036f7b28dcb83740938e8038590163c7cfe530
+
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
@@ -73,20 +65,14 @@ class App extends React.Component {
           <img src="/images/logo64.png" className="center" alt="logo"/>
           </div>
           <Menu style={{ background: '#141414'}} theme="dark" mode="inline" defaultSelectedKeys={["1"]} selectedKeys={[this.state.selectedKeyMenu]} >
-<<<<<<< HEAD
 
 
 {/* Automated Menu */}
 
-    <Menu.Item className="item" key="400">
-      <Link to="/datasets">
-	<Icon type="file-add" />
-	<span>Data Sets</span>
-      </Link>
-    </Menu.Item>
 
 {/* Automated Menu */}
-=======
+	    
+	    
           <Menu.Item className="item"key="1">
                 <Link to="/overview">
             <Icon type="desktop" />
@@ -171,24 +157,17 @@ class App extends React.Component {
               minHeight: '100vh',
             }}
           >
-              <Switch>
-                <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
 
-                <Route exact path="/heat-vision">
-                  <HeatVision updateKey={this.updateMenuKey} />
-                </Route>
-
-<<<<<<< HEAD
-{/* Automated Route */}
-
-
-<Route exact path="/Datasets">
-  <Datasets updateKey={this.updateMenuKey}/>
-</Route>
-{/* Automated Route */}
 
             </Switch>
-=======
+
+
+{/* Automated Route */}
+
+
+{/* Automated Route */}
+
+
                 <Route exact path="/datasets">
                   <DataSets updateKey={this.updateMenuKey} />
                 </Route>
@@ -209,7 +188,7 @@ class App extends React.Component {
                   <Overview updateKey={this.updateMenuKey} />
                 </Route>
               </Switch>
->>>>>>> 07036f7b28dcb83740938e8038590163c7cfe530
+
           </Content>
         </Layout>
       </Layout>
