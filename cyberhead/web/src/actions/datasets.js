@@ -1,5 +1,11 @@
 import API_BASE from './URL'
 
+async function getDatasets(){
+	let response = await fetch(`${API_BASE}/datasets`)
+	let data = await response.json()
+	return data
+}
+
 async function createDataSet(dataset){
 	let response = await fetch(`${API_BASE}/datasets`,{
 			method: 'POST',
@@ -13,4 +19,4 @@ async function createDataSet(dataset){
 }
 
 
-export default createDataSet;
+export { getDatasets, createDataSet };
