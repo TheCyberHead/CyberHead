@@ -25,8 +25,8 @@ async function loadStrategiesEditor(){
 }
 
 export {
-getStrategies, 
-getStrategy, 
-getStrategyEdit, 
-loadStrategiesEditor
+	getStrategies, 
+	getStrategy, 
+	getStrategyEdit, 
+	loadStrategiesEditor
 };
