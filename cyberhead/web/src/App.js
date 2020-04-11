@@ -157,7 +157,7 @@ class App extends React.Component {
             }}
           >
 
-
+		<Switch>
 {/* Automated Route */}
 
 
