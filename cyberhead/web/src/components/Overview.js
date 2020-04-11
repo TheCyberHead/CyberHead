@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table } from 'antd';
-import matrix from '../matrix.png';
 import portfolioStrategies from '../actions/portfolioStrategies';
 
 class Overview extends React.Component {
@@ -66,7 +65,6 @@ class Overview extends React.Component {
 					{this.state.load && 
 						<React.Fragment>
 							<Table dataSource={this.state.dataSource} columns={this.state.columns} />
-							<img src={matrix} alt="Overview" />
 						</React.Fragment>
 					}
 				</div>
