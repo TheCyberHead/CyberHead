@@ -7,26 +7,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 import './App.css';
 
-import getStrategies from './modules/actions/getStrategies'
+import getStrategies from './modules/strategies/getStrategies'
 
 
 
 // Automated Import //
-import Coinbase from './modules/Coinbase'
 
-import Ameritrade from './modules/Ameritrade'
+import Datasets from './modules/datasets/Datasets'
 
-import Alpaca from './modules/Alpaca'
-
-import Strategies from './modules/Strategies'
-
-import Mysql from './modules/Mysql'
-
-import Mongodb from './modules/Mongodb'
-
-import Portfolio from './modules/Portfolio'
-
-import Datasets from './modules/Datasets'
 // Automated Import //
 
 
@@ -83,119 +71,6 @@ class App extends React.Component {
 
 
 {/* Automated Menu */}
-    <Menu.Item className="item" key="303">
-      <Link  to="coinbase">
-	<Icon type="experiment" />
-	<span>Coinbase</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="302">
-      <Link  to="ameritrade">
-	<Icon type="experiment" />
-	<span>Ameritrade</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="300">
-      <Link  to="alpaca">
-	<Icon type="experiment" />
-	<span>Alpaca</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-  <SubMenu
-    style={{ background: '#141414'}}
-    theme="dark"
-    mode="inline"
-    key="sub1"
-    title={
-      <span>
-	<Icon type="stock" />
-	<span>Strategies</span>
-      </span>
-    }
-  >
-    {this.state.loaded && this.state.strategies.map((strategy, index) => (
-      <Menu.Item className="item" key={index+11} >
-	<Link to={`/strategy/${strategy}`}>
-	  <Icon type="stock" />
-	  <span>{strategy}</span>
-	</Link>
-      </Menu.Item>
-
-    ))}
-
-      <Menu.Item className="item" key="100" style={{ background: '#090909'}}>
-        <Link  to="strategy1">
-	  <Icon type="experiment" />
-	  <span>Strategy1</span>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item className="item" key="101" style={{ background: '#090909'}}>
-        <Link  to="strategy2">
-	  <Icon type="experiment" />
-	  <span>Strategy2</span>
-        </Link>
-      </Menu.Item>
-
-      <Menu.Item className="item" key="103" style={{ background: '#090909'}}>
-        <Link  to="strategy3">
-	  <Icon type="experiment" />
-	  <span>Strategy2</span>
-        </Link>
-      </Menu.Item>
-
-
-{/* Automated Submenu */}
-
-{/* Automated Submenu */}
-
-
-  </SubMenu>
-
-
-
-
-    <Menu.Item className="item" key="3">
-      <Link to="/heat-vision">
-	<Icon type="dot-chart" />
-	<span>MySQL</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-    <Menu.Item className="item" key="60">
-      <Link to="/mongodb">
-	<Icon type="dot-chart" />
-	<span>MongoDB</span>
-      </Link>
-    </Menu.Item>
-
-
-
-
-  <Menu.Item className="item"key="200">
-	<Link to="/portfolio">
-    <Icon type="desktop" />
-    <span>Porfolio</span>
-
-	</Link>
-  </Menu.Item>
-
-
 
     <Menu.Item className="item" key="400">
       <Link to="/datasets">
@@ -229,33 +104,7 @@ class App extends React.Component {
 
 
 {/* Automated Route */}
-<Route exact path="/Coinbase">
-  <Coinbase updateKey={this.updateMenuKey}/>
-</Route>
 
-<Route exact path="/Ameritrade">
-  <Ameritrade updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Alpaca">
-  <Alpaca updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Strategies">
-  <Strategies updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Mysql">
-  <Mysql updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Mongodb">
-  <Mongodb updateKey={this.updateMenuKey}/>
-</Route>
-
-<Route exact path="/Portfolio">
-  <Portfolio updateKey={this.updateMenuKey}/>
-</Route>
 
 <Route exact path="/Datasets">
   <Datasets updateKey={this.updateMenuKey}/>
