@@ -12,4 +12,21 @@ async function getStrategy(strategy){
 	return data
 }
 
-export {getStrategies, getStrategy};
+async function getStrategyEdit(name){
+	let response = await fetch(`${API_BASE}/get_strategy_edit/${name}`)
+	let data = await response.json()
+	return data
+}
+
+async function loadStrategiesEditor(){
+	let response = await fetch(`${API_BASE}/get_strategies_edit`)
+	let data = await response.json()
+	return data
+}
+
+export {
+getStrategies, 
+getStrategy, 
+getStrategyEdit, 
+loadStrategiesEditor
+};

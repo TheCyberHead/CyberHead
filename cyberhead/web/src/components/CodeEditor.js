@@ -1,7 +1,6 @@
 import React from 'react';
 import AceEditor from "react-ace";
-import loadStrategiesEditor from '../actions/loadStrategiesEditor'
-import getStrategyEdit from '../actions/getStrategyEdit'
+import {loadStrategiesEditor, getStrategyEdit} from '../actions/strategies'
 import 'ace-builds/src-noconflict/mode-python'
 import 'ace-builds/src-noconflict/snippets/python'
 import 'ace-builds/src-noconflict/theme-monokai'
