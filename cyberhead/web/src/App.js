@@ -136,7 +136,6 @@ class App extends React.Component {
                 <span>Editor</span>
               </Link>
             </Menu.Item>
->>>>>>> 07036f7b28dcb83740938e8038590163c7cfe530
 
           </Menu>
         </Sider>
