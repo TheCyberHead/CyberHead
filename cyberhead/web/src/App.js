@@ -8,7 +8,7 @@ import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
 import Brokers from './components/Brokers';
 import CodeEditor from './components/CodeEditor';
-import getStrategies from './actions/getStrategies'
+import {getStrategies} from './actions/strategies'
 import './App.css';
 
 const { Header, Sider, Content } = Layout;

@@ -1,7 +1,7 @@
 import React from 'react';
 import API_BASE from '../actions/URL'
 import { Card, Col, Row, Switch, Select, Button } from 'antd';
-import getStrategy from '../actions/getStrategy'
+import {getStrategy} from '../actions/strategies'
 const { Option } = Select;
 
 class Strategy extends React.Component {

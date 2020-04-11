@@ -1,10 +1,15 @@
 import API_BASE from './URL'
 
+async function getStrategies(strategy){
+	let response = await fetch(`${API_BASE}/get_strategies`)
+	let data = await response.json()
+	return data
+}
+
 async function getStrategy(strategy){
 	let response = await fetch(`${API_BASE}/get_strategy/${strategy}`)
 	let data = await response.json()
 	return data
 }
 
-
-export default getStrategy;
+export {getStrategies, getStrategy};
