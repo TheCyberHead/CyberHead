@@ -41,8 +41,8 @@ ma2 = GOOG.ma2
 
 def cross(ma1, ma2):
     if crossover(ma1, ma2):
-        return 'buy'
+        return 'buy', 1000, USD, GOOG
     elif crossover(ma2, ma1):
-        return 'sell'
+        return 'sell', 1000, USD, GOOG
 
 SMACrossGOOG.order(cross(), ma1, ma2)
