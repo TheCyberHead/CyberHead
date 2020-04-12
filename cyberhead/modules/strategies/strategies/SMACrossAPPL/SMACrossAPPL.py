@@ -33,10 +33,13 @@ from backtesting.lib import crossover
 
 
 SMACrossAPPL = strat
+SMACrossAPPL.broker = 'alpaca'
+SMACrossAPPL.testcash = 10000
+SMACrossAPPL.testcommision = 0.002
 ma1 = GOOG.ma1
 ma2 = GOOG.ma2
 
-SMACrossAPPL.broker = 'alpaca'
+
 if crossover(ma1, ma2):
     SMACrossAPPL.buy()
 elif crossover(ma2, ma1):
