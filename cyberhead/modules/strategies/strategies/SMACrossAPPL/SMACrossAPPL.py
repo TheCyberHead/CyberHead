@@ -46,4 +46,3 @@ def cross(ma1, ma2):
         return 'sell'
 
 SMACrossGOOG.order(cross(ma1, ma2))
-SMACrossAPPL.init()
