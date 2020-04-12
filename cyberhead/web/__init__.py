@@ -1,14 +1,7 @@
-from os import system, chdir, environ
+from os import system, chdir, environ, mkdir
 from dirsync import sync
 
 
-def module_to_web(module_path)
-    '''sync the web folder from a module
-    to their respective folder on web/src'''
-
-    source_path = environ.get('CH_PATH') + module_path + '/web/
-    target_path = environ.get('CH_PATH') + '/web/src/modules' + module_path
-    sync(source_path, target_path, 'sync')
 
 def yarn_start():
     chdir(environ.get('CH_PATH') + '/web')
@@ -80,5 +73,20 @@ def start(modules):
     return
 
 
-#environ['CH_PATH'] = '/home/sebu/CyberHead'
+def module_to_web(module_path):
+    '''sync the web folder from a module
+    to their respective folder on web/src'''
+
+    chdir(environ.get('CH_PATH') +  module_path)
+
+    mkdir(environ.get('CH_PATH') + '/web/src/' + module_path)
+
+    source_path = environ.get('CH_PATH') + module_path + 'javascript/'
+    target_path = environ.get('CH_PATH') + 'web/src/' + module_path
+    print(source_path)
+    print(target_path)
+    sync(source_path, target_path, 'sync')
+
+environ['CH_PATH'] = '/home/sebu/CyberHead/cyberhead/'
+module_to_web('modules/datasets/')
 #start(['datasets'])
