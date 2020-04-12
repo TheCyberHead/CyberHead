@@ -38,10 +38,11 @@ SMACrossGOOG.testcommision = 0.002
 ma1 = GOOG.ma1
 ma2 = GOOG.ma2
 
+def cross(ma1, ma2):
+    if crossover(ma1, ma2):
+        return 'buy
+    elif crossover(ma2, ma1):
+        return 'sell'
 
-if crossover(ma1, ma2):
-    SMACrossGOOG.buy()
-elif crossover(ma2, ma1):
-    SMACrossGOOG.sell()
-
+SMACrossGOOG.order()
 SMACrossAPPL.init()
