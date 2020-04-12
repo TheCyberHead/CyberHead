@@ -3,11 +3,10 @@ from backtesting import Backtest, Strategy
 from backtesting.lib import crossover
 from backtesting.test import SMA, GOOG
 
-from cyberhead.modules.strategies.strat import Strat
 
 friendly_title = "SMACrossAPPL"
 
-class SMACrossAPPL(Strat):
+class SMACrossAPPL(Strategy):
     def init(self):
         Close = self.data.Close
         self.ma1 = self.I(SMA, Close, 10)
