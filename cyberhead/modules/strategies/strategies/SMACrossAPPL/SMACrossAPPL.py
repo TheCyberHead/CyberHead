@@ -32,7 +32,7 @@ from cyberhead.modules.datasets import GOOG
 from backtesting.lib import crossover
 
 
-SMACrossAPPL = strat
+SMACrossAPPL = strat()
 SMACrossAPPL.broker = 'alpaca'
 SMACrossAPPL.testcash = 10000
 SMACrossAPPL.testcommision = 0.002
