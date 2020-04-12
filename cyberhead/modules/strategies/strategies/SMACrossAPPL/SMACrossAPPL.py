@@ -25,3 +25,21 @@ def run_backtest():
     output = bt.run()
     bt.plot(open_browser=False, plot_width=700, filename=environ.get('CH_PATH') + '/temp/SMACrossAPPL')
     return output
+
+#################################################
+from cyberhead.modules.strategies.strat import strat
+from cyberhead.modules.datasets import GOOG
+from backtesting.lib import crossover
+
+
+SMACrossAPPL = strat
+ma1 = GOOG.ma1
+ma2 = GOOG.ma2
+
+SMACrossAPPL.broker = 'alpaca'
+        if crossover(ma1, ma2):
+            SMACrossAPPL.buy()
+        elif crossover(ma2, ma1):
+            SMACrossAPPL.sell()
+
+SMACrossAPPL.init()
