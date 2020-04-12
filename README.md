@@ -18,5 +18,3 @@
 You can go into the container with: `sudo docker-compose exec cyberhead bash`
 
 Any change into the cloned repository is sync with the container files in /home/CyberHead
-
-`core.py` control the tasks from the different modules, the modules have the functionalities
