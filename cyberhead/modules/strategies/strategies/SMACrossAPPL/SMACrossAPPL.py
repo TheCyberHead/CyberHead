@@ -37,9 +37,9 @@ ma1 = GOOG.ma1
 ma2 = GOOG.ma2
 
 SMACrossAPPL.broker = 'alpaca'
-        if crossover(ma1, ma2):
-            SMACrossAPPL.buy()
-        elif crossover(ma2, ma1):
-            SMACrossAPPL.sell()
+if crossover(ma1, ma2):
+    SMACrossAPPL.buy()
+elif crossover(ma2, ma1):
+    SMACrossAPPL.sell()
 
 SMACrossAPPL.init()
