@@ -15,24 +15,18 @@ class CHStrategy:
 		self.unit_size = unit_size
 		self.trades = []
 		self.algorithm = algorithm
-
-	def data(self):
-		pass
-
-	def perform(self):
-		print(self.dataset)
+		self.timeseries = []
 
 	def run(self):
-		self.algorithm(self)
+		for did in range(len(self.dataset)):
+			self.timeseries = self.dataset.loc[:self.dataset.iloc[did].name]
+			self.algorithm(self)
 
 	def buy(self):
-		pass
+		print('BUY')
 
 	def sell(self):
-		self.trades.append(222)
-		self.trades.append(222)
-		self.trades.append(222)
-		self.trades.append(222)
+		print('SELL')
 
 	def results(self):
 		print(len(self.trades))
