@@ -32,16 +32,16 @@ from backtesting.lib import crossover
 
 
 SMACrossGOOG = strat()
+SMACrossGOOG.prices = GOOG.close
 SMACrossGOOG.broker = 'alpaca'
 SMACrossGOOG.testcash = 10000
 SMACrossGOOG.testcommision = 0.002
 ma1 = GOOG.ma1
 ma2 = GOOG.ma2
 
+def trigeer(ma1, ma2):
+    if crossover(ma1, ma2):
+        return 'buy'
+    elif crossover(ma2, ma1):
+        return 'sell'
 
-if crossover(ma1, ma2):
-    SMACrossGOOG.buy()
-elif crossover(ma2, ma1):
-    SMACrossGOOG.sell()
-
-SMACrossAPPL.init()
