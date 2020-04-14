@@ -3,9 +3,10 @@ from backtesting.test import GOOG
 import numpy as np
 import talib
 
-def trade(fn, buy, sell):
-	return fn.dataset.Close
+def trade(strategy):
+	print(strategy.dataset.Close)
+	strategy.sell()
 
-st01 = CHStrategy('alpaca',100000,0.5, GOOG, 5)
-st01.algorithm(trade)
+st01 = CHStrategy('alpaca', 100000, 0.5, GOOG, 5, trade)
 st01.run()
+st01.results()

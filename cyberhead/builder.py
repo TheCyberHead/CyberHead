@@ -6,7 +6,7 @@ from backtesting import Backtest, Strategy
 from backtesting._plotting import plot
 
 class CHStrategy:
-	def __init__(self, broker, test_cash, test_comission, dataset, unit_size):
+	def __init__(self, broker, test_cash, test_comission, dataset, unit_size, algorithm):
 		super(CHStrategy, self).__init__()
 		self.broker = broker
 		self.test_cash = test_cash
@@ -14,21 +14,28 @@ class CHStrategy:
 		self.dataset = dataset
 		self.unit_size = unit_size
 		self.trades = []
+		self.algorithm = algorithm
 
 	def data(self):
 		pass
-
-	def algorithm(self, fn):
-		self.algorithm = fn
 
 	def perform(self):
 		print(self.dataset)
 
 	def run(self):
-		self.algorithm(self, self.buy, self.sell)
+		self.algorithm(self)
 
 	def buy(self):
 		pass
 
 	def sell(self):
+		self.trades.append(222)
+		self.trades.append(222)
+		self.trades.append(222)
+		self.trades.append(222)
+
+	def results(self):
+		print(len(self.trades))
+
+	def plot(self):
 		pass
