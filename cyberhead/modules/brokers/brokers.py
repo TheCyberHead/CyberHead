@@ -41,6 +41,3 @@ class Broker:
 
 	def historical(self):
 		pass
-
-if __name__ == '__main__':
-	Broker('coinbase').auth()

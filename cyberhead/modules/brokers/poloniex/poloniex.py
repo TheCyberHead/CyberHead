@@ -37,7 +37,7 @@ class Poloniex:
 
 	def sell_market(self, price, size, symbol):
 		payload = {
-			'command': 'sell'
+			'command': 'sell',
 			'currencyPair': symbol,
 			'rate': price,
 			'amound': size
