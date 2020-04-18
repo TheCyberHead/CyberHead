@@ -7,22 +7,23 @@ import { Layout, Menu, Icon } from 'antd';
 import './index.css';
 
 
-
 // Automated Import //
 
 
 // Automated Import //
 
 
+//import DataSets from './modules/datasets/DataSets';
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
-import DataSets from './components/DataSets';
 import Configuration from './components/Configuration';
 import Strategy from './components/Strategy';
 import Brokers from './components/Brokers';
 import CodeEditor from './components/CodeEditor';
 import {getStrategies} from './actions/strategies'
 
+
+import DataSets from 'datasets/javascript';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;

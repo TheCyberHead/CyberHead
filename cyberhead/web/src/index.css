@@ -1,0 +1,188 @@
+.trigger {
+  color: #cccccc;
+  font-size: 18px;
+  line-height: 8px;
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+.trigger:hover {
+  color: #ffffff;
+}
+
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected.item {
+    background-color: #bb0033;
+  }
+
+.logo {
+  height: 60px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.overview-container {
+  background-color: #fff;
+  padding: 1em;
+}
+
+.overview-container img {
+  width: 30%;
+  margin-left: 30%;
+}
+
+.dataset-card {
+  margin-bottom: 1em;
+}
+
+.dataset-card p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.dataset-box button {
+  margin-right: 2em !important;
+}
+
+.label-ratios {
+  font-weight: bold;
+}
+
+.brokers_section {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.submit-broker {
+  width: 40%;
+}
+
+.broker_accounts {
+  width: 50%;
+}
+
+.logo-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.logo-box img {
+  width: 100px;
+}
+
+.live-options {
+  background-color: #FFFF;
+  margin-bottom: 1em;
+  padding: 0.8em;
+  border-radius: 2px;
+}
+
+.live-options .live-options-inputs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.editor-box {
+  display: flex;
+}
+
+.strategies_box {
+  background-color: white;
+  width: 30%;
+  margin-left: 2.5em;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.strategies_box ul {
+  padding: 0;
+}
+.strategies_box ul li {
+  list-style-type: none;
+  background-color: rgba(1,1,1,0.1);
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+  margin-top: 0.5em;
+  cursor: pointer;
+  transition: background-color .2s;
+  border-radius: 3px;
+}
+
+.strategies_box ul li:hover{
+  background-color: rgba(1,1,1,0.15);
+}
+
+.heat-vision {
+  width: 100%;
+  background-color: white;
+  height: 100vh;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+.heatmap-upload-form {
+  width: 25%;
+}
+
+.heat-upload-file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.heat-upload-file::before {
+  content: "Select CSV";
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.heatmap-list {
+  border: 0.5px solid rgba(1,1,1,0.1);
+  padding: 1em;
+  width: 25%;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.heatmap-list ul {
+  padding: 0;
+}
+
+.heatmap-list ul li {
+  list-style-type: none;
+  background-color: rgba(179,229,252 ,0.6);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.heatmap-list ul li:hover {
+  background-color: rgba(179,229,252 ,1);
+}
+.heatmap-list ul li p {
+  margin: 0;
+  padding: 0;
+  color: rgba(1,1,1,0.6);
+}
