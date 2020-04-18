@@ -13,7 +13,7 @@ import './index.css';
 // Automated Import //
 
 
-//import DataSets from './modules/datasets/DataSets';
+import DataSets from './components/DataSets';
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
 import Configuration from './components/Configuration';
@@ -22,8 +22,6 @@ import Brokers from './components/Brokers';
 import CodeEditor from './components/CodeEditor';
 import {getStrategies} from './actions/strategies'
 
-
-import DataSets from 'datasets/javascript';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
