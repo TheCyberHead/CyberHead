@@ -96,7 +96,7 @@ def development():
 
 
 if __name__ == '__main__':
-    if len(argv) < 2:
+    if len(argv) < 2:  # no arg case
         production()
     elif argv[1] == 'dev':
         development()
