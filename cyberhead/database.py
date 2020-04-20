@@ -2,10 +2,17 @@ from sqlalchemy import create_engine
 import peewee
 import os
 
-engine = create_engine(f"mysql+pymysql://{os.getenv('CH_DB_USER')}:{os.getenv('CH_DB_PASSWORD')}@{os.getenv('CH_DB_HOST')}:3306/{os.getenv('CH_DB_NAME')}").connect()
+
+user = os.getenv('CH_DB_USER')
+password = os.getenv('CH_DB_PASSWORD')
+host = os.getenv('CH_DB_HOST')
+name = os.getenv('CH_DB_NAME')
+
+engine = create_engine(f"mysql+pymysql://{user}:{password}@{host}:3306/{name}")
+engine.connect()
+
 
 if __name__ == '__main__':
-
 	modules = filter(lambda x: x != '__init__.py', os.listdir("modules"))
 	for module in modules:
 		try:
