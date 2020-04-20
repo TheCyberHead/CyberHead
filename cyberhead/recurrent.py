@@ -1,7 +1,9 @@
 from modules.datasets import yahoo
-from database import DataSet, engine
+from database import engine
+#from modules.datasets.db import DataSet
+from database import DataSet, History
 import numpy as np
-import pandas
+import pandas 
 import os
 
 def allTimeFetch(ticker: str, period: str, interval: str, dataset_id: int):
@@ -15,14 +17,34 @@ def allTimeFetch(ticker: str, period: str, interval: str, dataset_id: int):
 	read_export.to_sql('history', con=engine, if_exists='append', index = False)
 	return ticker
 
-def historicalCoinbase(ticker: str, dataset_id: int):
-	coin = Coinbase(os.getenv('CB_API_KEY'), os.getenv('CB_API_SECRET'), os.getenv('CB_API_PASSPHRASE'))
-	dataset = coin.historical_rates(ticker)
-	dataset['dataset_id'] = dataset_id
+def symbolHistorical(reference_symbol: str):
+	dataset_id = DataSet.select().where(DataSet.reference_symbol == reference_symbol).get()
+	history_timeseries = History.select().where(History.dataset_id == dataset_id).execute()
+	index_timeseries = [x.datetime for x in history_timeseries]
+	open_prices = [x.open_price for x in history_timeseries]
+	high_prices = [x.high_price for x in history_timeseries]
+	low_prices = [x.low_price for x in history_timeseries]
+	closing_prices = [x.closing_price for x in history_timeseries]
+	volume = [x.volume for x in history_timeseries]
+	dataframe = pandas.DataFrame(data=open_prices, columns=['Open'], index=index_timeseries)
+	dataframe['High'] = high_prices
+	dataframe['Low'] =  low_prices
+	dataframe['Close'] = closing_prices
+	dataframe['Volume'] = volume
+	return dataframe
+
+
+'''
+open_price = peewee.FloatField()
+high_price = peewee.FloatField()
+low_price = peewee.FloatField()
+closing_price = peewee.FloatField()
+volume = peewee.IntegerField()
+'''
+#Open    High     Low   Close    Volume
 
 def lastRecordYahoo(ticker: str, last_interval: str):
 	pass
 
-
-def lastRecordCoinbase(ticker: str, last_interval: str):
-	pass
+if __name__ == '__main__':
+	symbolHistorical('AMZN1D')

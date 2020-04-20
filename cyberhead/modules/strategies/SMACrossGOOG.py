@@ -1,5 +1,5 @@
-from generators.wrapper import CustomStrategy
-from generators.builder import CHStrategy
+from .generate.wrapper import CustomStrategy
+from .generate.builder import CHStrategy
 from backtesting.lib import crossover
 from backtesting.test import SMA, GOOG
 
@@ -14,5 +14,5 @@ def iterator(self):
     elif crossover(self.ma2, self.ma1):
         self.sell()
 
-if __name__ == '__main__':
-	CHStrategy('Alpaca', 10000, .002, GOOG, CustomStrategy, initialization, iterator).run()
+def perform_backtest(dataset):
+	return CHStrategy('Alpaca', 10000, .002, dataset, CustomStrategy, initialization, iterator, 'SMACrossGOOG').run()

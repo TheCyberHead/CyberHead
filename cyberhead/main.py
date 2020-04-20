@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify, send_from_directory
 from playhouse.shortcuts import model_to_dict
 from flask_cors import CORS, cross_origin
-from database import DataSet, BacktestPerform
+from modules.datasets.db import DataSet
+from modules.strategies.db import BacktestPerform
 from tasker import perform_strategy, run_loader, fetch_dataset_yahoo
 import os
 import json

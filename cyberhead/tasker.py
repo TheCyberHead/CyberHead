@@ -1,19 +1,24 @@
 from celery import Celery
-from modules.strategies import strategy_one
-from modules.strategies import strategy_two
+from backtesting.test import SMA, GOOG
+from modules.strategies import SMACrossGOOG, SMACrossAPPL
 from database import BacktestPerform
-from recurrent import allTimeFetch
+from recurrent import allTimeFetch, symbolHistorical
 
 app = Celery('tasker', broker="amqp://localhost//")
 
+dataset_map = {
+	"SMACrossGOOG": symbolHistorical('AAPL1D'),
+	"SMACrossAPPL": symbolHistorical('GOOG1D')
+}
+
 strategies_map = {
-	"CrossGOOG": strategy_one.run_backtest,
-	"CrossGOOG2": strategy_two.run_backtest
+	"SMACrossGOOG": SMACrossGOOG.perform_backtest,
+	"SMACrossAPPL": SMACrossAPPL.perform_backtest
 }
 
 @app.task
 def perform_strategy(name: str) -> list:
-	perform = strategies_map[name]()
+	perform = strategies_map[name](dataset_map[name])
 	plot_path = f"{name}.html"
 	BacktestPerform.create(
 		start=perform["Start"],
@@ -40,7 +45,7 @@ def perform_strategy(name: str) -> list:
 		sharpe_ratio=perform["Sharpe Ratio"],
 		sortino_ratio=perform["Sortino Ratio"],
 		calmar_ratio=perform["Calmar Ratio"],
-		strategy_name=perform["_strategy"],
+		strategy_name=name,
 		plot_path=plot_path
 		)
 	return name

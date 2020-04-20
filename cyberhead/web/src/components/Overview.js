@@ -15,19 +15,14 @@ class Overview extends React.Component {
 				    key: 'strategy',
 				  },
 				  {
-				    title: 'Return',
+				    title: 'Final Equity',
 				    dataIndex: 'return',
 				    key: 'return',
 				  },
 				  {
-				    title: '% Return',
+				    title: 'Return (%)',
 				    dataIndex: 'perc_return',
 				    key: 'perc_return',
-				  },
-				  {
-				    title: 'Str Dev',
-				    dataIndex: 'str_dev',
-				    key: 'str_dev',
 				  },
 				  {
 				    title: 'Sharpe',
@@ -47,9 +42,9 @@ class Overview extends React.Component {
 					portfolio.push({
 						key: index,
 						strategy: strategy_data.strategy_name,
-						perc_return: strategy_data.strategy_return,
-						sharpe: strategy_data.sharpe_ratio,
-						return: strategy_data.equity_final
+						perc_return: parseFloat(strategy_data.strategy_return).toFixed(2),
+						sharpe: parseFloat(strategy_data.sharpe_ratio).toFixed(3),
+						return: `${parseFloat(strategy_data.equity_final).toFixed(3)} USD`
 					})
 				})
 				this.setState({dataSource: portfolio})	

@@ -1,18 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
-import './index.css';
-
-
-// Automated Import //
-
-
-// Automated Import //
-
-
 import DataSets from './components/DataSets';
 import Overview from './components/Overview';
 import HeatVision from './components/HeatVision';
@@ -21,6 +11,8 @@ import Strategy from './components/Strategy';
 import Brokers from './components/Brokers';
 import CodeEditor from './components/CodeEditor';
 import {getStrategies} from './actions/strategies'
+import 'antd/dist/antd.css';
+import './index.css';
 
 
 const { Header, Sider, Content } = Layout;
@@ -162,35 +154,33 @@ class App extends React.Component {
             }}
           >
 
-		<Switch>
+      		<Switch>
+            <Route exact path="/strategy/:strategy_name"  component={Strategy}/>
+            
+            <Route exact path="/datasets">
+                <DataSets updateKey={this.updateMenuKey} />
+              </Route>
 
+              <Route exact path="/heat-vision">
+                <HeatVision updateKey={this.updateMenuKey} />
+              </Route>
 
-{/* Automated Route */}
+              <Route exact path="/configuration">
+                <Configuration updateKey={this.updateMenuKey} />
+              </Route>
 
+              <Route exact path="/brokers">
+                <Brokers updateKey={this.updateMenuKey} />
+              </Route>
 
-{/* Automated Route */}
+              <Route exact path="/editor">
+                <CodeEditor updateKey={this.updateMenuKey} />
+              </Route>
 
-
-                <Route exact path="/datasets">
-                  <DataSets updateKey={this.updateMenuKey} />
-                </Route>
-
-                <Route exact path="/configuration">
-                  <Configuration updateKey={this.updateMenuKey} />
-                </Route>
-
-                <Route exact path="/brokers">
-                  <Brokers updateKey={this.updateMenuKey} />
-                </Route>
-
-                <Route exact path="/editor">
-                  <CodeEditor updateKey={this.updateMenuKey} />
-                </Route>
-
-                <Route path="/">
-                  <Overview updateKey={this.updateMenuKey} />
-                </Route>
-              </Switch>
+              <Route path="/">
+                <Overview updateKey={this.updateMenuKey} />
+              </Route>
+          </Switch>
 
           </Content>
         </Layout>

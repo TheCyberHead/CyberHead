@@ -6,7 +6,7 @@ from backtesting import Backtest, Strategy
 from backtesting._plotting import plot
 
 class CHStrategy:
-	def __init__(self, broker, cash, commission, dataset, strategy, initialization, iterator):
+	def __init__(self, broker, cash, commission, dataset, strategy, initialization, iterator, strategy_name):
 		super(CHStrategy, self).__init__()
 		self.broker = broker
 		self.dataset = dataset
@@ -15,6 +15,7 @@ class CHStrategy:
 		self.commission = commission
 		self.initialization = initialization
 		self.iterator = iterator
+		self.strategy_name = strategy_name
 
 	def run_old(self):
 		for did in range(len(self.dataset)):
@@ -26,5 +27,5 @@ class CHStrategy:
 		self.strategy.next = self.iterator
 		bt = Backtest(self.dataset, self.strategy, cash=self.cash, commission=self.commission)
 		output = bt.run()
-		bt.plot(open_browser=True, plot_width=700, filename='SMACrossAPPL')
+		bt.plot(open_browser=False, plot_width=700, filename=f'tmp/{self.strategy_name}')
 		return output
