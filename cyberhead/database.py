@@ -2,33 +2,51 @@ from sqlalchemy import create_engine
 import peewee
 import os
 
-engine = create_engine(f"mysql+pymysql://{os.getenv('CH_DB_USER')}:{os.getenv('CH_DB_PASSWORD')}@{os.getenv('CH_DB_HOST')}:3306/{os.getenv('CH_DB_NAME')}").connect()
 
-'''
-modules = filter(lambda x: x != '__init__.py', os.listdir("modules"))
-for module in modules:
-	try:
-		os.listdir(f"modules/{module}").index('db.py')
-		exec(f"from modules.{module}.db import *")
-	except Exception as e:
-		print(f'Database file not found in module {module}')
-try:
-	print('--------')
-	databases = list(globals())
-	split_db = databases[databases.index('db')+1:]
-	for database in split_db:
-		exec(f"{database}.create_table()")
-		print(database)
-except Exception as e:
-	print(f"Database Integration Error. {e}")
-
-'''
+engine = create_engine(f"mysql+pymysql://root:root@localhost:3306/cyberhead").connect()
 
 db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           host=os.getenv('CH_DB_HOST'),
                           port=3306,
                           user=os.getenv('CH_DB_USER'),
                           password=os.getenv('CH_DB_PASSWORD'))
+
+class Broker(peewee.Model):
+	broker = peewee.CharField()
+	# Coinbase / Alpaca
+	api_key = peewee.CharField()
+	api_secret = peewee.CharField()
+	# Coinbase
+	api_passphrase = peewee.CharField()
+	#TDA
+	refresh_token = peewee.CharField()
+	current_token = peewee.CharField()
+	class Meta:
+	    database = db
+	    db_table = 'broker'
+
+class DataSet(peewee.Model):
+	identifier = peewee.CharField()
+	reference_symbol = peewee.CharField()
+	symbol = peewee.CharField()
+	source = peewee.CharField()
+	frecuency = peewee.CharField()
+	first_fetch = peewee.BooleanField(default=False)
+	class Meta:
+	    database = db
+	    db_table = 'dataset'
+
+class History(peewee.Model):
+	dataset_id = peewee.ForeignKeyField(DataSet)
+	datetime = peewee.DateTimeField()
+	open_price = peewee.FloatField()
+	high_price = peewee.FloatField()
+	low_price = peewee.FloatField()
+	closing_price = peewee.FloatField()
+	volume = peewee.IntegerField()
+	class Meta:
+	    database = db
+	    db_table = 'history'
 
 class BacktestPerform(peewee.Model):
 	start = peewee.CharField()
@@ -61,25 +79,18 @@ class BacktestPerform(peewee.Model):
 	    database = db
 	    db_table = 'backtest_perform'
 
-class DataSet(peewee.Model):
-	identifier = peewee.CharField()
-	reference_symbol = peewee.CharField()
-	symbol = peewee.CharField()
-	source = peewee.CharField()
-	frecuency = peewee.CharField()
-	first_fetch = peewee.BooleanField(default=False)
-	class Meta:
-	    database = db
-	    db_table = 'dataset'
+if __name__ == '__main__':
+	if not DataSet.table_exists():
+		DataSet.create_table()
+		print('Data Sets table created.')
+	if not History.table_exists():
+		History.create_table()
+		print('History table created.')
 
-class History(peewee.Model):
-	dataset_id = peewee.ForeignKeyField(DataSet)
-	datetime = peewee.DateTimeField()
-	open_price = peewee.FloatField()
-	high_price = peewee.FloatField()
-	low_price = peewee.FloatField()
-	closing_price = peewee.FloatField()
-	volume = peewee.IntegerField()
-	class Meta:
-	    database = db
-	    db_table = 'history'
+	if not BacktestPerform.table_exists():
+		BacktestPerform.create_table()
+		print('Backtest Perform created.')
+
+	if not Broker.table_exists():
+		Broker.create_table()
+		print('Broker table created.')

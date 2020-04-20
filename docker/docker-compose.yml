@@ -24,7 +24,7 @@ services:
         environment:
             CH_PATH: '/home/CyberHead/cyberhead'
             CH_DB_NAME: db
-            CH_DB_HOST: localhost
+            CH_DB_HOST: 0.0.0.0
             CH_DB_USER: root
             CH_DB_PASSWORD: root
         volumes:
