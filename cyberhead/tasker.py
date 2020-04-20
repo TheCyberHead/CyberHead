@@ -7,8 +7,8 @@ from recurrent import allTimeFetch, symbolHistorical
 app = Celery('tasker', broker="amqp://localhost//")
 
 dataset_map = {
-	"SMACrossGOOG": symbolHistorical('AAPL1D'),
-	"SMACrossAPPL": symbolHistorical('GOOG1D')
+	"SMACrossGOOG": symbolHistorical('GOOG1D'),
+	"SMACrossAPPL": symbolHistorical('AAPL1D')
 }
 
 strategies_map = {
