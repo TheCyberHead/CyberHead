@@ -8,7 +8,7 @@
 
 
 ## Run it locally
-1. Install [Docker](https://docs.docker.com/install/)
+1. [Install Docker](https://docs.docker.com/install/)
 2. Clone the project: `git clone https://github.com/TheCyberHead/CyberHead`
 3. Go into the cloned project's docker folder: `cd CyberHead/docker`
 4. Run the Docker container: `sudo docker-compose up -d`
