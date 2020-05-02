@@ -4,18 +4,33 @@ from modules.strategies import SMACrossGOOG, SMACrossAPPL
 from database import BacktestPerform
 from recurrent import allTimeFetch, symbolHistorical
 
+'''
+Celery Initialization
+If your broker instance is located out of localhost replace replace it below, or set the propper URL if you're lookign to use Redis.
+'''
 app = Celery('tasker', broker="amqp://localhost//")
 
+
+'''
+Define the first initialization of datasets on startup.
+'''
 dataset_map = {
 	"SMACrossGOOG": symbolHistorical('GOOG1D'),
 	"SMACrossAPPL": symbolHistorical('AAPL1D')
 }
+
+'''
+Define the available strategies enabled to be reach by the 
+'''
 
 strategies_map = {
 	"SMACrossGOOG": SMACrossGOOG.perform_backtest,
 	"SMACrossAPPL": SMACrossAPPL.perform_backtest
 }
 
+'''
+This task enqueue the execution of strategy, since this is an CPU intensive task it should not be executed in a single thread.
+'''
 @app.task
 def perform_strategy(name: str) -> list:
 	perform = strategies_map[name](dataset_map[name])
@@ -50,16 +65,25 @@ def perform_strategy(name: str) -> list:
 		)
 	return name
 
+
+'''
+Get historical pricing data from Yahoo (Queue)
+'''
 @app.task
 def fetch_dataset_yahoo(ticker: str, period: str, interval: str, dataset_id: int):
 	allTimeFetch(ticker, period, interval, dataset_id)
 
 
+'''
+Sync dataset with the latest updates
+'''
 @app.task
 def sync_dataset(source: str, symbol: str):
 	return source
 
-
+'''
+The loader is the first entry point that will be executed once you run the application.
+'''
 def run_loader():
 	for strategy in strategies_map.keys():
 		perform_strategy.delay(strategy)

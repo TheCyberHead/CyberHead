@@ -6,8 +6,14 @@ import numpy as np
 import pandas 
 import os
 
+'''
+Using Yahoo as a source, get all time historical price data available
+@ticker = Stock symbol.
+@period = 1 (Y)ear (W)eek (M)onth (D)ay
+@interval = 1 (W)eek (M)onth (D)ay (M)inute
+@dataset_id = The dataset id of the associated data request.
+'''
 def allTimeFetch(ticker: str, period: str, interval: str, dataset_id: int):
-	#xfetchDataSet(symbol, "max", "1d", 2212)
 	data = yahoo.download_historical(ticker, period, interval)
 	data.to_csv('tmp/{}.csv'.format(ticker))
 	read_export = pandas.read_csv('tmp/{}.csv'.format(ticker))
@@ -17,6 +23,9 @@ def allTimeFetch(ticker: str, period: str, interval: str, dataset_id: int):
 	read_export.to_sql('history', con=engine, if_exists='append', index = False)
 	return ticker
 
+'''
+This method continously looks for data in the remote source to keep the data updated.
+'''
 def symbolHistorical(reference_symbol: str):
 	dataset_id = DataSet.select().where(DataSet.reference_symbol == reference_symbol).get()
 	history_timeseries = History.select().where(History.dataset_id == dataset_id).execute()
@@ -33,15 +42,6 @@ def symbolHistorical(reference_symbol: str):
 	dataframe['Volume'] = volume
 	return dataframe
 
-
-'''
-open_price = peewee.FloatField()
-high_price = peewee.FloatField()
-low_price = peewee.FloatField()
-closing_price = peewee.FloatField()
-volume = peewee.IntegerField()
-'''
-#Open    High     Low   Close    Volume
 
 def lastRecordYahoo(ticker: str, last_interval: str):
 	pass
