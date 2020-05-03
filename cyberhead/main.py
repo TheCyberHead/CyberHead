@@ -12,15 +12,34 @@ import base64
 app = Flask(__name__)
 CORS(app)
 
+'''
+/datasets => GET
+Lists saved and synced datasets stored in database.
+'''
+
 @app.route('/datasets', methods=['GET'])
 def list_datasets():
 	datasets = DataSet.select()
 	return jsonify({'datasets':[model_to_dict(dataset) for dataset in datasets]})
 
+'''
+/datasets/{id} => GET
+@id = DataSet ID, can be found in the response of the /datasets endpoint
+Get dataset
+'''
 @app.route('/datasets/<int:task_id>', methods=["GET"])
 def get_dataset(task_id):
 	pass
 
+
+'''
+/datasets => POST
+@identifier = Any reference you'd like to store
+@reference_symbol = Historical identifier, should not be the same as the stock symbol, because this identifier is intended to be used as a differentiator, i.e, for AMZN at 1 week historical yoy may use AMZN1W
+@symbol = The underlying stock symbol to look for in the market.
+@source = The data source where you would like to fetch the historical prices. Yahoo, Ameritrade, Alpaca.
+Save a initiate a fetch of a historical pricing data.
+'''
 @app.route('/datasets', methods=['POST'])
 def create_dataset():
 	data = request.json
@@ -33,54 +52,69 @@ def create_dataset():
 	return request.json
 
 
+'''
+This method is used to perform the backtests of the strategies stored in the strategies module, this doesn't require any interaction on your side.
+'''
 @app.route('/perform_backtest', methods=['POST'])
 def perform_backtest():
 	data = request.json
 	perform_async = perform_strategy.delay(data['strategy_name'])
 	return {"execution_id": str(perform_async)}
 
-@app.route('/backtest_status/<queue_reference>', methods=["GET"])
-def backtest_status(queue_reference):
-	pass
-
+'''
+Return a list of all the available strategies in CyberHead.
+'''
 @app.route('/get_strategies', methods=["GET"])
 def get_strategies():
 	strategies_list = BacktestPerform.select(BacktestPerform.strategy_name).distinct().execute()
 	return jsonify({'strategies':[model_to_dict(strategy) for strategy in strategies_list]})
 
+'''
+Return all the performing data of al strategies.
+'''
 @app.route('/portfolio_strategies', methods=["GET"])
 def portfolio_strategies():
 	strategies_list = BacktestPerform.select(BacktestPerform.strategy_name, BacktestPerform.strategy_return, BacktestPerform.equity_final, BacktestPerform.sharpe_ratio).distinct().execute()
 	return jsonify({'strategies':[model_to_dict(strategy) for strategy in strategies_list]})
 
+'''
+Return all the performing data of a single strategy.
+'''
 @app.route('/get_strategy/<strategy>')
 def get_strategy(strategy):
 	strategy_data = BacktestPerform.select().where(BacktestPerform.strategy_name == strategy).order_by(BacktestPerform.id.desc()).limit(1)
 	return jsonify({'strategy':[model_to_dict(strategy) for strategy in strategy_data]})
 
+'''
+Shows the plotting timeseries of a performed strategy, with all the trades made in the given timeframe.
+'''
 @app.route('/get_plot/<strategy>')
 def get_plot(strategy):
 	return send_from_directory('tmp', strategy)
 
 
+'''
+Get all strategies to be available on editor.
+'''
 @app.route('/get_strategies_edit', methods=["GET"])
 def strategies_dir():
 	strategies_edit = os.listdir("/Users/luispereira/Documents/CyberHead/cyberhead/modules/strategies")
 	strategies_edit.remove('__pycache__')
 	return {'strategies':strategies_edit}
 
+'''
+Edit an strategy and save the code.
+'''
 @app.route('/get_strategy_edit/<strategy_name>')
 def strategy_get_edit(strategy_name):
 	find_strategy = open(f'/Users/luispereira/Documents/CyberHead/cyberhead/modules/strategies/{strategy_name}', 'r')
 	return {'strategy_code': find_strategy.read()}
 
-@app.route('/heatmap', methods=['POST'])
-def save_heatmap():
-	data = request.json
-	print(data)
-	return data
 
 
+"""
+This sections defines how Flask is listening, when deploying for a production instance you should set debug to False and set the host parameter to 0.0.0.0
+"""
 if __name__ == '__main__':
 	run_loader()
 	app.run(debug=True)
