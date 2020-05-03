@@ -28,7 +28,7 @@ export CH_DB_HOST="database_host"
 export CH_DB_USER="database_user"
 export CH_DB_PASSWORD="database_password"
 ```
-- Install Node.s & yarn
+- Install Node.js & yarn
 - Install Nginx
 - Go to `/CyberHead/cyberhead/web` and run `yarn install && yarn build`, this step will create a `build` folder, in the default Nginx configuration define the root path to the `build` folder. The nginx configuration file will look like the following one :
 ```
