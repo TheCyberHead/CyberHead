@@ -13,9 +13,7 @@
 5. Launch CyberHead: `sudo docker-compose exec cyberhead python core.py`
 
 You can go into the container with: `sudo docker-compose exec cyberhead bash`
-
-Any change into the cloned repository is sync with the container files in /home/CyberHead
-
+Any change into the cloned repository is sync with the container files in `/home/cyberhead/CyberHead`
 
 ### Install without Docker
 
