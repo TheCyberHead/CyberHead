@@ -79,7 +79,21 @@ class BacktestPerform(peewee.Model):
 	    database = db
 	    db_table = 'backtest_perform'
 
+class HeatMap(peewee.Model):
+	title = peewee.CharField()
+	file_tmp_path = peewee.CharField()
+	file_encoded = peewee.TextField()
+	image_encoded = peewee.TextField()
+	class Meta:
+	    database = db
+	    db_table = 'heatmap'
+
+
 if __name__ == '__main__':
+	if not HeatMap.table_exists():
+		HeatMap.create_table()
+		print('HM table created.')
+
 	if not DataSet.table_exists():
 		DataSet.create_table()
 		print('Data Sets table created.')

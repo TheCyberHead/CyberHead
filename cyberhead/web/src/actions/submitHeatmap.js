@@ -12,5 +12,4 @@ async function submitHeatmap(heatmap){
 	return data
 }
 
-
 export default submitHeatmap;

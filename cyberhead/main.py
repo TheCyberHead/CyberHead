@@ -3,11 +3,12 @@ from playhouse.shortcuts import model_to_dict
 from flask_cors import CORS, cross_origin
 from modules.datasets.db import DataSet
 from modules.strategies.db import BacktestPerform
-from tasker import perform_strategy, run_loader, fetch_dataset_yahoo
+from database import HeatMap
+from tasker import perform_strategy, run_loader, fetch_dataset_yahoo, generate_heatmap
 import os
 import json
 import base64
-
+import uuid 
 
 app = Flask(__name__)
 CORS(app)
@@ -93,6 +94,10 @@ def get_plot(strategy):
 	return send_from_directory('tmp', strategy)
 
 
+@app.route('/get_heatmap/<heatmap>')
+def get_heatmap(heatmap):
+	return send_from_directory('tmp/images', heatmap)
+
 '''
 Get all strategies to be available on editor.
 '''
@@ -111,6 +116,27 @@ def strategy_get_edit(strategy_name):
 	return {'strategy_code': find_strategy.read()}
 
 
+
+@app.route('/heatmap', methods=["POST", "GET"])
+def heatmap():
+	print(request.method)
+	if request.method == 'POST':
+		title = request.json['heatmap']['title']
+		file = request.json['heatmap']['file64'][21:]
+		unique_id = uuid.uuid1()
+		heatmap = HeatMap.create(title=title,
+								file_tmp_path=f"{unique_id}.csv",
+								file_encoded=file,
+								image_encoded="NA"
+					)
+		with open(f"tmp/{unique_id}.csv", "wb") as f:
+		    f.write(base64.b64decode(file))
+		    f.close()
+		generate_heatmap(unique_id, heatmap.id)
+		return request.json
+	elif request.method == 'GET':
+		heatmaps = HeatMap.select()
+		return jsonify({'heatmaps':[model_to_dict(heatmap) for heatmap in heatmaps]})
 
 """
 This sections defines how Flask is listening, when deploying for a production instance you should set debug to False and set the host parameter to 0.0.0.0
