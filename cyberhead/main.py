@@ -142,5 +142,5 @@ def heatmap():
 This sections defines how Flask is listening, when deploying for a production instance you should set debug to False and set the host parameter to 0.0.0.0
 """
 if __name__ == '__main__':
-	run_loader()
-	app.run(debug=True)
+	#run_loader()
+	app.run(debug=True, host='0.0.0.0')

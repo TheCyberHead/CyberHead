@@ -14,17 +14,19 @@ import csv
 Celery Initialization
 If your broker instance is located out of localhost replace replace it below, or set the propper URL if you're lookign to use Redis.
 '''
-app = Celery('tasker', broker="amqp://localhost//")
+app = Celery('tasker', broker="amqp://rabbit//")
 
 
 '''
 Define the first initialization of datasets on startup.
 '''
 
+'''
 dataset_map = {
 	"SMACrossGOOG": symbolHistorical('GOOG1D'),
 	"SMACrossAPPL": symbolHistorical('AAPL1D')
 }
+'''
 
 '''
 Define the available strategies enabled to be reach by the 
