@@ -9,3 +9,4 @@ env/*
 build/*
 cyberhead.egg-info/*
 dist/*
+.DS_Store

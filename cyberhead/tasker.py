@@ -21,12 +21,10 @@ app = Celery('tasker', broker="amqp://rabbit//")
 Define the first initialization of datasets on startup.
 '''
 
-'''
 dataset_map = {
 	"SMACrossGOOG": symbolHistorical('GOOG1D'),
 	"SMACrossAPPL": symbolHistorical('AAPL1D')
 }
-'''
 
 '''
 Define the available strategies enabled to be reach by the 
