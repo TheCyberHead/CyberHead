@@ -143,4 +143,4 @@ This sections defines how Flask is listening, when deploying for a production in
 """
 if __name__ == '__main__':
 	run_loader()
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0')

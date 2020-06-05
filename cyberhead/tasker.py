@@ -14,7 +14,7 @@ import csv
 Celery Initialization
 If your broker instance is located out of localhost replace replace it below, or set the propper URL if you're lookign to use Redis.
 '''
-app = Celery('tasker', broker="amqp://localhost//")
+app = Celery('tasker', broker="amqp://rabbit//")
 
 
 '''

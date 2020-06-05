@@ -3,7 +3,7 @@ import peewee
 import os
 
 
-engine = create_engine(f"mysql+pymysql://root:root@localhost:3306/cyberhead").connect()
+engine = create_engine(f"mysql+pymysql://{os.getenv('CH_DB_USER')}:{os.getenv('CH_DB_PASSWORD')}@{os.getenv('CH_DB_HOST')}:3306/{os.getenv('CH_DB_NAME')}").connect()
 
 db = peewee.MySQLDatabase(os.getenv('CH_DB_NAME'),
                           host=os.getenv('CH_DB_HOST'),
