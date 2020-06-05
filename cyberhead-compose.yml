@@ -1,0 +1,14 @@
+version: '1'
+
+modules: 
+  portfolio: 
+    git: 'github.com/thecyberhead/portfolio'
+  strategies: 
+    git: 'github.com/thecyberhead/strategies'
+    strategies: 
+      git: 'github.com/thecyberhead/open-strategies'
+      dir: './localtest'
+  brokers:
+    src: 'github.com/thecyberhead/strategies'
+    brokers:
+      git: 'github.com/thecyberhead/deribit'
