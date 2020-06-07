@@ -19,8 +19,3 @@ RUN apt-get install -y 	python3 \
 			vim
 
 RUN npm install -g yarn
-
-#RUN yarn --cwd ./web install
-#RUN pip3 install -r ./requirements.txt
-
-#RUN ./init.sh
