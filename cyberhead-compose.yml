@@ -7,7 +7,7 @@ modules:
     git: 'github.com/thecyberhead/strategies'
     strategies: 
       git: 'github.com/thecyberhead/open-strategies'
-      dir: './localtest'
+      dir: './localstrategies'
   brokers:
     git: 'github.com/thecyberhead/strategies'
     brokers:
