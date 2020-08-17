@@ -2,12 +2,12 @@ version: 1
 
 modules:
   strategies:
-    dir: 'strategies'  
+    git: 'github.com/TheCyberHead/strategies'  
     strat1:
       dir: 'strat1'
     strat2:
       dir: 'strat2'
   brokers:
-    dir: 'brokers'
+    git: 'github.com/TheCyberHead/brokers'
     alpaca:
       git: 'github.com/TheCyberHead/alpaca'

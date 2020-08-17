@@ -37,17 +37,17 @@ def transfer_modules(modules):
             destination = f'/app/cyberhead/{module_key}'
             copy_folder(source, destination)
         elif 'git' in module:
-            source = submodule['git']
+            source = module['git']
             destination = f'/app/cyberhead/'
             clone_repo(source, destination)
 
         for submodule_key, submodule in module.items():
             if submodule_key != 'dir':
-                if 'dir' in submodule:
+                if 'dir' in submodule and not isinstance(submodule, str):
                     source = submodule['dir']
                     destination = f'/app/cyberhead/{module_key}/{submodule_key}'
                     copy_folder(source, destination)
-                elif 'git' in submodule:
+                elif 'git' in submodule and not isinstance(submodule, str):
                     source = submodule['git']
                     destination = f'/app/cyberhead/{module_key}/'
                     clone_repo(source, destination)

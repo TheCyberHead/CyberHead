@@ -1,9 +1,13 @@
 import argparse
 from sys import argv
-from os import system
+from os import system, environ
 
+'''
+environ['CH_REPO_PATH'] = '/home/ubuntu/cyberhead'
+repo_path = environ['CH_REPO_PATH']
+'''
 
-repo_path = '/home/ubuntu/exp'
+repo_path = '/home/ubuntu/cyberhead'
 docker_path = f'{repo_path}/docker-compose.yml'
 container_exec = f'docker-compose -f {docker_path} exec cyberhead'
 
@@ -30,6 +34,11 @@ def dev():
     system(f'{container_exec} python3 /app/cyberhead/tasker.py')
 
 
+def run():
+    '''run cyberhead in te container'''
+    system(f'{container_exec} python3 /app/cyberhead/tasker.py')
+
+
 def cli():
     '''asd'''
     cmd = argv[1]
@@ -41,6 +50,8 @@ def cli():
         build()
     elif cmd == 'dev':
         dev()
+    elif cmd == 'run':
+        run()
     elif cmd == '--help' or cmd or cmd == 'help':
         print('No written help yet, please read wrapper.py')
     else:
