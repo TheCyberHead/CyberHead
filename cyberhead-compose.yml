@@ -3,10 +3,8 @@ version: 1
 modules:
   strategies:
     git: 'github.com/TheCyberHead/strategies'  
-    strat1:
-      dir: 'strat1'
-    strat2:
-      dir: 'strat2'
+    smaCross:
+        git: 'github.com/TheCyberHead/strategies'  
   brokers:
     git: 'github.com/TheCyberHead/brokers'
     alpaca:

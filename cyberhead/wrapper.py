@@ -21,10 +21,13 @@ def update():
     '''reinstall the wrapper outside the container'''
     system(f'pipx install {repo_path} --force')
 
+def clean():
+    system(f'{container_exec} python3 /app/cyberhead/cleaner.py')
 
 def build():
     '''erase modules and build the package into de container'''
     update()
+    clean()
     system(f'{container_exec} python3 /app/cyberhead/builder.py')
 
 
@@ -46,6 +49,8 @@ def cli():
         enter()
     elif cmd == 'update':
         update()
+    elif cmd == 'clean':
+        clean()
     elif cmd == 'build':
         build()
     elif cmd == 'dev':
