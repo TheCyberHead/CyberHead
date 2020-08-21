@@ -4,7 +4,7 @@ modules:
   strategies:
     git: 'github.com/TheCyberHead/strategies'  
     smaCross:
-        git: 'github.com/TheCyberHead/strategies'  
+        git: 'github.com/TheCyberHead/smaCross'
   brokers:
     git: 'github.com/TheCyberHead/brokers'
     alpaca:

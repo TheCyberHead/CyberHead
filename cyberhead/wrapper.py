@@ -21,8 +21,10 @@ def update():
     '''reinstall the wrapper outside the container'''
     system(f'pipx install {repo_path} --force')
 
+
 def clean():
     system(f'{container_exec} python3 /app/cyberhead/cleaner.py')
+
 
 def build():
     '''erase modules and build the package into de container'''
@@ -43,7 +45,7 @@ def run():
 
 
 def cli():
-    '''asd'''
+    '''take the argument and call the functiond'''
     cmd = argv[1]
     if cmd == 'enter':
         enter()
@@ -57,7 +59,7 @@ def cli():
         dev()
     elif cmd == 'run':
         run()
-    elif cmd == '--help' or cmd or cmd == 'help':
+    elif cmd == '--help' or cmd == '-h' or cmd == 'help':
         print('No written help yet, please read wrapper.py')
     else:
         print('Command not found, use --help for the commands list')

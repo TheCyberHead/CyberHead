@@ -1,12 +1,19 @@
-__pycache__/*
-__pycache__
-modules/__pycache__/*
-modules/__pycache__
-modules/strategies/__pycache__
-modules/strategies/__pycache__/*
-tmp/*
-env/*
-build/*
-cyberhead.egg-info/*
-dist/*
-.DS_Store
+# Ignore everything
+*
+# ...even if they are in subdirectories
+!*/
+
+# But not these files:
+!.gitignore
+!README.rst
+!Dockerfile
+!docker-compose.yml
+!cyberhead-compose.yml
+!setup.py
+
+!cyberhead/requirements.txt
+!cyberhead/__init__.py
+!cyberhead/builder.py
+!cyberhead/wrapper.py
+!cyberhead/logger.py
+!cyberhead/tasker.py
