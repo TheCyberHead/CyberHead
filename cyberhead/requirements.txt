@@ -1,5 +1,5 @@
 PyYAML==5.3.1
 Backtesting==0.1.7
-celery==4.4.5
+celery==5.2.2
 termcolor
 gitpython==3.1.7
